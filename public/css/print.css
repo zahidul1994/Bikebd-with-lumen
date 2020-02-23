@@ -1,0 +1,12 @@
+@page { 
+    size: a4;
+}
+ .text-right, .print, .no-print { 
+    display:none;
+    
+}
+body, page[size="A4"] {
+    margin: 0;
+    box-shadow: 0;
+  }
+

@@ -1,0 +1,17 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Variables
+@import 'variables';
+// Bootstrap
+//@import '~bootstrap/scss/bootstrap';
+@import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+@import '~admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css';
+@import '~admin-lte/plugins/jqvmap/jqvmap.min.css';
+@import '~admin-lte/dist/css/adminlte.min.css';
+@import '~admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css';
+@import '~admin-lte/plugins/daterangepicker/daterangepicker.css';
+@import '~admin-lte/plugins/summernote/summernote-bs4.css';
+@import '~admin-lte/plugins/select2/css/select2.min.css';
+@import '~admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import "~toastr/toastr.scss"; // for show touster alert
