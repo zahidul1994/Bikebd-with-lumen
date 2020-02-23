@@ -63,6 +63,19 @@ function()use($router){
     $router->post('createcomment','BlogpostController@comment');
      $router->post('categorylist/{id}','PageController@category');
 });
+
+$router->group([
+    'prefix'=>'bn',
+    ],
+
+function()use($router){
+    $router->get('blog/{id}','BlogpostController@bnshow');
+    $router->get('page/{id}','PageController@show');
+    $router->post('createcomment','BlogpostController@comment');
+     $router->post('categorylist/{id}','PageController@category');
+});
+
+
 $router->group([
     'prefix'=>'superadmin',
     'namespace' => 'api\v1\superadmin',

@@ -13,15 +13,10 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+
 class AdminController extends Controller
 {
-    function __construct()
-    {
-         $this->middleware('permission:Admin-list');
-         //$this->middleware('permission:role-create', ['only' => ['create','store']]);
-        // $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-         //$this->middleware('permission:role-delete', ['only' => ['destroy']]);
-    }
+    
     protected function respondWithToken($token)
     {
         return response()->json([

@@ -161,7 +161,7 @@
 
 <script>
     export default {
-      name:'UserDashboard',
+      name:'BNDashboard',
         data(){
        return {
           authenticatedname:null,
@@ -186,7 +186,7 @@
 
     // });
     
-   //alert(5);
+   alert(5);
  
 
         var token= localStorage.getItem("token");

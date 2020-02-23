@@ -141,6 +141,7 @@ import Admincreateuserlist from './components/Admin/UserCreate/Admincreateuserli
 
 
 //User area start
+//en area start
 import BikePost from './components/Home/En/BikePost.vue'
 import NewBikePostDetails from './components/Home/En/NewBikePostDetails.vue'
 import UsedBikePostDetails from './components/Home/En/UsedBikePostDetails.vue'
@@ -150,7 +151,22 @@ import Pagedetails from './components/Home/En/Blogpagedetails.vue'
 import UserRegister from './components/Home/En/Userregister.vue'
 import UserLogin from './components/Home/En/Userlogin.vue'
 import UserDashboard from './components/Home/En/Userdashboard.vue'
-//import HomeMaster from './components/Home/HomeMaster.vue'
+//en area end
+
+
+//Bn area start
+// import BikePost from './components/Home/Bn/BikePost.vue'
+// import NewBikePostDetails from './components/Home/Bn/NewBikePostDetails.vue'
+// import UsedBikePostDetails from './components/Home/Bn/UsedBikePostDetails.vue'
+import BNIndex from './components/Home/Bn/Index.vue'
+import BNBlogpostdetails from './components/Home/Bn/Blogpostdetails.vue'
+// import Pagedetails from './components/Home/Bn/Blogpagedetails.vue'
+// import UserRegister from './components/Home/Bn/Userregister.vue'
+// import UserLogin from './components/Home/Bn/Userlogin.vue'
+// import UserDashboard from './components/Home/Bn/Userdashboard.vue'
+//Bn area end
+
+
 
 //Profile  area start
 import Myprofile from './components/Home/En/Profile/Myprofile.vue'
@@ -370,6 +386,28 @@ export const routes = [
             //blog page  area start
 
             //blog page  area end
+
+        ],
+
+
+    },
+    { path: '/bn/blog/:id', component: BNBlogpostdetails },
+    {
+
+        path: '/bn',
+        name: 'BNDashboard',
+        component: BNIndex,
+        children: [
+            { path: '/:id', component: BNBlogpostdetails },
+            // { path: 'page/:id', component: Pagedetails },
+            // { path: 'myprofile', component: Myprofile },
+            // { path: 'shop/:id', component: Shop },
+            // { path: 'editmyprofile/:id', component: EditMyprofile },
+            // { path: 'changemyemail/:id', component: EditMyEmail },
+            // { path: 'changemypassword/:id', component: EditMyPassword },
+            // { path: 'paidmyaccount', component: PaidMyprofileView },
+            // { path: 'applyform', component: Shopapplyview },
+
 
         ],
 

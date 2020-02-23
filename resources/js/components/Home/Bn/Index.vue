@@ -430,7 +430,8 @@
                                         <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
                                             <h5 class="bike-n text-dark">{{bloginfo.title}}</h5>
-                                            <p class="bike-p">Price:000000</p>
+                                            <p class="bike-p">{{bloginfo.metadescription|shortlength(3,"..")}}</p>
+                                               <!-- <span v-html="blogpostdetails.description"> </span> -->
 
                                         </div>
                                         <div class="c-bottom text-center">
@@ -1097,7 +1098,7 @@
 <script>
 
 export default {
-  name: "Index",
+  name: "BNIndex",
       data(){
         return {
           authenticatedname:null,
@@ -1123,7 +1124,7 @@ export default {
     // });
     
   // alert(5);
- 
+ alert(5);
 
         var token= localStorage.getItem("token");
       var user= localStorage.getItem("user");

@@ -75,7 +75,8 @@
              // console.log(this.form);
                this.form.post("admin/login", this.form)
               .then(response => { [toastr.success('Login  Successfull')],[this.$router.push({name: 'AdminDashboard'})];
-            if(response.data.token){
+             window.admin=true;
+              if(response.data.token){
               localStorage.setItem("token", response.data.token); 
               localStorage.setItem("admin", JSON.stringify(response.data.admin)); 
               }

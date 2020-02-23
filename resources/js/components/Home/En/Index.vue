@@ -430,7 +430,9 @@
                                         <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
                                             <h5 class="bike-n text-dark">{{bloginfo.title}}</h5>
-                                            <p class="bike-p">Price:000000</p>
+                                         <span class="bike-p">{{bloginfo.description|shortlength(40,"..")}}"</span>
+                                              <!-- <span v-html="bloginfo.description"> </span> -->
+                                          
 
                                         </div>
                                         <div class="c-bottom text-center">

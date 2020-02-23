@@ -21,20 +21,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-       $admins=Admin::with('gender','accounttype','status')->latest()->get();
+      return Admin::with('gender','status')->latest()->paginate(3);
        
-       if($admins){
-       return response()->json([
-           'success'=>true,
-           'message'=>'Record Found',
-           'teammemberlist'=>$admins],200);
-    }
-    else{
-        return response()->json([
-            'success'=>false,
-            'message'=>'Record Not  Found',
-           ],404);
-    }
+      
     }
 
     /**
@@ -56,25 +45,6 @@ class AdminController extends Controller
     public function store(Request $request)
     {
        
-    
-    //    $validator=Validator::make($request->all(),[
-    //     'name' => 'required|max:198|min:3',
-    //     'phone' => 'required|max:40|min:11',
-    //     'accounttype_id' => 'required',
-    //     'status_id' => 'required',
-    //     'gender_id' => 'required',
-    //     'email' => 'required|email|unique:admins',
-    //    'password' => 'required|min:6|max:30', 
-    //    'confirm' => 'required|same:password', 
-    //   // 'photo' => 'image|mimes:jpeg,png,jpg|max:6048',     
-    // ]);
-    // if($validator->fails()){
-    //     return response()->json([
-    //         'success'=>false,
-    //         'message'=>'Validation Fails',
-    //         'errors'=>$validator->errors()->all()
-    //     ],422);
-    // }
 
  if ($request->photo!=null) {
     $strpos = strpos($request->photo,';');
@@ -90,43 +60,12 @@ else{
  $name = 'not-found.jpg';
 };
 
-if ($request->accounttype==2){
-    $this->validate($request,[
-        'accountname' => 'required|max:198|min:3',
-        'phone' => 'required|numeric|digits:11',
-        'accounttype' => 'required',
-        'active' => 'required',
-        'gender' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6|max:30', 
-        'confirm' => 'required|same:password', 
 
-        ],
-    [
-        'accountname.required' => 'The account name field is required.',
-        'accounttype.required' => 'The account type  field is required.',
-        'active.required' => 'The active status field is required.',
-        'gender.required' => 'The gender field is required.',
-        'phone.required' => 'The phone field is required.',
-    ]);
- $userinfo = new User(array(
-    'superadmin_id' =>Auth::guard('superadmin')->user()->id,
-    'accounttype_id' => $request->accounttype,
-    'status_id' => $request->active,
-    'gender_id' => $request->gender,
-    'name' => $request->accountname,
-    'phone' => $request->phone,
-    'image' => $name,
-    'email' => $request->email,
-    'password' =>Hash::make($request->password)
- 
-));
-}
-else{
+  
     $this->validate($request,[
         'accountname' => 'required|max:198|min:3',
         'phone' => 'required|numeric|digits:11',
-        'accounttype' => 'required',
+        'language' => 'required',
         'active' => 'required',
         'gender' => 'required',
         'email' => 'required|email|unique:admins',
@@ -143,7 +82,7 @@ else{
     ]);
     $userinfo = new Admin(array(
         'superadmin_id' =>Auth::guard('superadmin')->user()->id,
-        'accounttype_id' => $request->accounttype,
+        'language' => $request->language,
         'status_id' => $request->active,
         'gender_id' => $request->gender,
         'name' => $request->accountname,
@@ -154,20 +93,20 @@ else{
      
     ));
 
-}
-if($userinfo->save()){
-    $userinfo->assignRole($request->input('roles'));
-return response()->json([
-    'success'=>true,
-    'message'=>'Data Create Success',
-    'data'=>$userinfo],200);
-}
-else{
-    return response()->json([
-        'success'=>false,
-        'message'=>'Data Create Faild',
-       ],404);
-}
+
+        if($userinfo->save()){
+            $userinfo->assignRole($request->input('roles'));
+        return response()->json([
+            'success'=>true,
+            'message'=>'Data Create Success',
+            'data'=>$userinfo],200);
+        }
+        else{
+            return response()->json([
+                'success'=>false,
+                'message'=>'Data Create Faild',
+            ],404);
+        }
 }
 
 
@@ -208,7 +147,7 @@ else{
         $validator=Validator::make($request->all(),[
             'name' => 'required|max:198|min:3',
             'phone' => 'required|numeric|digits:11',
-            'accounttype_id' => 'required',
+            'language' => 'required',
             'status_id' => 'required',
             'gender_id' => 'required',
             'email' => 'required|email|unique:admins,email,'.$id,
@@ -217,7 +156,7 @@ else{
         ],
         [
             'name.required' => 'The account name type field is required.',
-            'accounttype.required' => 'The account type field is required.',
+            
             'active.required' => 'The active Status field is required.',
             'gender.required' => 'The gender field is required.',
             'phone.required' => 'The phone field is required.',
@@ -240,7 +179,7 @@ else{
         $img->save($upload_path.$name);
 }
 else{
- $name = $image->image;
+ $name = $image->photo;
 };
 
 if(!empty($request->password)){
@@ -248,14 +187,14 @@ if(!empty($request->password)){
 }
 
         $list =  Admin::find($id);
-        $list->accounttype_id = $request->accounttype_id;
+        $list->language = $request->language;
         $list->name = $request->name;
         $list->email = $request->email;
         $list->gender_id = $request->gender_id;
         $list->status_id = $request->status_id;
         $list->superadmin_id = Auth::guard('superadmin')->user()->id;
         // $list->password=Hash::make($request->password);
-        //$list->image = $name;
+        $list->image = $name;
         $list->update();
         if($list->update()){
             return response()->json([
@@ -284,14 +223,14 @@ if(!empty($request->password)){
      */
     public function destroy($id)
     {
-        $image=Admin::where('_id',$id)->first();
+        $image=Admin::find($id);
         
         $imagepath=public_path('/images/profileimage/').$image->image;
        if(file_exists( $imagepath) && $image->image !='not-found.jpg' ){
            unlink($imagepath);
 
        }
-       $forcedele=  Admin::where('_id', $id)->forcedelete();
+       $forcedele=  Admin::where('id', $id)->forcedelete();
        if($forcedele == true) {
            
             return response()->json([
@@ -330,7 +269,7 @@ if(!empty($request->password)){
        
        $id=$request->id;
         $activestatus = Admin::find($id);
-        $activestatus->status_id='5de4bb75856100009e003f56';
+        $activestatus->status_id='2';
         $activestatus->save();
         if($activestatus->save()) {
            
@@ -347,7 +286,7 @@ if(!empty($request->password)){
        
        $id=$request->id;
         $activestatus = Admin::find($id);
-        $activestatus->status_id='5dd8f4789f61000043000334';
+        $activestatus->status_id='1';
         $activestatus->save();
         if($activestatus->save()) {
            

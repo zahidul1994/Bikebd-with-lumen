@@ -162,17 +162,7 @@
                         <li><a href="#">Honda</a></li>
                         <li><a href="#">Honda</a></li>
                         <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
+                    
                     </ul>
                 </div>
 
@@ -340,7 +330,7 @@
 <script>
 
 export default {
-  name: "Blogpostdetails",
+  name: "BNBlogpostdetails",
   
   data() {
     return {
@@ -381,7 +371,7 @@ export default {
          
       };
 
-             axios.get(`http://127.0.0.1:8000/en/blog/${this.$route.params.id}`)
+             axios.get(`bn/blog/${this.$route.params.id}`)
                 .then(response => {
                       (this.blogpostdetails = response.data.blogpostdetails);
                       
@@ -408,7 +398,7 @@ export default {
          this.form.name='',
          this.form.web='',
          this.form.email='',
-          axios.get(`http://127.0.0.1:8000/blogpostdetails/${this.$route.params.id}`)
+          axios.get(`blogpostdetails/${this.$route.params.id}`)
                 .then(response => {
                       (this.blogpostdetails = response.data.blogpostdetails);
                        

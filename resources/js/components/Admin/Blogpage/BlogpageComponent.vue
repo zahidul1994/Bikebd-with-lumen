@@ -10,7 +10,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Sl</th>
+                  <th>Date</th>
                   <th>Name</th>
                   <th>Title</th>
                   <th>Image</th>
@@ -23,7 +23,7 @@
                 <tbody>
                 <tr v-for="bloginfo, index in allBlogpagelist.data">
                         
-                          <td>{{ index + 1 }}</td>
+                          <td>{{bloginfo.created_at}}</td>
                           <td>{{bloginfo.pagename}}</td>
                           <td>{{bloginfo.pagetitle}}</td>
 
@@ -103,7 +103,7 @@ export default {
   methods: {
 
      getResults(page = 1) {
-      axios.get("blogpage?page=" + page).then(response => {
+      axios.get("/admin/blogpage?page=" + page).then(response => {
         this.allBlogpagelist = response.data;
       });
     },
@@ -118,7 +118,7 @@ export default {
       }
       // this.$store
       //   .dispatch("allBlogpagelist") //for refreash show Division
-         axios.get("blogpage?page=" +  this.allBlogpagelist.current_page).then(response => {
+         axios.get("/admin/blogpage?page=" +  this.allBlogpagelist.current_page).then(response => {
         this.allBlogpagelist = response.data;
       })
         .catch(function(response = false) {
@@ -135,7 +135,7 @@ export default {
         });
         //     this.$store
         // .dispatch("allBlogpagelist") //for refreash show admin
-         axios.get("blogpage?page=" +  this.allBlogpagelist.current_page).then(response => {
+         axios.get("/admin/blogpage?page=" +  this.allBlogpagelist.current_page).then(response => {
         this.allBlogpagelist = response.data;
       })
         .catch(function(response = false) {
@@ -153,7 +153,7 @@ export default {
         });
         //     this.$store
         // .dispatch("allBlogpagelist") //for refreash show admin
-         axios.get("blogpage?page=" +  this.allBlogpagelist.current_page).then(response => {
+         axios.get("/admin/blogpage?page=" +  this.allBlogpagelist.current_page).then(response => {
         this.allBlogpagelist = response.data;
       })
         .catch(function(response = false) {

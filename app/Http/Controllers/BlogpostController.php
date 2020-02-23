@@ -19,7 +19,7 @@ class BlogpostController extends Controller
     public function index()
     {
         
-        $blogpost = Blog::with('blogcategorylist')->latest()->get();
+        $blogpost = Blog::with('blogcategorylist')->where('language', '=' , 'en')->where('status',1)->latest()->get();
         if($blogpost){
         return response()->json([
             'success'=>true,
@@ -67,6 +67,26 @@ class BlogpostController extends Controller
     { 
          if($request->ajax()){
         $blogpost = Blog::with('blogcategorylist','admin','blogcomment')->whereSlug($id)->get()->first();
+       
+        if($blogpost){
+        return response()->json([
+            'success'=>true,
+            'message'=>'Record Found',
+            'blogpostdetails'=>$blogpost],200);
+     }
+     else{
+         return response()->json([
+             'success'=>false,
+             'message'=>'Record Not  Found',
+            ],404);
+    }
+}
+return view('home');
+}
+ public function bnshow(Request $request, $id)
+    { 
+         if($request->ajax()){
+        $blogpost = Blog::with('blogcategorylist','admin','blogcomment')->whereSlug(urldecode($id))->get()->first();
        
         if($blogpost){
         return response()->json([

@@ -12,14 +12,22 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Redirect;
 use App\Helper\CommonFx;
 
 class BlogpostController extends Controller
 {
+    // function __construct()
+    // {
+    //      $this->middleware('permission:Admin-list');
+    //      //$this->middleware('permission:role-create', ['only' => ['create','store']]);
+    //     // $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
+    //      //$this->middleware('permission:role-delete', ['only' => ['destroy']]);
+    // }
     public function index()
     {
         
-        return Blog::with('blogcategorylist')->paginate(3);
+        return Blog::with('blogcategorylist')->where('admin_id',Auth::guard('admin')->user()->id)->where('language', Auth::guard('admin')->user()->language)->latest()->paginate(3);
       
         //dd($purchase);
        // 
@@ -51,6 +59,9 @@ class BlogpostController extends Controller
             //'category' => 'required|min:3|max:350',
             'title' => 'required|min:3|max:350',
             'description' => 'required|min:3',
+            'metadescription' => 'required|min:3|max:160',
+            'shortdescription' => 'required|min:3|max:160',
+            'keyword' => 'required',
             'postimage' => 'required',
             'slug' => 'unique:blogs',
 
@@ -82,12 +93,13 @@ class BlogpostController extends Controller
     // $slug = SlugService::createSlug(Blog::class, 'slug', );
     $list = new Blog();
     $list->language = $request->language;
-     $list->tag = json_encode($request->tag);
+    $list->keyword = $request->keyword;
     $list->title =$request->title;
     $list->slug =CommonFx::make_slug($request->slug);
     $list->description = $request->description;
     $list->url = $request->url;
     $list->metadescription = $request->metadescription;
+    $list->shortdescription = $request->shortdescription;
     $list->postimage = $name;
     $list->admin_id  =  Auth::guard('admin')->user()->id;
      $list->save();
@@ -185,10 +197,11 @@ class BlogpostController extends Controller
                  'title' => 'required|min:3|max:350',
                  'language' => 'required',
                  //'category' => 'required|min:3|max:350',
-                 'title' => 'required|min:3|max:350',
+                 'title' => 'required|min:3|max:350|unique:blogs,title,'.$id,
                  'description' => 'required|min:3',
-                 'postimage' => 'required',
-     
+                 'shortdescription' => 'required|min:3|max:160',
+                 'keyword' => 'required',
+                 'metadescription' => 'required|min:3|max:160',
              ]);
      
          // if ($validator->fails()) {
@@ -221,10 +234,12 @@ class BlogpostController extends Controller
          };
      
          $list = Blog::find($id);
+         $list->keyword = $request->keyword;
          $list->language = $request->language;
         $list->metadescription = $request->metadescription;
          $list->title = $request->title;
          $list->description = $request->description;
+         $list->shortdescription = $request->shortdescription;
          $list->postimage = $name;
          $list->admin_id  =  Auth::guard('admin')->user()->id;
           $list->update();

@@ -14,8 +14,8 @@
                     <th>Name</th>
                    <th>Image</th>
                     <th>email</th> 
-                    <th>Mobile No</th>
-                    <th>Position</th>
+                    <th>Mobile</th>
+                    <th>Language</th>
                     <th>Gender</th>
                     <th>Status</th>
                     <th>Edit</th>
@@ -23,20 +23,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="admin, index in allAdmins">
+                <tr v-for="admin, index in allAdmins.data">
                         
                           <td>{{ index + 1 }}</td>
                           <td>{{admin.name}}</td> 
                           <td><img :src="ourImage(admin.image)" alt="not found" width="40" height="50"></td> 
                           <td>{{admin.email}}</td> 
                           <td>{{admin.phone}}</td> 
-                          <td>{{admin.accounttype.accounttype}}</td> 
+                          <td>{{admin.language}}</td> 
                          
                           <td> <span style="font-size: 2em; color: blue;" v-if="admin.gender_id==1"><i class="fas fa-male"></i></span>
                           <span style="font-size: 2em; color:tomato;" v-else><i class="fas fa-female"></i></span>
                 </td>
                             <td > 
-                         <span class="btn btn-sm btn-primary" @click.prevent="activestatus(admin.id)" v-if="admin.status_id=='5dd8f4789f61000043000334'"><i class="fas fa-check-square"></i> </span>
+                         <span class="btn btn-sm btn-primary" @click.prevent="activestatus(admin.id)" v-if="admin.status_id=='1'"><i class="fas fa-check-square"></i> </span>
                          <span class="btn btn-sm btn-danger" @click.prevent="inactivestatus(admin.id)"  v-else><i class="fas fa-ban"></i></span>
                 </td>
                        <td> 
@@ -65,6 +65,7 @@
                 </tfoot> -->
               </table>
             </div>
+            <div class="card-footer"><pagination :data="allAdmins" @pagination-change-page="getResults" style="text-align:center"></pagination></div>
             <!-- /.card-body -->
           </div>
  
@@ -73,18 +74,26 @@
 <script>
 export default {
   name: "AdminList",
+    data() {
+    return {
+      // Our data object that holds the Laravel paginator data
+      allAdmins: {},
+      
+    };
+  },
    created () {
             document.title = "Team Member ";
         },
   mounted() {
-    this.$store.dispatch("allAdmin"); //for show admin
+    this.getResults();
   },
-  computed: {
-    allAdmins() {
-      return this.$store.getters.getAdmin; //for get admin
-    }
-  },
+  
   methods: {
+        getResults(page = 1) {
+      axios.get("superadmin/teammemberlist?page=" + page).then(response => {
+        this.allAdmins = response.data;
+      });
+    },
     ourImage(img){
                 return "/images/profileimage/"+img; //for show image url
             },
@@ -97,8 +106,9 @@ export default {
           [toastr.warning("Admin Delete Successfull", " Admin")];
         });
       }
-      this.$store
-        .dispatch("allAdmin") //for refreash show category
+       axios.get("superadmin/teammemberlist?page=" +  this.allAdmins.current_page).then(response => {
+        this.allAdmins = response.data;
+      })
         .catch(function(response = false) {
           console.log(response);
           toastr.error("Sorry Try Agin");
@@ -110,8 +120,9 @@ export default {
         .then(({ response = true }) => {
           [toastr.info("Account Inactive Successfull", "Account")];
         });
-            this.$store
-        .dispatch("allAdmin") //for refreash show admin
+            axios.get("superadmin/teammemberlist?page=" +  this.allAdmins.current_page).then(response => {
+        this.allAdmins = response.data;
+      })
         .catch(function(response = false) {
           console.log(response);
           toastr.error("Sorry Try Agin");
@@ -124,8 +135,9 @@ export default {
         .then(({ response = true }) => {
           [toastr.success("Account Active Successfull", "Account")];
         });
-            this.$store
-        .dispatch("allAdmin") //for refreash show admin
+            axios.get("superadmin/teammemberlist?page=" +  this.allAdmins.current_page).then(response => {
+        this.allAdmins = response.data;
+      })
         .catch(function(response = false) {
           console.log(response);
           toastr.error("Sorry Try Agin");

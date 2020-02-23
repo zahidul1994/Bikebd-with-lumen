@@ -22,7 +22,7 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
     // protected $connection = 'mongodb';
 
     protected $fillable = [
-        'superadmin_id','phone','accounttype_id','name','image','gender_id','status_id', 'email', 'password','country'
+        'superadmin_id','phone','language','name','image','gender_id','status_id', 'email', 'password','country'
     ];
 
     protected $hidden = [
@@ -53,7 +53,7 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
     }
     public function status()
     {
-        return $this->belongsTo('App\Status');
+        return $this->belongsTo('App\Status','status_id','id');
     }
     public function blog()
     {

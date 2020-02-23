@@ -17,7 +17,7 @@ class PageController extends Controller
     public function index()
     {
         
-        $blogpage = Page::latest()->get();
+        $blogpage = Page::latest()->where('language','=','en')->where('status',1)->get();
         if($blogpage){
         return response()->json([
             'success'=>true,

@@ -88,7 +88,7 @@ export default {
  
  methods: {
        getResults(page = 1) {
-      axios.get("admin/blogpost?page=" + page).then(response => {
+      axios.get("/admin/blogpost?page=" + page).then(response => {
         this.allBlogpostlist = response.data;
       });
     },
@@ -101,7 +101,7 @@ export default {
         
         });
       };
-      axios.get("blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
+      axios.get("/admin/blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
         this.allBlogpostlist = response.data;
       })
         .catch(function(response = false) {
@@ -117,7 +117,7 @@ export default {
           [toastr.info("Blog Post  Private Successfully", "Blogpost")];
         });
            
-      axios.get("blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
+      axios.get("/admin/blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
         this.allBlogpostlist = response.data;
       })
         .catch(function(response = false) {
@@ -134,7 +134,7 @@ export default {
           [toastr.success("Blog Post  Public Successfully", "Blogpost")];
         });
    
-      axios.get("blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
+      axios.get("/admin/blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
         this.allBlogpostlist = response.data;
       })
         .catch(function(response = false) {

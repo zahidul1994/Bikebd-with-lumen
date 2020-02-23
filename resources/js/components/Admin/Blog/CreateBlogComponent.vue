@@ -11,9 +11,8 @@
                   
                    <div class="form-group">
                     <label for="language">Language *</label>
-                    <select  :class="{'is-invalid' :form.errors.has('language')}" id="bikeversion"  v-model="form.language" class="form-control" >
-                       <option disabled value="">Select One</option>
-                        <option selected value="en">English</option>
+                    <select  :class="{'is-invalid' :form.errors.has('language')}" id="language"  v-model="form.language" class="form-control" disabled>
+                       <option selected value="en">English</option>
                         <option  value="bn">Bangla</option>
                      
                     </select>
@@ -30,14 +29,20 @@
                         <has-error :form="form" field="slug"></has-error>
                   </div>
                    <div class="form-group">
-                    <label for="url">Copy Url(Slug)</label>
+                    <label for="url" v-if="form.language=='en'">বাংলা (Slug)</label>
+                    <label for="url" v-else="">English (Slug)</label>
                      <input  v-model="form.url" type="text"  class="form-control"  :class="{ 'is-invalid': form.errors.has('url') }"  id="url" >
                         <has-error :form="form" field="url"></has-error>
                   </div>
                    <div class="form-group">
-                    <label for="metadescription">Meta Description</label>
-                          <textarea v-model="form.metadescription" class="form-control" rows="5" placeholder="Meta Description"></textarea>
+                    <label for="metadescription">metadescription [Metadescription may not be greater than 160 characters]</label>
+                          <textarea v-model="form.metadescription" class="form-control" rows="5" placeholder="Meta Description" :class="{'is-invalid' :form.errors.has('metadescription')}"></textarea>
                         <has-error :form="form" field="metadescription"></has-error>
+                  </div>
+                   <div class="form-group">
+                    <label for="metadescription">Short Description * [Shortdescription may not be greater than 160 characters]</label>
+                          <textarea v-model="form.shortdescription" class="form-control" rows="5" placeholder="Short Description" :class="{ 'is-invalid': form.errors.has('shortdescription') }"></textarea>
+                        <has-error :form="form" field="shortdescription"></has-error>
                   </div>
                   <div class="form-group">
                     <label for="category" >Category *</label>
@@ -47,17 +52,13 @@
                       <has-error :form="form" field="category"></has-error>
                 </div>
                   </div>
-                   <div class="form-group">
-                    <label for="tag" >Tag *</label>
-                    <v-select taggable multiple push-tags v-model="form.tag"  id="tag" :class="{'is-invalid' :form.errors.has('tag')}"/>
-
-                    <div class="col-sm-10">
-                   
-                      <has-error :form="form" field="tag"></has-error>
-                </div>
+                    <div class="form-group">
+                    <label for="keyword">Key Word*</label>
+                     <input  v-model="form.keyword " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('keyword') }"  id="keyword" placeholder="Keyword Name">
+                        <has-error :form="form" field="keyword"></has-error>
                   </div>
                  <div class="form-group">
-                     <label for="exampleInputFile">Feature Image *</label>
+                     <label for="exampleInputFile">Feature Image * [imge must ....]</label>
                       <div class="custom-file">
                         <input type="file" :class="{'is-invalid' :form.errors.has('postimage')}" id="photo"  class="custom-file-input"   @change="changephoto($event)">
                            
@@ -111,43 +112,51 @@ export default {
         category:[],
         description: "",
         postimage: "",
-        language: "",
-        tag: "",
+        language:'',
+        keyword: "",
         slug: "",
         url: "",
         metadescription: "",
+        shortdescription: "",
       }),
       categoryVal:[],
+      
       
     }
     
   },
-        mounted() {
-           
-            
-                axios.get('http://127.0.0.1:8000/category')
-                .then(response => {
-                    response.data.category.forEach(element => {
-                      this.categoryVal.push(element.categoryname)
-                       //console.log(element.categoryname);
-                    });
-                    
-                    
-                });
-             
-        },
+    mounted() {
+var token = localStorage.getItem("token");
+       var admin =localStorage.getItem("admin");
+      if(admin){
+               this.form.language = JSON.parse(localStorage.getItem("admin")).language;
+     
+      }
+      else{
+         this.$router.push("/admin/login");
+      };
+
+    axios.get('category')
+    .then(response => {
+        response.data.category.forEach(element => {
+          this.categoryVal.push(element.categoryname)
+            //console.log(element.categoryname);
+        });
+                
+    });
+
+    },
   methods: {
     addBlogPost() {
       this.form
-        .post("/admin/createblogpost")
+        .post("admin/createblogpost")
         //console.log('ok');
         .then(({ response }) => {
           [toastr.success("Blogpost Create Successfull")],
             [this.$router.push("/admin/blogpost")];
         })
         .catch(function(response) {
-          console.log(response);
-          toastr.warning("Sorry Try Agin");
+            toastr.warning("Sorry Try Agin");
         });
     },
     Title(event){

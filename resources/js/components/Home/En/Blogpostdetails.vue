@@ -9,8 +9,8 @@
                <img :src="'/images/Fontimage/add1.webp'" alt="" class="w-100">
                 <h1 class="single-bike">
                   
-                   {{(blogpostdetails.title)}}  <router-link to="/">back</router-link>
-                </h1>
+                   {{(blogpostdetails.title)}}  
+                </h1> <span v-if="blogpostdetails.url"><router-link :to="`/bn/${encodeURI(blogpostdetails.url)}`">Bangla Dekun</router-link></span>
                 <p class="us-name mb-0 mt-4"  v-if="blogpostdetails.admin">{{ blogpostdetails.admin.name }}</p>
                 <p class="date">{{blogpostdetails.created_at}}</p>
 
@@ -163,17 +163,7 @@
                         <li><a href="#">Honda</a></li>
                         <li><a href="#">Honda</a></li>
                         <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
+                    
                     </ul>
                 </div>
 
@@ -373,7 +363,7 @@ export default {
  
      created () {
        document.title = this.$route.params.id;
-             axios.get(`http://127.0.0.1:8000/en/blog/${this.$route.params.id}`)
+             axios.get(`en/blog/${this.$route.params.id}`)
                 .then(response => {
                       (this.blogpostdetails = response.data.blogpostdetails);
                       this.headful.description=response.data.blogpostdetails.metadescription;
@@ -417,7 +407,7 @@ export default {
          this.form.name='',
          this.form.web='',
          this.form.email='',
-          axios.get(`http://127.0.0.1:8000/blogpostdetails/${this.$route.params.id}`)
+          axios.get(`/blogpostdetails/${this.$route.params.id}`)
                 .then(response => {
                       (this.blogpostdetails = response.data.blogpostdetails);
                        

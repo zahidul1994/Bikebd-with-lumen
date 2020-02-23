@@ -23,11 +23,12 @@ class CreateBlogsTable extends Migration
             $table->bigInteger('superadmin_id')->unsigned()->nullable();
             $table->foreign('superadmin_id')->references('id')->on('superadmins')->onDelete('cascade');   
             $table->string('title',500);
-            $table->json('tag')->nullable();
+            $table->string('keyword')->nullable();
             $table->string('url')->nullable();
             $table->string('metadescription',500)->nullable();
-            $table->text('postimage')->nullable();
+            $table->string('postimage')->nullable();
             $table->tinyInteger('status')->default(2);
+            $table->text('shortdescription')->nullable();
             $table->longText('description');
             $table->timestamps();
             $table->softDeletes();

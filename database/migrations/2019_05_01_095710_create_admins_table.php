@@ -17,8 +17,7 @@ class CreateAdminsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('superadmin_id')->unsigned()->nullable();
             $table->foreign('superadmin_id')->references('id')->on('superadmins')->onDelete('cascade');   
-            $table->bigInteger('accounttype_id')->unsigned()->nullable();
-            $table->foreign('accounttype_id')->references('id')->on('accounttypes')->onDelete('cascade');
+            $table->string('language');
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('phone');

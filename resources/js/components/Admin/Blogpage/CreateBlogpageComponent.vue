@@ -121,24 +121,14 @@ export default {
     
   },
         mounted() {
-           
-            
-                axios.get('http://127.0.0.1:8000/category')
-                .then(response => {
-                    response.data.category.forEach(element => {
-                      this.categoryVal.push(element.categoryname)
-                       //console.log(element.categoryname);
-                    });
+          
 
-                      axios.get('http://127.0.0.1:8000/admin/parentpage')
+                      axios.get('/admin/parentpage')
                      .then(response => {
                     (this.allparentpage = response.data.parentpageinfo)
                     //alert(5);
                     //console.log(response);
 
-                });
-                    
-                    
                 });
              
         },

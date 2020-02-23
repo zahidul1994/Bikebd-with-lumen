@@ -10,9 +10,8 @@
                 <div class="card-body">
                    <div class="form-group">
                     <label for="language">Language *</label>
-                    <select  :class="{'is-invalid' :form.errors.has('language')}" id="bikeversion"  v-model="form.language" class="form-control" >
-                       <option disabled value="">Select One</option>
-                        <option selected value="en">English</option>
+                    <select  :class="{'is-invalid' :form.errors.has('language')}" id="language"  v-model="form.language" class="form-control" disabled>
+                       <option selected value="en">English</option>
                         <option  value="bn">Bangla</option>
                      
                     </select>
@@ -23,21 +22,32 @@
                      <input  v-model="form.title " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" id="division" placeholder="title Name">
                         <has-error :form="form" field="title"></has-error>
                   </div>
-                     <div class="form-group">
-                    <label for="metadescription">Meta Description</label>
-                          <textarea v-model="form.metadescription" class="form-control" rows="5" placeholder="Meta Description"></textarea>
+                  <div class="form-group">
+                    <label for="url" v-if="form.language=='en'">বাংলা (Slug)</label>
+                    <label for="url" v-else="">English (Slug)</label>
+                     <input  v-model="form.url" type="text"  class="form-control"  :class="{ 'is-invalid': form.errors.has('url') }"  id="url" >
+                        <has-error :form="form" field="url"></has-error>
+                  </div>
+                   <div class="form-group">
+                    <label for="metadescription">metadescription [Metadescription may not be greater than 160 characters]</label>
+                          <textarea v-model="form.metadescription" class="form-control" rows="5" placeholder="Meta Description" :class="{'is-invalid' :form.errors.has('metadescription')}"></textarea>
                         <has-error :form="form" field="metadescription"></has-error>
                   </div>
-                  <div class="form-group">
+                   <div class="form-group">
+                    <label for="metadescription">Short Description * [Shortdescription may not be greater than 160 characters]</label>
+                          <textarea v-model="form.shortdescription" class="form-control" rows="5" placeholder="Short Description" :class="{ 'is-invalid': form.errors.has('shortdescription') }"></textarea>
+                        <has-error :form="form" field="shortdescription"></has-error>
+                  </div>
+                  <!-- <div class="form-group">
                     <label for="category" >Category *</label>
-                     <!-- <span  v-for="category in form.blogcategorylist" class="img-prnt">
+                     <span  v-for="category in form.blogcategorylist" class="img-prnt">
                                          
                            <li style="list-style:none">{{category.categorylist}}</li>
                             
                             <button class="" @click="deleteCategory(category.id)" style="top:2px;">
                                 x
                             </button>
-                            </span> -->
+                            </span> 
                             
                             
                       <v-select multiple v-model="form.category" :options="categoryVal"  id="category" :class="{'is-invalid' :form.errors.has('category')}"/>
@@ -45,7 +55,7 @@
                    
                       <has-error :form="form" field="category"></has-error>
                 </div>
-                  </div>
+                  </div> -->
                   <!-- <div class="col-sm-10">
                     <select  :class="{'is-invalid' :form.errors.has('category')}" id="bikebrand" multiple  v-model="form.category" class="form-control" >
                         <option disabled value="">Select One</option>
@@ -56,16 +66,11 @@
                 </div> -->
 
 
-                   <!-- <div class="form-group">
-                    <label for="tag" >Tag *</label>
-                    
-                    <v-select taggable multiple push-tags v-model="form.tag"  id="tag" :class="{'is-invalid' :form.errors.has('tag')}"/>
-
-                    <div class="col-sm-10">
-                   
-                      <has-error :form="form" field="tag"></has-error>
-                </div>
-                  </div> -->
+                     <div class="form-group">
+                    <label for="keyword">Key Word*</label>
+                     <input  v-model="form.keyword" type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('keyword') }"  id="keyword" placeholder="Keyword Name">
+                        <has-error :form="form" field="keyword"></has-error>
+                  </div>
                  <div class="form-group">
                      <label for="exampleInputFile">Feature Image *</label>
                          <div class="custom-file">
@@ -124,15 +129,27 @@ export default {
         description: "",
         postimage: "",
         language: "",
-        tag: "",
+        keyword: "",
+        url: "",
         metadescription: "",
+        shortdescription: "",
       }),
       categoryVal:[],
     }
     
   },
         mounted() {
-          axios.get('http://127.0.0.1:8000/category')
+          var token = localStorage.getItem("token");
+       var admin =localStorage.getItem("admin");
+      if(admin){
+               this.form.language = JSON.parse(localStorage.getItem("admin")).language;
+     
+      }
+      else{
+         this.$router.push("/admin/login");
+      };
+
+          axios.get('category')
                 .then(response => {
                     response.data.category.forEach(element => {
                       this.categoryVal.push(element.categoryname)
@@ -141,7 +158,7 @@ export default {
                     
                     
                 });
-                     axios.get(`/admin/editblogpost/${this.$route.params.id}`)
+                     axios.get(`admin/editblogpost/${this.$route.params.id}`)
           .then((response)=>{
               this.form.fill(response.data.blogpost)
           }); 

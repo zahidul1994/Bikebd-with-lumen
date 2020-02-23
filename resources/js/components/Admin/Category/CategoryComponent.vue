@@ -79,7 +79,7 @@ export default {
   },
   methods: {
      getResults(page = 1) {
-      axios.get("categorylist?page=" + page).then(response => {
+      axios.get("admin/categorylist?page=" + page).then(response => {
         this.allCategory = response.data;
       });
     },
@@ -94,7 +94,7 @@ export default {
       }
       // this.$store
       //   .dispatch("allCategory") //for refreash show Division
-         axios.get("categorylist?page=" +  this.allCategory.current_page).then(response => {
+         axios.get("admin/categorylist?page=" +  this.allCategory.current_page).then(response => {
         this.allCategory = response.data;
       })
         .catch(function(response = false) {

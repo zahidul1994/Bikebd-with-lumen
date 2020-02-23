@@ -83,7 +83,7 @@ export default {
   // },
   methods: {
      getResults(page = 1) {
-      axios.get("parentpagelist?page=" + page).then(response => {
+      axios.get("admin/parentpagelist?page=" + page).then(response => {
         this.allParentpagelist = response.data;
       });
     },
@@ -98,7 +98,7 @@ export default {
       }
       // this.$store
       //   .dispatch("allParentpagelist") //for refreash show Division
-          axios.get("parentpagelist?page=" +  this.allParentpagelist.current_page).then(response => {
+          axios.get("admin/parentpagelist?page=" +  this.allParentpagelist.current_page).then(response => {
         this.allParentpagelist = response.data;
       })
         .catch(function(response = false) {

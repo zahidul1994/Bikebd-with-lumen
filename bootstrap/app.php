@@ -94,8 +94,7 @@ $app->routeMiddleware([
  $app->register(Intervention\Image\ImageServiceProviderLumen::class); //for resize image
  $app->alias('cache', \Illuminate\Cache\CacheManager::class);  // if you don't have this already
  $app->register(Spatie\Permission\PermissionServiceProvider::class);
- $app->register(App\Providers\AuthServiceProvider::class);
- 
+  
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

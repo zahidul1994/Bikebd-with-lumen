@@ -8,15 +8,16 @@
                <form role="form" @submit.prevent="addAdmin" enctype="multipart/form-data">
                
                 <div class="card-body">
-                  <div class="form-group">
-                    <label for="accounttype">Select Account Type *</label>
-                    <select   class="form-control" :class="{'is-invalid' :form.errors.has('accounttype')}" v-model="form.accounttype">
-                        <option disabled value="">Select One</option>
-                      <option   v-for="accountname in allAccounttypes" :value="accountname.id">{{accountname.accounttype}}</option>
-                    
+                    <div class="form-group">
+                    <label for="language">Language *</label>
+                    <select  :class="{'is-invalid' :form.errors.has('language')}" id="bikeversion"  v-model="form.language" class="form-control" >
+                       <option disabled value="">Select One</option>
+                        <option selected value="en">English</option>
+                        <option  value="bn">Bangla</option>
+                     
                     </select>
-                     <has-error :form="form" field="accounttype"></has-error>
-                  </div>
+                     <has-error :form="form" field="language" ></has-error>
+                </div>
                   <div class="form-group">
                     <label for="roles">Select Permission</label>
                     <select   class="form-control" :class="{'is-invalid' :form.errors.has('roles')}" v-model="form.roles">
@@ -87,7 +88,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                   <router-link to="/superadmin/addadmin" class="btn btn-default ">Cancle</router-link>
+                   <router-link to="/superadmin/teammemberlist" class="btn btn-default ">Cancle</router-link>
                </div>
             </form>
                 </div>
@@ -108,7 +109,7 @@ export default {
   data() {
     return {
       form: new Form({
-        accounttype: '',
+        language: 'en',
         roles:[],
         accountname: '',
         phone: '',
@@ -116,8 +117,8 @@ export default {
         password: '',
         confirm: '',
         photo: '',
-        gender: '',
-        active: ''
+        gender: '1',
+        active: '1'
       }),
       Rolelist:null,
     };
@@ -125,7 +126,7 @@ export default {
   mounted() {
     this.$store.dispatch("allGender"); //for show Gender
     this.$store.dispatch("allStatus"); //for show Status
-     this.$store.dispatch("allAccounttype"); //for show Account Type
+     
       axios.post(`superadmin/allrolename`)
           .then((response)=>{
               this.Rolelist=response.data.allrolename
@@ -139,10 +140,7 @@ export default {
      allStatuses() {
       return this.$store.getters.getStatus; //for get Status
     },
-       allAccounttypes() {
-      return this.$store.getters.getAccounttype; //for get Account Type
-      
-    }
+    
   },
 
   methods: {

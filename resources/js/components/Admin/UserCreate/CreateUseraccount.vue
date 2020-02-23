@@ -119,7 +119,7 @@ export default {
   },
   mounted() {
     axios
-                .get('http://127.0.0.1:8000/admin/accounttypelist')
+                .get('/admin/accounttypelist')
                 .then(response => {
                     //(this.allaccounttype = response.data.accountypeinfo)
                      (this.allaccounttype3 = response.data.hiaccount)
@@ -127,7 +127,7 @@ export default {
 
                 });
             
-                axios.get('http://127.0.0.1:8000/admin/genderlist')
+                axios.get('/admin/genderlist')
                 .then(response => {
                     (this.allgender1 = response.data.genderinfo)
                     //alert(5);
@@ -135,7 +135,7 @@ export default {
 
                 });
                 axios
-                .get('http://127.0.0.1:8000/admin/statuslist')
+                .get('/admin/statuslist')
                 .then(response => {
                     (this.allstatus = response.data.statusinfo)
                     //console.log(response);

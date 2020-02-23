@@ -11,7 +11,7 @@ class Blog extends Model
 	use Sluggable;
     protected $dates = ['deleted_at'];
        protected $fillable = [
-        'admin_id', 'title','postimage','clickview','url','description','blogtype','tag','language','metadescription'
+        'admin_id', 'title','postimage','clickview','url','shortdescription','description','blogtype','keywork','language','metadescription'
     ];
 	public function sluggable()
     {

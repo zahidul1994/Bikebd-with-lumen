@@ -285,7 +285,7 @@ export default {
          
       };
 
-             axios.get(`http://127.0.0.1:8000/en/page/${this.$route.params.id}`)
+             axios.get(`en/page/${this.$route.params.id}`)
                 .then(response => {
                 
                       (this.Blogpagedetails = response.data.pagedetails);
@@ -293,7 +293,7 @@ export default {
                     });
 
 
-                     axios.post(`http://127.0.0.1:8000/en/categorylist/${this.$route.params.id}`)
+                     axios.post(`en/categorylist/${this.$route.params.id}`)
                 .then(response => {
                 
                       (this.Allctegory = response.data.category);
@@ -321,7 +321,7 @@ export default {
 
   <style>
         span img{
-            max-width:600px;
+            max-width:800px;
         }
         </style>
   
