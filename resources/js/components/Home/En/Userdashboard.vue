@@ -53,7 +53,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">HOME</a>
+                            <router-link class="nav-link" :to="`/`" >Home</router-link>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">PRICE</a>
@@ -83,9 +83,9 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Page
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <span v-for="cate in AllBlogpagelist" :key="(cate.id)">
-                                   <router-link class="dropdown-item"  :to="`/en/page/${cate.slug}`">{{cate.pagename}}</router-link>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <span v-for="pagename in Pagelist" :key="(pagename.id)">
+                                   <router-link class="dropdown-item" :to="`/page/${pagename.slug}`">{{pagename.pagename}}</router-link>
                                <div class="dropdown-divider"></div>
                                 </span>
                             </div>
@@ -168,7 +168,7 @@
           authenticatedname:null,
          authenticatedimage:null,
          AllLatestBlog:[],
-         AllBlogpagelist:[],
+         Pagelist:[],
       
         }
     },
@@ -200,15 +200,15 @@
       
          
       };
-        axios.get('http://127.0.0.1:8000/latestblog')
+        axios.get('/latestblog')
         .then(response => {
             (this.AllLatestBlog = response.data.blogpost);
             
         });
-            axios.post('http://127.0.0.1:8000/blogpagelist')
+          axios.post('/pagelist')
         .then(response => {
             
-            (this.AllBlogpagelist = response.data.blogpage);
+            (this.Pagelist = response.data.page);
             
         });
 
@@ -221,7 +221,7 @@
       logOutNow(){
         //alert(5);
        localStorage.clear();
-        this.$router.push("/en/login")
+        this.$router.push("/login")
       },
     
     }

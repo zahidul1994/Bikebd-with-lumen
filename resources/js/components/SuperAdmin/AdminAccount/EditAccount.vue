@@ -32,6 +32,13 @@
                      <input  v-model="form.email" type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('email') }" id="email" placeholder="Update Email">
                         <has-error :form="form" field="email"></has-error>
                   </div>
+                   <div class="form-group">
+                    <label for="roles">Update Permission</label>
+                    <select   class="form-control" :class="{'is-invalid' :form.errors.has('roles')}" v-model="form.roles">
+                        <option   v-for="rolename in Rolelist" :value="rolename.name">{{rolename.name}}</option>
+                    </select>
+                     <has-error :form="form" field="roles"></has-error>
+                  </div>
                   <div class="form-group">
                     <label for="name">Update Password </label>
                      <input  v-model="form.password" type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }" id="password" placeholder="Update Password">
@@ -60,7 +67,7 @@
                     <label for="gender">Update Gender *</label>
                     <select :class="{'is-invalid' :form.errors.has('gender_id')}" id="gender" v-model="form.gender_id" class="form-control" >
                         <option disabled value="">Select One</option>
-                      <option v-for="gendername in allGenders" :value="gendername._id" >{{gendername.gender}}</option>
+                      <option v-for="gendername in allGenders" :value="gendername.id" >{{gendername.gender}}</option>
                      
                     </select>
                      <has-error :form="form" field="gender_id" ></has-error>
@@ -69,7 +76,7 @@
                     <label for="active">Update Status *</label>
                       <select  :class="{'is-invalid' :form.errors.has('status_id')}" id="active"  v-model="form.status_id" class="form-control">
                          <option disabled value="">Select One</option>
-                      <option :value="status._id" v-for="status in allStatuses">{{status.status_name}}</option>
+                      <option :value="status.id" v-for="status in allStatuses">{{status.status_name}}</option>
                      </select>
                     <has-error :form="form" field="status_id" ></has-error>
                   </div>
@@ -106,19 +113,29 @@ export default {
         language: '',
         name: '',
         phone: '',
+        roles:[],
         email: '',
         password:'',
         confirm: '',
         image:'',
         gender_id:'',
         status_id:''
-      })
-    };
+      }),
+       Rolelist:null,
+           };
   },
   mounted() {
     this.$store.dispatch("allGender"); //for show Gender
     this.$store.dispatch("allStatus"); //for show Status
-    
+     axios.post(`superadmin/allrolename`)
+          .then((response)=>{
+              this.Rolelist=response.data.allrolename
+          });
+          axios.get(`superadmin/editteammember/${this.$route.params.id}`)
+                .then((response)=>{
+                   this.form.fill(response.data.teammemberlist)
+                })
+  
   },
   computed: {
     allGenders() {
@@ -131,10 +148,7 @@ export default {
        
   },
     created(){
-            axios.get(`superadmin/editteammember/${this.$route.params.id}`)
-                .then((response)=>{
-                   this.form.fill(response.data.teammemberlist)
-                })
+            
 
         },
   methods: {

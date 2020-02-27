@@ -8,10 +8,20 @@
                <img :src="'/images/Fontimage/add1.webp'" alt="" class="w-100">
                 <h1 class="single-bike">
                   
-                   {{(blogpostdetails.title)}}
-                </h1>
+                   {{(blogpostdetails.title)}}<span v-if="blogpostdetails.url"><router-link :to="`/blog/${blogpostdetails.url}`" class="btn btn-danger" >Views English</router-link></span>
+             </h1> 
                 <p class="us-name mb-0 mt-4"  v-if="blogpostdetails.admin">{{ blogpostdetails.admin.name }}</p>
-                <p class="date">{{blogpostdetails.created_at}}</p>
+                <p class="date">{{blogpostdetails.created_at}}
+                    
+                </p>
+                
+                    
+        
+                 <p class="text-blue">
+                     <span>{{blogpostdetails.clickview}} <i class="far fa-eye" aria-hidden="true"></i> দেখা</span>
+                </p>
+               
+               
 
 
                 <span v-html="blogpostdetails.description"> </span>
@@ -19,69 +29,25 @@
      
                 <h2>Related Post</h2>
                 <div class="row">
-                    <div class="col-md-4">
+                       <div class="row">
+                    <div class="col-md-4" v-for="relatedblog in Allrelatedblog" :key="(relatedblog.id)">
 
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
+                       <router-link  :to="`/bn/blog/${encodeURI(relatedblog.slug)}`">
+                           <img :src="'/images/blogpost/'+relatedblog.postimage" alt="not" class="w-100">
+                            <p class="clrcng">{{relatedblog.title}}</p>
+                        </router-link>
                     </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
+                   
+                    
+                </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                </div>
+             
                 
                 
                 <!--   facebook comment-->
 
-            <fb-comment :data-href="`http://127.0.0.1:8000/${blogpostdetails.slug}`" />
+            <fb-comment :data-href="`bn/${blogpostdetails.slug}`" />
                
 
 
@@ -155,14 +121,7 @@
                         <li><a href="#">Honda</a></li>
                         <li><a href="#">Honda</a></li>
                         <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                        <li><a href="#">Honda</a></li>
-                    
+
                     </ul>
                 </div>
 
@@ -342,20 +301,28 @@ export default {
         email: "",
         web: "",
         }),
+
+          headful:{
+            
+        description:'',
+        keywords:'',  
+        },
       authenticatedname:null,
          authenticatedimage:null,
          title:null,
          name:null,
          description:null,
          blogpostdetails:[],
+         Allrelatedblog:[]
     }
     
   },
   
  
      created () {
-            document.title = "Blog Details";
-             document.metaTags = this.blogpostdetails.title;
+            document.title = this.$route.params.id;
+        
+              //alert(this.$route.params.id);
         },
   mounted() {
     
@@ -374,10 +341,17 @@ export default {
              axios.get(`bn/blog/${this.$route.params.id}`)
                 .then(response => {
                       (this.blogpostdetails = response.data.blogpostdetails);
-                      
+                      this.headful.description=response.data.blogpostdetails.metadescription;
+              this.headful.keywords=response.data.blogpostdetails.keyword;
                     });
                     
-               
+                axios.post(`/bn/bnrelatedblog/${this.$route.params.id}`)
+                .then(response => {
+                
+                      (this.Allrelatedblog = response.data.bnblogpost);
+                      // alert(response.data.pagedetails.description);
+                    });
+                    
       
       
   },
@@ -386,11 +360,10 @@ export default {
       logOutNow(){
         //alert(5);
        localStorage.clear();
-        this.$router.push("/en/login")
+        this.$router.push("/login")
       },
      addBlogComment() {
-     
-        this.form.post("/en/createcomment")
+     this.form.post("createcomment")
         //console.log('ok');
          .then(({ response = true }) => {
           [toastr.success("Comment Create Successfull")],
@@ -398,13 +371,11 @@ export default {
          this.form.name='',
          this.form.web='',
          this.form.email='',
-          axios.get(`blogpostdetails/${this.$route.params.id}`)
+         axios.get(`bn/blog/${this.$route.params.id}`)
                 .then(response => {
                       (this.blogpostdetails = response.data.blogpostdetails);
-                       
+                      
                     });
-      
-        // this.blogpostdetails={}; 
         })
         .catch(function(response) {
           console.log(response);

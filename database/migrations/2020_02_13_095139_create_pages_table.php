@@ -29,6 +29,7 @@ class CreatePagesTable extends Migration
             $table->string('pageurl')->nullable();
             $table->string('pagemetadescription',500)->nullable();
             $table->text('pageimage')->nullable();
+            $table->text('pagekeyword')->nullable();
             $table->tinyInteger('status')->default(2);
             $table->longText('description');
             $table->timestamps();

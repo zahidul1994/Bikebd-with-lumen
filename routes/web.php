@@ -40,8 +40,8 @@ $router->get('en/login', function () use ($router) {
     return view('home');
 });
 
-$router->get('/en', function () use ($router) {
-    return view('home');
+$router->get('/bn', function () use ($router) {
+    return view('bnhome');
 });
 $router->get('/user', function () use ($router) {
     return view('user');
@@ -54,14 +54,17 @@ $router->get('blogpostdetails/{id}','BlogpostController@show');
 $router->get('lblogpostdetails/{id}','BlogpostController@lshow');
 $router->post('blogpagelist', 'PageController@index');
 $router->group([
-    'prefix'=>'en',
+    'prefix'=>'/',
     ],
 
 function()use($router){
     $router->get('blog/{id}','BlogpostController@show');
-    $router->get('page/{id}','PageController@show');
     $router->post('createcomment','BlogpostController@comment');
-     $router->post('categorylist/{id}','PageController@category');
+    $router->post('relatedblog/{id}','BlogpostController@relatedblog');
+    //page area start
+    $router->get('page/{id}','PageController@show'); 
+    $router->post('pagelist','PageController@pagelist'); //page link in dropdown
+    $router->post('relatedpage/{id}','PageController@relatedpage');
 });
 
 $router->group([
@@ -69,10 +72,14 @@ $router->group([
     ],
 
 function()use($router){
+    $router->get('latestblog','BlogpostController@bnindex');
     $router->get('blog/{id}','BlogpostController@bnshow');
-    $router->get('page/{id}','PageController@show');
+    $router->post('relatedblog/{id}','BlogpostController@relatedblog');
     $router->post('createcomment','BlogpostController@comment');
-     $router->post('categorylist/{id}','PageController@category');
+//bn page area start
+    $router->get('page/{id}','PageController@bnshow');
+    $router->post('pagelist','PageController@bnpagelist');//page link in dropdown
+     $router->post('relatedpage/{id}','PageController@bnrelatedpage');
 });
 
 
@@ -125,7 +132,8 @@ $router->group(['middleware'=>'superadmin'],function() use($router){
      $router->post('createaccountrole','RoleController@store');
      $router->post('allpermissionlist','RoleController@allpermissionlist');
      $router->get('editaccountrole/{id}','RoleController@edit');
-     $router->patch('updateaccountrole/{id}','RoleController@update');
+     $router->get('showrolepermission/{id}','RoleController@show');
+     $router->put('updateaccountrole/{id}','RoleController@update');
      $router->delete('deleteaccountrole/{id}','RoleController@destroy');
      //AccountRole End
 

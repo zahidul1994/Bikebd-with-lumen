@@ -6,7 +6,7 @@
             <div class="container">
                 <a class="navbar-brand" href="#">
                    
-                    <img :src="'/images/Fontimage/logo.png'" alt="">
+                    <img :src="'/images/Fontimage/bikebd-logo.jpg'" alt="">
                 </a>
 
                 <div class="">
@@ -25,8 +25,8 @@
 
                 </select>
                 <ul class="tr-btn mb-0">
-                    <li><button type="button" class="btn btn-outline-primary mr-2 t-btn t-btn-act">Login</button></li>
-                    <li><button type="button" class="btn btn-outline-primary t-btn">Signup</button></li>
+                    <li><button type="button" class="btn btn-outline-primary mr-2 t-btn t-btn-act">লগইন</button></li>
+                    <li><button type="button" class="btn btn-outline-primary t-btn">নিবন্ধন </button></li>
                 </ul>
 
             </div>
@@ -50,13 +50,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">HOME</a>
+                                                
+                            <router-link class="nav-link" :to="`/bn`" >প্রথম পৃষ্ঠা</router-link>
+                           
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">PRICE</a>
+                       
+                             <router-link class="nav-link" :to="`/bn`" >দাম</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">SHOWROOMS</a>
+                              <router-link class="nav-link" :to="`/bn`" >প্রথম পৃষ্ঠা</router-link>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,11 +81,11 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Page
+                                পেজ
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <span v-for="cate in AllBlogpagelist" :key="(cate.id)">
-                                   <router-link class="dropdown-item"   :to="`/en/page/${cate.slug}`">{{cate.pagename}}</router-link>
+                                <span v-for="pagename in Pagelist" :key="(pagename.id)">
+                                   <router-link class="dropdown-item" :to="`/bn/page/${encodeURI(pagename.slug)}`">{{pagename.pagename}}</router-link>
                                <div class="dropdown-divider"></div>
                                 </span>
                             </div>
@@ -324,6 +327,7 @@
     </div>
 </section>
 <!--    contant area-->
+
 <section id="main-contant" class="mt-4">
     <div class="container">
         <div class="contant p-5 bg-white">
@@ -419,24 +423,23 @@
 
             <div class="latest-news mt-5">
                 <h3 class="mb-4">
-                    Latest News  
+                    Latest News  547776
                    
                 </h3>
                 <div class="row product-slider1">
                   
-                    <div class="col-md-12" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
+                     <div class="col-md-12" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
                                 <div class="card c-bdr">
-                                   <router-link target= '_blank' :to="`/en/blog/${bloginfo.slug}`">
+                                   <router-link  :to="`/bn/blog/${encodeURI(bloginfo.slug)}`">
                                         <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">{{bloginfo.title}}</h5>
-                                            <p class="bike-p">{{bloginfo.metadescription|shortlength(3,"..")}}</p>
-                                               <!-- <span v-html="blogpostdetails.description"> </span> -->
+                                            <h5 class="bike-n text-dark">{{bloginfo.title|shortlength(30,"..")}}</h5>
+                                         <span class="bike-p">{{bloginfo.shortdescription|shortlength(40,"..")}}"</span>
+                                              <!-- <span v-html="bloginfo.description"> </span> -->
+                                          
 
                                         </div>
-                                        <div class="c-bottom text-center">
-                                            <span class=""><router-link  :to="`/en/blog/${bloginfo.slug}`">View Details</router-link></span>
-                                        </div>
+                                        
                                     </router-link>
                                 </div>
                             </div>
@@ -1015,6 +1018,7 @@
         </div>
     </div>
 </section>
+
  <!--subscribe area-->
     <section id="subscribe">
         <div class="container">
@@ -1104,7 +1108,7 @@ export default {
           authenticatedname:null,
          authenticatedimage:null,
          AllLatestBlog:[],
-         AllBlogpagelist:[],
+         Pagelist:[],
       
         }
     },
@@ -1112,19 +1116,7 @@ export default {
             document.title = "Home";
         },
   mounted() {
-    //    $('.product-slider1').slick({
-    //     slidesToShow: 4,
-    //     slidesToScroll: 1,
-    //     dots: false,
-    //     arrows: true,
-    //     prevArrow: '<span class="right-round"><i class="fal fa-angle-right"></i></span>',
-    //     nextArrow: '<span class="left-round"><i class="fal fa-angle-left"></i></span>',
-
-
-    // });
-    
-  // alert(5);
- alert(5);
+ 
 
         var token= localStorage.getItem("token");
       var user= localStorage.getItem("user");
@@ -1136,18 +1128,17 @@ export default {
       
          
       };
-        axios.get('http://127.0.0.1:8000/latestblog')
+        axios.get('bn/latestblog')
         .then(response => {
             (this.AllLatestBlog = response.data.blogpost);
             
         });
-            axios.post('http://127.0.0.1:8000/blogpagelist')
+       
+       axios.post('/bn/pagelist')
         .then(response => {
-            
-            (this.AllBlogpagelist = response.data.blogpage);
-            
+            (this.Pagelist = response.data.bnpage);
+           
         });
-
                
       
       
@@ -1157,7 +1148,7 @@ export default {
       logOutNow(){
         //alert(5);
        localStorage.clear();
-        this.$router.push("/en/login")
+        this.$router.push("/login")
       },
     
       

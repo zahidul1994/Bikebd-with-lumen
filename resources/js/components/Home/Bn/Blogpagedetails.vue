@@ -8,56 +8,29 @@
                <img :src="'/images/Fontimage/add1.webp'" alt="dgfsad" class="w-100">
                 <h1 class="single-bike">
                   
-                   {{(Blogpagedetails.pagetitle)}}
+                   {{(Pagedetails.pagetitle)}}
                 </h1>
-                <p class="us-name mb-0 mt-4" v-if="Blogpagedetails.admin">{{ Blogpagedetails.admin.name }}</p>
-                <p class="date">{{Blogpagedetails.created_at}}</p>
+                <p class="us-name mb-0 mt-4" v-if="Pagedetails.admin">{{ Pagedetails.admin.name }}</p>
+                <p class="date">{{Pagedetails.created_at}}</p>
 
 
-                <span v-html="Blogpagedetails.description"> </span>
+                <span v-html="Pagedetails.description"> </span>
 
             <h2>Related Post </h2>
-                <div class="row">
-                    <div class="col-md-4" v-for="relatedcategory in Allctegory" :key="(relatedcategory.id)">
+                 <div class="row">
+                    <div class="col-md-4" v-for="page in Relatedpage" :key="(page.id)">
 
-                       <router-link :to="`${relatedcategory.slug}`">
-                           <img :src="'/images/blogpage/'+relatedcategory.pageimage" alt="not" class="w-100">
-                            <p class="clrcng">{{relatedcategory.pagetitle}}</p>
+                       <router-link :to="`bn/page/${encodeURI(page.slug)}`">
+                           <img :src="'/images/blogpage/'+page.pageimage" alt="not" class="w-100">
+                            <p class="clrcng">{{page.pagetitle}}</p>
                         </router-link>
                     </div>
                    
                     
                 </div>
 
-                <div class="row">
-                    <div class="col-md-4">
 
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                </div>
+           
                 
                 
                 <!--   facebook comment-->
@@ -263,7 +236,7 @@
 <script>
 
 export default {
-  name:"Pagedetails",
+  name:"BNPagedetails",
   data() {
     return {
         
@@ -272,14 +245,19 @@ export default {
          pagetitle:null,
          name:null,
          description:null,
-         Blogpagedetails:[],
-         Allctegory:[],
+         Pagedetails:[],
+         Relatedpage:[],
+
+         headful:{
+         description:'',
+         keywords:'',  
+         },  
     }
     
   },
  
      created () {
-            document.title = "Page Details";
+            document.title = this.$route.params.id;
         },
   mounted() {
     
@@ -295,25 +273,19 @@ export default {
          
       };
 
-             axios.get(`en/page/${this.$route.params.id}`)
+             axios.get(`bn/page/${encodeURI(this.$route.params.id)}`)
                 .then(response => {
-                
-                      (this.Blogpagedetails = response.data.pagedetails);
-                      // alert(response.data.pagedetails.description);
+                (this.Pagedetails = response.data.pagedetails);
+                 this.headful.description=response.data.pagedetails.pagemetadescription;
+                      this.headful.keywords=response.data.pagedetails.pagekeyword;
                     });
-
-
-                     axios.post(`en/categorylist/${this.$route.params.id}`)
+                 axios.post(`bn/relatedpage/${this.$route.params.id}`)
                 .then(response => {
                 
-                      (this.Allctegory = response.data.category);
+                      (this.Relatedpage = response.data.relatedpage);
                       // alert(response.data.pagedetails.description);
                     });
                     
-               
-             
-                    
-      
       
   },
   

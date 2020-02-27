@@ -17,7 +17,7 @@ public static function createViewLog($page) {
     // $postViews->url = \Request::url();
     // $postViews->session_id = \Request::getSession()->getId();
     // $postViews->user_id = (\Auth::check())?\Auth::id():null; //this check will either put the user id or null, no need to use \Auth()->user()->id as we have an inbuild function to get auth id
-     $postViews->ip = $page->window.location.host;
+    // $postViews->ip = $page->window.location.host;
      //$ip=  \Request::ip();
     // $postViews->agent = \Request::header('User-Agent');
     $postViews->save();//please note to save it at lease, very important

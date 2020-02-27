@@ -135,7 +135,6 @@ export default {
     created(){
             axios.get(`/superadmin/editteammember/${this.$route.params.id}`)
                 .then((response)=>{
-                    console.log(response.data)
                     this.form.fill(response.data.teammemberlist)
                 })
 

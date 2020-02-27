@@ -48,6 +48,7 @@ import VueRouter from 'vue-router'
 Vue.component('superadmin-main', require('./components/SuperAdmin/SuperAdminMaster.vue').default);
 Vue.component('admin-main', require('./components/Admin/AdminMaster.vue').default);
 Vue.component('home-main', require('./components/Home/En/HomeMaster.vue').default);
+Vue.component('bnhome-main', require('./components/Home/Bn/HomeMaster.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination')); //for paginate 
 
 //import v form

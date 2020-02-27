@@ -1,19 +1,20 @@
 <?php
 namespace App\Http\Controllers\api\v1\superadmin;
-use App\Permissions;
 use App\Accounttype;
+use App\Permissions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
 {
 public function index()
 {
-    return Role::paginate(3);
+    return Role::paginate(7);
 }
 
     /**
@@ -79,6 +80,14 @@ public function index()
      */
     public function show($id)
     {
+       
+        $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
+
+            ->where("role_has_permissions.role_id",$id)
+
+            ->get();
+            return response()->json([
+                 'rolepermissiondetails' =>$rolePermissions], 200);
         
     }
 
@@ -90,20 +99,19 @@ public function index()
      */
     public function edit($id)
     {
-
-        $info = Accounttype::find($id);
-        if($info){
+        $role = Role::find($id);
+        $permission = Permission::all();
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+            ->get('role_has_permissions.permission_id','role_has_permissions.permission_id')->all();
+       
             return response()->json([
                 'success'=>true,
                 'message'=>'Record Found',
-                'accounttypes' => $info], 200);
-        }
-        else{
-            return response()->json([
-                'success'=>false,
-                'message'=>'Record Not Found',
-                'id' => $id], 404);
-        }
+                'editroleinfo' => $role,
+                'permission' => $permission,
+                'rolepermissioninfo' =>$rolePermissions], 200);
+     
+       
 
         
     }
@@ -118,51 +126,53 @@ public function index()
      */
     public function update(Request $request, $id)
     {
+        //return response($request->all());
+         // $validator = Validator::make($request->all(), [
+ 
+         //     'accounttype' => 'required|min:3|max:15|unique:accounttypes',
+ 
+         // ]);
+ 
+         // if ($validator->fails()) {
+ 
+ 
+         //     return response()->json([
+         //         'success' => false,
+         //         'message' => 'Validation Failed',
+         //         'errors' => $validator->errors()->all()
+         //     ], 422);
+         // }
+         $this->validate($request,[
+             
+             'name' => 'required|unique:roles,name,'.$id,
 
-        $this->validate($request,[
-            
-            'accounttype' => 'required|min:3|max:15|unique:accounttypes,accounttype,' . $id,
-
-        ],[
-        'accounttype.required'=>"The account type field is required",
-        'accounttype.min'=>"The account type must be at least 3 characters",
-        'accounttype.max'=>"The account type must be at least 15 characters",
+             'permission' => 'required',
+ 
          ]);
-        // $validator = Validator::make($request->all(), [
-
-        //     'accounttype' => 'required|min:3|max:15|unique:accounttypes,accounttype,' . $id,
-
-        // ]);
-
-
-
-        // if ($validator->fails()) {
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => 'Validation Failed',
-        //         'errors' => $validator->errors()->all()
-        //     ], 422);
-        // }
-        $list = Accounttype::find($id);
-        $list->accounttype = $request->accounttype;
-        $list->created_by  =  Auth::guard('superadmin')->user()->superadminname;
-        $list->superadmin_id =  Auth::guard('superadmin')->user()->id;
-        $list->update();
-       
-        if ($list->update()) {
-            return response()->json([
-                'success' => true,
-                 'message'=>'Record Update Successfully',
-                 'value'=>$list
-            ],200);
-          } else {
-              return response()->json([
-                  'success' => false,
-                   'message'=>'Record Update Failed',
-                   
-              ],404);
-          }
-      }
+ 
+         $role = Role::find($id);
+         $role->name=$request->name;
+         $role->save();
+         $role->syncPermissions($request->input('permission'));
+         if ($role) {
+             return response()->json([
+                 'success' => true,
+                 'message' => 'Record Create Successfully',
+                ], 201);
+         } else {
+             return response()->json([
+                 'success' => false,
+                 'message' => 'Record Create Failed',
+             ], 404);
+         }
+     }
+     /**
+      * Display the specified resource.
+      *
+      * @param  int  $id
+      * @return \Illuminate\Http\Response
+      */
+     
     /**
      * Remove the specified resource from storage.
      *
@@ -171,7 +181,7 @@ public function index()
      */
     public function destroy($id)
     {
-        if (Accounttype::destroy($id)) {
+        if (Role::destroy($id)) {
            
             return response()->json([
                 'success' => true,

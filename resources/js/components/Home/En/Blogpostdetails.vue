@@ -7,78 +7,30 @@
 
             <div class="col-md-8">
                <img :src="'/images/Fontimage/add1.webp'" alt="" class="w-100">
-                <h1 class="single-bike">
+                <h1 class="single-bike" >
                   
-                   {{(blogpostdetails.title)}}  
-                </h1> <span v-if="blogpostdetails.url"><router-link :to="`/bn/${encodeURI(blogpostdetails.url)}`">Bangla Dekun</router-link></span>
+                   {{(blogpostdetails.title)}} <span v-if="blogpostdetails.url"><router-link :to="`/bn/blog/${encodeURI(blogpostdetails.url)}`" class="btn btn-danger" >বাংলা দেখুন</router-link></span> 
+                </h1> 
                 <p class="us-name mb-0 mt-4"  v-if="blogpostdetails.admin">{{ blogpostdetails.admin.name }}</p>
                 <p class="date">{{blogpostdetails.created_at}}</p>
-
-
+                <p class="text-blue">
+                     <span>{{blogpostdetails.clickview}} <i class="far fa-eye" aria-hidden="true"></i> views</span>
+                </p>
                 <span v-html="blogpostdetails.description"> </span>
-
-     
                 <h2>Related Post</h2>
-                <div class="row">
-                    <div class="col-md-4">
+                  <div class="row">
+                     
+                    <div class="col-md-4" v-for="relatedblog in Allrelatedblog" :key="(relatedblog.id)">
 
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
+                       <router-link  :to="`/blog/${relatedblog.slug}`">
+                           <img :src="'/images/blogpost/'+relatedblog.postimage" alt="not" class="w-100">
+                            <p class="clrcng">{{relatedblog.title}}</p>
+                        </router-link>
                     </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
+                   
+                    
+              
                 </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <a href="#">
-                           <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                            <p class="clrcng">Pulsar 150</p>
-                        </a>
-
-
-                    </div>
-                </div>
-                
                 
                 <!--   facebook comment-->
 
@@ -344,18 +296,18 @@ export default {
         web: "",
         }),
         
-       headful:{
+        headful:{
             
-    description:'',
-                
-           
+        description:'',
+        keywords:'',  
         },
-      authenticatedname:null,
+         authenticatedname:null,
          authenticatedimage:null,
          title:null,
          name:null,
          description:null,
          blogpostdetails:[],
+         Allrelatedblog:[],
     }
     
   },
@@ -363,10 +315,11 @@ export default {
  
      created () {
        document.title = this.$route.params.id;
-             axios.get(`en/blog/${this.$route.params.id}`)
+             axios.get(`/blog/${this.$route.params.id}`)
                 .then(response => {
                       (this.blogpostdetails = response.data.blogpostdetails);
                       this.headful.description=response.data.blogpostdetails.metadescription;
+                      this.headful.keywords=response.data.blogpostdetails.keyword;
                     });
             
         },
@@ -385,8 +338,13 @@ export default {
       };
 
                    
-//  $('meta[name="description"]').attr("content", "dsfsd")
-//   $('meta[name="keywords"]').attr("content", "Page  Keywords (Obsolete) with jQuery");  
+   axios.post(`/relatedblog/${this.$route.params.id}`)
+                .then(response => {
+                
+                      (this.Allrelatedblog = response.data.blogpost);
+                      // alert(response.data.pagedetails.description);
+                    });
+                    
       
       
   },
@@ -399,7 +357,7 @@ export default {
       },
      addBlogComment() {
      
-        this.form.post("/en/createcomment")
+        this.form.post("/createcomment")
         //console.log('ok');
          .then(({ response = true }) => {
           [toastr.success("Comment Create Successfull")],

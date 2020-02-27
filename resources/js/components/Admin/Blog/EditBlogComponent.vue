@@ -17,11 +17,17 @@
                     </select>
                      <has-error :form="form" field="language" ></has-error>
                 </div>
-                  <div class="form-group">
+                   <div class="form-group">
                     <label for="title">Title *</label>
-                     <input  v-model="form.title " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" id="division" placeholder="title Name">
+                     <input  v-model="form.title " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" v-on:keydown="Title" id="Title" placeholder="Title Name">
                         <has-error :form="form" field="title"></has-error>
                   </div>
+                    <div class="form-group">
+                    <label for="slug">Custom Slug</label>
+                     <input  v-model="form.slug" type="text"  class="form-control"  :class="{ 'is-invalid': form.errors.has('slug') }"  id="slug" >
+                        <has-error :form="form" field="slug"></has-error>
+                  </div>
+                 
                   <div class="form-group">
                     <label for="url" v-if="form.language=='en'">বাংলা (Slug)</label>
                     <label for="url" v-else="">English (Slug)</label>
@@ -130,7 +136,8 @@ export default {
         postimage: "",
         language: "",
         keyword: "",
-        url: "",
+        slug: "",
+        pageurl: "",
         metadescription: "",
         shortdescription: "",
       }),
@@ -178,6 +185,9 @@ export default {
           console.log(response);
           toastr.warning("Sorry Try Agin");
         });
+    },
+     Title(event){
+this.form.slug=this.form.title;
     },
        changephoto(event){
       let file=event.target.files[0];

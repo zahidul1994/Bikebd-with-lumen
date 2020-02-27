@@ -2,7 +2,6 @@
 <template>
     <div id="app">
       
-      
 <router-view></router-view>
 
     </div>
@@ -10,7 +9,7 @@
 
    <script>
           export default {
-            name:'HomeMaster',
+            name:'BNHomeMaster',
              
         }
       </script>

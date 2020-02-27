@@ -27,7 +27,7 @@ class BlogpostController extends Controller
     public function index()
     {
         
-        return Blog::with('blogcategorylist')->where('admin_id',Auth::guard('admin')->user()->id)->where('language', Auth::guard('admin')->user()->language)->latest()->paginate(3);
+        return Blog::with('blogcategorylist')->where('admin_id',Auth::guard('admin')->user()->id)->where('language', Auth::guard('admin')->user()->language)->latest()->paginate(8);
       
         //dd($purchase);
        // 
@@ -57,7 +57,7 @@ class BlogpostController extends Controller
             'title' => 'required|min:3|max:350',
             'language' => 'required',
             //'category' => 'required|min:3|max:350',
-            'title' => 'required|min:3|max:350',
+            'title' => 'required|min:3|unique:blogs|max:350',
             'description' => 'required|min:3',
             'metadescription' => 'required|min:3|max:160',
             'shortdescription' => 'required|min:3|max:160',
@@ -194,10 +194,11 @@ class BlogpostController extends Controller
             
              $this->validate($request,[
                  
-                 'title' => 'required|min:3|max:350',
+               
                  'language' => 'required',
                  //'category' => 'required|min:3|max:350',
                  'title' => 'required|min:3|max:350|unique:blogs,title,'.$id,
+                 'slug' => 'required|min:3|max:350|unique:blogs,slug,'.$id,
                  'description' => 'required|min:3',
                  'shortdescription' => 'required|min:3|max:160',
                  'keyword' => 'required',
@@ -238,7 +239,9 @@ class BlogpostController extends Controller
          $list->language = $request->language;
         $list->metadescription = $request->metadescription;
          $list->title = $request->title;
+         $list->slug =CommonFx::make_slug($request->slug);
          $list->description = $request->description;
+         $list->url = $request->url;
          $list->shortdescription = $request->shortdescription;
          $list->postimage = $name;
          $list->admin_id  =  Auth::guard('admin')->user()->id;

@@ -1,4 +1,5 @@
 <template>
+<span>
 <div class="card">
             <div class="card-header">
               <h3 class="card-title">Account Role List</h3>
@@ -12,6 +13,7 @@
                 <tr>
                   <th>Sl</th>
                   <th>Account Role</th>
+                  <th>Permission</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -21,14 +23,19 @@
                         
                           <td>{{ index + 1 }}</td>
                           <td>{{accountrole.name}}</td>
-                       <td>
+                          <td>
+                        <button type="button" class="btn btn-info" @click="Showroledetails(accountrole.id)"  data-toggle="modal" data-target="#showpermissionmodal">
+                  <i class="fas fa-info"></i>
+                </button>
                         
-                        <router-link :to="`/superadmin/editaccounrole/${accountrole.id}`">
+                    </td>
+                       <td>
+                        <router-link :to="`/superadmin/editaccountrole/${accountrole.id}`">
                        <i class="fas fa-edit"></i>
                         </router-link>
                         
                     </td>
-                       <td>
+                      <td>
                         <button class="btn btn-sm btn-warning" @click.prevent="deleteAccountrole(accountrole.id)"><i class="fas fa-trash-alt"></i></button>
                         
                         
@@ -36,20 +43,52 @@
                 </tr>
                 
                 </tbody>
-                <!-- <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                 
-                </tr>
-                </tfoot> -->
+                
               </table>
             </div>
             <!-- /.card-body -->
           </div>
- 
+            <!--create Modal-->
+      <div class="modal fade" id="showpermissionmodal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Show Permission</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                </div>
+            <div class="modal-body">
+               
+           <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Sl</th>
+                   <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="accountrole, index in Rolepermission">
+                        
+                          <td>{{ index + 1 }}</td>
+                          <td>{{accountrole.name}}</td>
+                        
+                      </tr>
+                
+                </tbody>
+               
+              </table>
+              
+            </div>
+            <div class="modal-footer justify-content-between">
+            
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!--create Modal-->
+      </span>
 </template>
 
 <script>
@@ -59,7 +98,7 @@ export default {
     return {
       // Our data object that holds the Laravel paginator data
       allAccountrolelist: {},
-      
+      Rolepermission:null,
     };
   },
  
@@ -76,10 +115,19 @@ export default {
         this.allAccountrolelist = response.data;
       });
     },
-    deleteAccounttype(id) {
+      Showroledetails(id){
+     // console.log(this.form);
+       axios.get(`/superadmin/showrolepermission/`+id)
+                .then((response)=>{
+                   // console.log(response.data)
+                    this.Rolepermission=response.data.rolepermissiondetails;
+                })
+                
+    },
+    deleteAccountrole(id) {
       if (confirm("Do you really want to delete it?")) {
                    
-      axios.delete("/superadmin/deleteaccounttype/" + id)
+      axios.delete("/superadmin/deleteaccountrole/" + id)
         .then(({ response = true }) => {
           [toastr.warning("Account Type Delete Successfull", " Accounttype")];
         

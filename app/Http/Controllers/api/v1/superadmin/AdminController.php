@@ -179,14 +179,15 @@ else{
         $img->save($upload_path.$name);
 }
 else{
- $name = $image->photo;
+ $name = $image->image;
 };
 
-if(!empty($request->password)){
-    $request->merge(['password' => Hash::make($request['password'])]);
-}
 
         $list =  Admin::find($id);
+        if(!empty($request->password)){
+            $request->merge([ $list->password => Hash::make($request['password'])]);
+        }
+        
         $list->language = $request->language;
         $list->name = $request->name;
         $list->email = $request->email;

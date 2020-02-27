@@ -12,7 +12,7 @@ class Page extends Model
 	use Sluggable;
     protected $dates = ['deleted_at'];
        protected $fillable = [
-        'admin_id','superadmin_id', 'pagetitle','pageimage','pagename','clickview','parentpage_id','description','pagetype','language','pagemetadescription','slug','pageurl'
+        'admin_id','superadmin_id', 'pagetitle','pageimage','pagename','pagekeyword','clickview','parentpage_id','description','pagetype','language','pagemetadescription','slug','pageurl'
     ];
 	public function sluggable()
     {

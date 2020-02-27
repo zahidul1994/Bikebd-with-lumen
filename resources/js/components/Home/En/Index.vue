@@ -50,7 +50,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">HOME</a>
+                             <router-link class="nav-link" :to="`/`" >Home</router-link>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">PRICE</a>
@@ -81,8 +81,8 @@
                                 Page
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <span v-for="cate in AllBlogpagelist" :key="(cate.id)">
-                                   <router-link class="dropdown-item"   :to="`/en/page/${cate.slug}`">{{cate.pagename}}</router-link>
+                                <span v-for="pagename in Pagelist" :key="(pagename.id)">
+                                   <router-link class="dropdown-item" :to="`/page/${pagename.slug}`">{{pagename.pagename}}</router-link>
                                <div class="dropdown-divider"></div>
                                 </span>
                             </div>
@@ -426,18 +426,16 @@
                   
                     <div class="col-md-12" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
                                 <div class="card c-bdr">
-                                   <router-link  :to="`/en/blog/${bloginfo.slug}`">
+                                   <router-link  :to="`/blog/${bloginfo.slug}`">
                                         <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">{{bloginfo.title}}</h5>
-                                         <span class="bike-p">{{bloginfo.description|shortlength(40,"..")}}"</span>
+                                            <h5 class="bike-n text-dark">{{bloginfo.title|shortlength(30,"..")}}</h5>
+                                         <span class="bike-p">{{bloginfo.shortdescription|shortlength(40,"..")}}"</span>
                                               <!-- <span v-html="bloginfo.description"> </span> -->
                                           
 
                                         </div>
-                                        <div class="c-bottom text-center">
-                                            <span class=""><router-link  :to="`/en/blog/${bloginfo.slug}`">View Details</router-link></span>
-                                        </div>
+                                        
                                     </router-link>
                                 </div>
                             </div>
@@ -1105,19 +1103,14 @@ export default {
           authenticatedname:null,
          authenticatedimage:null,
          AllLatestBlog:[],
-         AllBlogpagelist:[],
+         Pagelist:[],
       
         }
     },
       created () {
             document.title = "Home";
-            axios.post('http://127.0.0.1:8000/blogpagelist')
-        .then(response => {
             
-            (this.AllBlogpagelist = response.data.blogpage);
-            
-        });
-         axios.get('http://127.0.0.1:8000/latestblog')
+         axios.get('/latestblog')
         .then(response => {
             (this.AllLatestBlog = response.data.blogpost);
             
@@ -1136,7 +1129,12 @@ export default {
       
          
       };
-       
+       axios.post('/pagelist')
+        .then(response => {
+            
+            (this.Pagelist = response.data.page);
+            
+        });
             
       
   },
@@ -1145,7 +1143,7 @@ export default {
       logOutNow(){
         //alert(5);
        localStorage.clear();
-        this.$router.push("/en/login")
+        this.$router.push("/login")
       },
     
       

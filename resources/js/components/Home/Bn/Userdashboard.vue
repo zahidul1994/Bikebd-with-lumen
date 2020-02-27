@@ -27,10 +27,9 @@
 
                 </select>
                 <ul class="tr-btn mb-0">
-                    <li><button type="button" class="btn btn-outline-primary mr-2 t-btn t-btn-act">Login</button></li>
-                    <li><button type="button" class="btn btn-outline-primary t-btn">Signup</button></li>
-                    <li><button type="button" class="btn btn-outline-primary t-btn">Signup</button></li>
-                </ul>
+                    <li><button type="button" class="btn btn-outline-primary mr-2 t-btn t-btn-act">লগইন</button></li>
+                    <li><button type="button" class="btn btn-outline-primary t-btn">নিবন্ধন</button></li>
+                                    </ul>
 
             </div>
 
@@ -53,10 +52,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">HOME</a>
+                            
+                            <router-link class="nav-link" :to="`/bn`" >প্রথম পৃষ্ঠা</router-link>
+                           
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">PRICE</a>
+                            <a class="nav-link" href="#">দাম</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">SHOWROOMS</a>
@@ -80,12 +81,12 @@
                             <a class="nav-link" href="#">COMPARISON</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Page
+                            <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                পেজ
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <span v-for="cate in AllBlogpagelist" :key="(cate.id)">
-                                   <router-link class="dropdown-item"  :to="`/en/page/${cate.slug}`">{{cate.pagename}}</router-link>
+                                <span v-for="pagename in Pagelist" :key="(pagename.id)">
+                                   <router-link class="dropdown-item" :to="`/bn/page/${encodeURI(pagename.slug)}`">{{pagename.pagename}}</router-link>
                                <div class="dropdown-divider"></div>
                                 </span>
                             </div>
@@ -166,8 +167,7 @@
        return {
           authenticatedname:null,
          authenticatedimage:null,
-         AllLatestBlog:[],
-         AllBlogpagelist:[],
+       Pagelist:[],
       
         }
     },
@@ -186,8 +186,7 @@
 
     // });
     
-   alert(5);
- 
+   
 
         var token= localStorage.getItem("token");
       var user= localStorage.getItem("user");
@@ -199,17 +198,13 @@
       
          
       };
-        axios.get('http://127.0.0.1:8000/latestblog')
+       
+             axios.post('/bn/pagelist')
         .then(response => {
-            (this.AllLatestBlog = response.data.blogpost);
-            
+            (this.Pagelist = response.data.bnpage);
+           
         });
-            axios.post('http://127.0.0.1:8000/blogpagelist')
-        .then(response => {
-            
-            (this.AllBlogpagelist = response.data.blogpage);
-            
-        });
+               
 
                
       
@@ -220,7 +215,7 @@
       logOutNow(){
         //alert(5);
        localStorage.clear();
-        this.$router.push("/en/login")
+        this.$router.push("/login")
       },
     
     }

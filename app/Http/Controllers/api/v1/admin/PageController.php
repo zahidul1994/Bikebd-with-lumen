@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\v1\admin;
 
 use App\Page;
 use App\Parentpage;
+use App\Helper\CommonFx;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,8 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 class PageController extends Controller
 {
     public function index()
-    {
-        
-        return Page::paginate(3);
+    {  
+        return Page::where('admin_id',Auth::guard('admin')->user()->id)->where('language', Auth::guard('admin')->user()->language)->latest()->paginate(7); 
     }
 
     /**
@@ -43,12 +43,14 @@ class PageController extends Controller
             
             'pagetitle' => 'required|min:3|max:350',
             'language' => 'required',
+            'pagekeyword' => 'required',
             //'category' => 'required|min:3|max:350',
             //'title' => 'required|min:3|max:350',
             'description' => 'required|min:3',
             'pageimage' => 'required',
             'pagemetadescription' => 'required',
             'parentpage' => 'required|unique:parentpages',
+            'slug' => 'unique:pages',
 
         ]);
 
@@ -80,6 +82,9 @@ class PageController extends Controller
     $list->language = $request->language;
     $list->pagetitle = $request->pagetitle;
     $list->pagename = $request->parentpage;
+    $list->slug =CommonFx::make_slug($request->slug);
+    $list->pagekeyword = $request->pagekeyword;
+    $list->pageurl = $request->pageurl;
     $list->parentpage_id = $request->parentpagename;
     $list->pagemetadescription = $request->pagemetadescription;
     $list->description = $request->description;
@@ -177,10 +182,12 @@ class PageController extends Controller
 
                  'pagetitle' => 'required|min:3|max:350',
                  'language' => 'required',
+                 'pagekeyword' => 'required',
                  //'category' => 'required|min:3|max:350',
                  //'title' => 'required|min:3|max:350',
                  'description' => 'required|min:3',
                  'pageimage' => 'required',
+                 'slug' => 'unique:pages,slug,'.$id,
                  'pagename' => 'required|unique:pages,pagename,'.$id,
      
              ]);
@@ -217,6 +224,9 @@ class PageController extends Controller
          $list = Page::find($id);
          $list->language = $request->language;
         $list->pagetitle = $request->pagetitle;
+        $list->pagekeyword = $request->pagekeyword;
+        $list->pageurl = $request->pageurl;
+        $list->slug =CommonFx::make_slug($request->slug);
         $list->pagename = $request->pagename;
         $list->parentpage_id = $request->parentpage_id;
         $list->pagemetadescription = $request->pagemetadescription;

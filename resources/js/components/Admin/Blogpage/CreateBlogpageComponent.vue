@@ -10,9 +10,8 @@
                 <div class="card-body">
                    <div class="form-group">
                     <label for="language">Language *</label>
-                    <select  :class="{'is-invalid' :form.errors.has('language')}" id="bikeversion"  v-model="form.language" class="form-control" >
-                       <option disabled value="">Select One</option>
-                        <option selected value="en">English</option>
+                    <select  :class="{'is-invalid' :form.errors.has('language')}" id="language"  v-model="form.language" class="form-control" disabled>
+                       <option selected value="en">English</option>
                         <option  value="bn">Bangla</option>
                      
                     </select>
@@ -25,8 +24,25 @@
                   </div>
                   <div class="form-group">
                     <label for="title">Title *</label>
-                     <input  v-model="form.pagetitle " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('pagetitle') }" id="title" placeholder="Page Title Name">
+                     <input  v-model="form.pagetitle "  type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('pagetitle') }" v-on:keydown="Title"  id="title" placeholder="Page Title Name">
                         <has-error :form="form" field="pagetitle"></has-error>
+                  </div>
+                  
+                    <div class="form-group">
+                    <label for="slug">Custom Slug</label>
+                     <input  v-model="form.slug" type="text"  class="form-control"  :class="{ 'is-invalid': form.errors.has('slug') }"  id="slug" >
+                        <has-error :form="form" field="slug"></has-error>
+                  </div>
+                   <div class="form-group">
+                    <label for="url" v-if="form.language=='en'">বাংলা (Slug)</label>
+                    <label for="url" v-else="">English (Slug)</label>
+                     <input  v-model="form.pageurl" type="text"  class="form-control"  :class="{ 'is-invalid': form.errors.has('pageurl') }"  id="url" >
+                        <has-error :form="form" field="pageurl"></has-error>
+                  </div>
+                  <div class="form-group">
+                    <label for="title">Kew Word *</label>
+                     <input  v-model="form.pagekeyword " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('pagekeyword') }" id="pagekeyword" placeholder="Page Keyword">
+                        <has-error :form="form" field="pagekeyword"></has-error>
                   </div>
 
                    <div class="form-group">
@@ -110,8 +126,11 @@ export default {
         pagetitle: "",
         category:[],
         description: "",
+        pageurl: "",
+        slug: "",
         pageimage: "",
         language: "",
+        pagekeyword: "",
         pagemetadescription: "",
         allparentpage: "",
       }),
@@ -122,7 +141,15 @@ export default {
   },
         mounted() {
           
-
+var token = localStorage.getItem("token");
+       var admin =localStorage.getItem("admin");
+      if(admin){
+               this.form.language = JSON.parse(localStorage.getItem("admin")).language;
+     
+      }
+      else{
+         this.$router.push("/admin/login");
+      };
                       axios.get('/admin/parentpage')
                      .then(response => {
                     (this.allparentpage = response.data.parentpageinfo)
@@ -145,6 +172,9 @@ export default {
           console.log(response);
           toastr.warning("Sorry Try Agin");
         });
+    },
+      Title(event){
+this.form.slug=this.form.pagetitle;
     },
       changephoto(event){
       let file=event.target.files[0];

@@ -27,7 +27,7 @@ $app->withFacades();
 $app->withEloquent();
 $app->configure('sluggable'); //for slug
 $app->configure('permission');
-
+config()->set('jwt.ttl', 60*60*7); //jwt auth expire
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings

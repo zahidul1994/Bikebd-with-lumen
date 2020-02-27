@@ -160,10 +160,10 @@ import UserDashboard from './components/Home/En/Userdashboard.vue'
 // import UsedBikePostDetails from './components/Home/Bn/UsedBikePostDetails.vue'
 import BNIndex from './components/Home/Bn/Index.vue'
 import BNBlogpostdetails from './components/Home/Bn/Blogpostdetails.vue'
-// import Pagedetails from './components/Home/Bn/Blogpagedetails.vue'
+ import BNPagedetails from './components/Home/Bn/Blogpagedetails.vue'
 // import UserRegister from './components/Home/Bn/Userregister.vue'
 // import UserLogin from './components/Home/Bn/Userlogin.vue'
-// import UserDashboard from './components/Home/Bn/Userdashboard.vue'
+ import BNUserDashboard from './components/Home/Bn/Userdashboard.vue'
 //Bn area end
 
 
@@ -355,7 +355,7 @@ export const routes = [
     { path: '/en/login', name: 'UserLogin', component: UserLogin },
     { path: '/register', component: UserRegister },
     {
-        path: '/en',
+        path: '/',
         name: 'UserDashboard',
         component: UserDashboard,
         children: [
@@ -391,15 +391,15 @@ export const routes = [
 
 
     },
-    { path: '/bn/blog/:id', component: BNBlogpostdetails },
+    { path: '/bn', component: BNIndex },
     {
 
         path: '/bn',
         name: 'BNDashboard',
-        component: BNIndex,
+        component: BNUserDashboard,
         children: [
-            { path: '/:id', component: BNBlogpostdetails },
-            // { path: 'page/:id', component: Pagedetails },
+            { path: 'blog/:id', component: BNBlogpostdetails },
+             { path: 'page/:id', component: BNPagedetails },
             // { path: 'myprofile', component: Myprofile },
             // { path: 'shop/:id', component: Shop },
             // { path: 'editmyprofile/:id', component: EditMyprofile },

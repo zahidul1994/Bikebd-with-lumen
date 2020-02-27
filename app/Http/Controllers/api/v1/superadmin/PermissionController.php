@@ -26,7 +26,7 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-        return Permissions::paginate(3);
+        return Permissions::paginate(7);
     }
 
 
@@ -83,7 +83,7 @@ class PermissionController extends Controller
         $role = Role::find($id);
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
             ->where("role_has_permissions.role_id",$id)
-            ->get();
+            ->all();
 
 
         return view('super_admin.roles.show',compact('role','rolePermissions'));

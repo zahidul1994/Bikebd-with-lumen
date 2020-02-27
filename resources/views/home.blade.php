@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"/>
-   <meta name="keywords" :content="keywords"> 
+   <meta name="keywords"> 
     <link rel="shortcut icon" href=" {{@asset('FontStyle/titleimage.png')}}" type="image/x-icon">
   <!-- Font Awesome Icons -->
    <link href="{{ @asset('css/app.css') }}" rel="stylesheet">

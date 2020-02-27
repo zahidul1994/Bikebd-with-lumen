@@ -17,6 +17,7 @@
                     <th>Mobile</th>
                     <th>Language</th>
                     <th>Gender</th>
+                    <th>Role</th>
                     <th>Status</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -33,12 +34,12 @@
                           <td>{{admin.language}}</td> 
                          
                           <td> <span style="font-size: 2em; color: blue;" v-if="admin.gender_id==1"><i class="fas fa-male"></i></span>
-                          <span style="font-size: 2em; color:tomato;" v-else><i class="fas fa-female"></i></span>
-                </td>
-                            <td > 
-                         <span class="btn btn-sm btn-primary" @click.prevent="activestatus(admin.id)" v-if="admin.status_id=='1'"><i class="fas fa-check-square"></i> </span>
-                         <span class="btn btn-sm btn-danger" @click.prevent="inactivestatus(admin.id)"  v-else><i class="fas fa-ban"></i></span>
-                </td>
+                          <span style="font-size: 2em; color:tomato;" v-else><i class="fas fa-female"></i></span> </td>
+               <td>{{admin.id}}</td> 
+                        
+                             <td> <span class="btn btn-sm btn-primary" @click.prevent="activestatus(admin.id)" v-if="admin.status_id=='1'"><i class="fas fa-check-square"></i> </span>
+                         <span class="btn btn-sm btn-danger" @click.prevent="inactivestatus(admin.id)"  v-else><i class="fas fa-ban"></i></span> </td>
+               
                        <td> 
                         
                         <router-link :to="`/superadmin/editteammember/${admin.id}`" class="btn btn-sm btn-info">
@@ -86,6 +87,7 @@ export default {
         },
   mounted() {
     this.getResults();
+    
   },
   
   methods: {

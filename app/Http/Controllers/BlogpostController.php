@@ -32,9 +32,29 @@ class BlogpostController extends Controller
         ],404);
       
     }
-    // $blogpost = Blog::with('blogcategorylist')->latest()->get();
-    // return view('fontpage.homepage');
+
     } 
+
+
+    public function bnindex()
+    {
+        
+        $blogpost = Blog::with('blogcategorylist')->where('language', '=' , 'bn')->where('status',1)->latest()->get();
+        if($blogpost){
+        return response()->json([
+            'success'=>true,
+            'blogpost'=>$blogpost],200);
+    }
+    else{
+        return response()->json([
+            'success'=>true,
+            'message'=>' Record Not Found'
+        ],404);
+      
+    }
+
+    } 
+
     public function lindex()
     {
         
@@ -67,7 +87,8 @@ class BlogpostController extends Controller
     { 
          if($request->ajax()){
         $blogpost = Blog::with('blogcategorylist','admin','blogcomment')->whereSlug($id)->get()->first();
-       
+        $blogpost->clickview +=1;
+        $blogpost->update();
         if($blogpost){
         return response()->json([
             'success'=>true,
@@ -87,7 +108,8 @@ return view('home');
     { 
          if($request->ajax()){
         $blogpost = Blog::with('blogcategorylist','admin','blogcomment')->whereSlug(urldecode($id))->get()->first();
-       
+        $blogpost->clickview +=1;
+        $blogpost->update();
         if($blogpost){
         return response()->json([
             'success'=>true,
@@ -101,7 +123,7 @@ return view('home');
             ],404);
     }
 }
-return view('home');
+return view('bnhome');
 }
 
     public function lshow($id)
@@ -144,6 +166,46 @@ return view('home');
         }
             
         }
+
+
+        public function bnrelatedblog($id)
+        {
+            $p= Blog::whereSlug(urldecode($id))->get()->first();
+            $blogpost = Blog::where('slug', '!=' , $p->slug)->where('title', 'like', '%' .$p->title. '%')->get();
+            if($blogpost){
+            return response()->json([
+                'success'=>true,
+                'bnblogpost'=>$blogpost],200);
+        }
+        else{
+            return response()->json([
+                'success'=>true,
+                'message'=>' Record Not Found'
+            ],404);
+          
+        }
+
     
+}
+
+public function relatedblog($id)
+{
+    $p= Blog::whereSlug($id)->get()->first();
+    $blogpost = Blog::where('slug', '!=' , $p->slug)->where('language','en')->where('title', 'like', '%' .$p->title. '%')->get();
+    if($blogpost){
+    return response()->json([
+        'success'=>true,
+        'blogpost'=>$blogpost],200);
+}
+else{
+    return response()->json([
+        'success'=>true,
+        'message'=>' Record Not Found'
+    ],404);
+  
+}
+
+
+}
 }
 //test::create($request->all());

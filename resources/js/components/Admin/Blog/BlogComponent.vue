@@ -38,10 +38,14 @@
                          <span class="btn btn-sm btn-danger" @click.prevent="inactivestatus(bloginfo.id)"  v-else><i class="fas fa-ban"></i></span>
                          </td>
                           <td>
-                        <router-link target='_blank' :to="`/en/blog/${bloginfo.slug}`">
+               <span v-if="bloginfo.language=='en'">
+                        <router-link target='_blank' :to="`/blog/${bloginfo.slug}`">
                          Details
                         </router-link>
-                        
+                        </span>
+                        <span v-else><router-link target='_blank' :to="`/bn/blog/${encodeURI(bloginfo.slug)}`">
+                         Details
+                        </router-link></span>
                     </td> 
                        <td>
                         
