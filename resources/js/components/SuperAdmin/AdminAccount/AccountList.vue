@@ -35,7 +35,7 @@
                          
                           <td> <span style="font-size: 2em; color: blue;" v-if="admin.gender_id==1"><i class="fas fa-male"></i></span>
                           <span style="font-size: 2em; color:tomato;" v-else><i class="fas fa-female"></i></span> </td>
-               <td>{{admin.id}}</td> 
+               <td><span v-for="rolename in admin.roles" :key="rolename.id">{{rolename.name}}</span></td> 
                         
                              <td> <span class="btn btn-sm btn-primary" @click.prevent="activestatus(admin.id)" v-if="admin.status_id=='1'"><i class="fas fa-check-square"></i> </span>
                          <span class="btn btn-sm btn-danger" @click.prevent="inactivestatus(admin.id)"  v-else><i class="fas fa-ban"></i></span> </td>
@@ -75,78 +75,82 @@
 <script>
 export default {
   name: "AdminList",
-    data() {
+  data() {
     return {
       // Our data object that holds the Laravel paginator data
-      allAdmins: {},
-      
+      allAdmins: {}
     };
   },
-   created () {
-            document.title = "Team Member ";
-        },
+  created() {
+    document.title = "Team Member";
+  },
   mounted() {
     this.getResults();
-    
   },
-  
+
   methods: {
-        getResults(page = 1) {
+    getResults(page = 1) {
       axios.get("superadmin/teammemberlist?page=" + page).then(response => {
         this.allAdmins = response.data;
       });
     },
-    ourImage(img){
-                return "/images/profileimage/"+img; //for show image url
-            },
+    ourImage(img) {
+      return "/images/profileimage/" + img; //for show image url
+    },
     deleteAdmin(id) {
       if (confirm("Do you really want to delete it?")) {
-      //console.log(id)
-      axios
-        .delete("/superadmin/deleteteammember/" + id)
-        .then(({ response = true }) => {
-          [toastr.warning("Admin Delete Successfull", " Admin")];
-        });
+        //console.log(id)
+        axios
+          .delete("/superadmin/deleteteammember/" + id)
+          .then(({ response = true }) => {
+            [toastr.warning("Admin Delete Successfull", " Admin")];
+          });
       }
-       axios.get("superadmin/teammemberlist?page=" +  this.allAdmins.current_page).then(response => {
-        this.allAdmins = response.data;
-      })
+      axios
+        .get("superadmin/teammemberlist?page=" + this.allAdmins.current_page)
+        .then(response => {
+          this.allAdmins = response.data;
+        })
         .catch(function(response = false) {
           console.log(response);
           toastr.error("Sorry Try Agin");
         }); //for show Gender
     },
-    activestatus(id){
+    activestatus(id) {
       axios
         .post("/superadmin/adminsetstatus/" + id)
         .then(({ response = true }) => {
           [toastr.info("Account Inactive Successfull", "Account")];
         });
-            axios.get("superadmin/teammemberlist?page=" +  this.allAdmins.current_page).then(response => {
-        this.allAdmins = response.data;
-      })
+      axios
+        .get("superadmin/teammemberlist?page=" + this.allAdmins.current_page)
+        .then(response => {
+          this.allAdmins = response.data;
+        })
         .catch(function(response = false) {
           console.log(response);
           toastr.error("Sorry Try Agin");
         }); //for inactive account
-// alert('Hello');
+      // alert('Hello');
     },
-      inactivestatus(id){
+    inactivestatus(id) {
       axios
         .post("/superadmin/adminsetstatusactive/" + id)
         .then(({ response = true }) => {
           [toastr.success("Account Active Successfull", "Account")];
         });
-            axios.get("superadmin/teammemberlist?page=" +  this.allAdmins.current_page).then(response => {
-        this.allAdmins = response.data;
-      })
+      axios
+        .get("superadmin/teammemberlist?page=" + this.allAdmins.current_page)
+        .then(response => {
+          this.allAdmins = response.data;
+        })
         .catch(function(response = false) {
           console.log(response);
           toastr.error("Sorry Try Agin");
         }); //for active Account
-// alert('Hello');
-    },
+      // alert('Hello');
+    }
   }
-}; 
+};
 </script>
 

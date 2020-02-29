@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\api\v1\superadmin;
 use App\User;
 use App\Admin;
+use App\Superadmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Redirect;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Validator;
-use Spatie\Permission\Models\Role;
+
 class AdminController extends Controller
 {
     /**
@@ -21,7 +24,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-      return Admin::with('gender','status')->latest()->paginate(3);
+       
+      return Admin::with('gender','status','roles')->latest()->paginate(3);
        
       
     }
@@ -116,9 +120,11 @@ else{
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
+   
     public function show(Admin $admin)
-    {
-        //
+    { $admin = Admin::all();
+    $te=$admin->getRoleNames();
+        return response()->json(['adminrole'=>$ $te],200);
     }
 
     /**
@@ -129,8 +135,8 @@ else{
      */
     public function edit($id)
     {
-        //dd($id);
-        $admin = Admin::find($id);
+    
+        $admin = Admin::with('roles')->find($id);
         return response()->json(['teammemberlist'=>$admin],200);
     }
 
@@ -142,12 +148,15 @@ else{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-     {
-      
+    {
+     // return response($request->all());
+    if ($request->password==null){
+    
         $validator=Validator::make($request->all(),[
             'name' => 'required|max:198|min:3',
-            'phone' => 'required|numeric|digits:11',
+            'phone' => 'required|numeric|digits:11|unique:admins,phone,'.$id,
             'language' => 'required',
+            'roles' => 'required',
             'status_id' => 'required',
             'gender_id' => 'required',
             'email' => 'required|email|unique:admins,email,'.$id,
@@ -184,13 +193,10 @@ else{
 
 
         $list =  Admin::find($id);
-        if(!empty($request->password)){
-            $request->merge([ $list->password => Hash::make($request['password'])]);
-        }
-        
         $list->language = $request->language;
         $list->name = $request->name;
         $list->email = $request->email;
+        $list->phone = $request->phone;
         $list->gender_id = $request->gender_id;
         $list->status_id = $request->status_id;
         $list->superadmin_id = Auth::guard('superadmin')->user()->id;
@@ -198,6 +204,10 @@ else{
         $list->image = $name;
         $list->update();
         if($list->update()){
+            if($request->roles !==null){
+            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            $list->assignRole($request->input('roles'));
+        }
             return response()->json([
                 'success'=>true,
                 'message'=>'Data Update Success',
@@ -212,6 +222,78 @@ else{
             ],404);
         }
         
+    }
+    else{
+        
+
+       // return response($request->all());
+
+        $validator=Validator::make($request->all(),[
+            'name' => 'required|max:198|min:3',
+            'phone' => 'required|numeric|digits:11|unique:admins,phone,'.$id,
+            'language' => 'required',
+            'status_id' => 'required',
+            'gender_id' => 'required',
+            'email' => 'required|email|unique:admins,email,'.$id,
+            'password' => 'required|min:6|max:30', 
+                    
+        ]);
+    
+    $image=Admin::find($id);
+ if (($request->image != $image->image)) {
+      $imagepath=public_path('/images/profileimage/').$image->image;
+    if(file_exists( $imagepath) && $image->image !='not-found.jpg' ){
+        unlink($imagepath);
+
+    }
+    $strpos = strpos($request->image,';');
+        $sub = substr($request->image,0,$strpos);
+        $ex = explode('/',$sub)[1];
+        $rand = mt_rand(100000, 999999);
+        $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
+        $img = Image::make($request->image)->resize(200, 200);
+        $upload_path = public_path()."/images/profileimage/";
+        $img->save($upload_path.$name);
+}
+else{
+ $name = $image->image;
+};
+
+
+        $list =  Admin::find($id);
+        $list->language = $request->language;
+        $list->name = $request->name;
+        $list->email = $request->email;
+        $list->phone = $request->phone;
+        $list->gender_id = $request->gender_id;
+        $list->status_id = $request->status_id;
+        $list->superadmin_id = Auth::guard('superadmin')->user()->id;
+        $list->password=Hash::make($request->password);
+        $list->image = $name;
+        $list->update();
+        if($list->update()){
+            if($request->roles !==null){
+            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            $list->assignRole($request->input('roles'));
+        }
+            return response()->json([
+                'success'=>true,
+                'message'=>'Data Update Success',
+                'data'=>$list],200);
+        }
+        else{
+            return response()->json([
+                'success'=>false,
+                'message'=>'Data Update Faild',
+                 'id'=>$id,
+        
+            ],404);
+        }
+
+
+
+
+    }
 
 }
     

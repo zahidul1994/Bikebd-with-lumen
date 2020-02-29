@@ -33,9 +33,9 @@
                         <has-error :form="form" field="email"></has-error>
                   </div>
                    <div class="form-group">
-                    <label for="roles">Update Permission</label>
-                    <select   class="form-control" :class="{'is-invalid' :form.errors.has('roles')}" v-model="form.roles">
-                        <option   v-for="rolename in Rolelist" :value="rolename.name">{{rolename.name}}</option>
+                    <label for="roles"> Permission -> {{Adminrole}} </label>
+                    <select   class="form-control"  :class="{'is-invalid' :form.errors.has('roles')}" v-model="form.roles" required>
+                        <option   v-for="rolename in Rolelist" :value="rolename.id" :key="rolename.id"  :selected="form.status_id == rolename.id">{{rolename.name}}</option>
                     </select>
                      <has-error :form="form" field="roles"></has-error>
                   </div>
@@ -44,11 +44,7 @@
                      <input  v-model="form.password" type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }" id="password" placeholder="Update Password">
                         <has-error :form="form" field="password"></has-error>
                   </div>
-                  <div class="form-group">
-                    <label for="confirm">Confirm Password </label>
-                     <input  v-model="form.confirm" type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('confirm') }" id="confirm" placeholder="Confirm Password">
-                        <has-error :form="form" field="confirm"></has-error>
-                  </div>
+                 
                  <div class="form-group">
                      <label for="exampleInputFile">Update Image </label>
                      
@@ -104,94 +100,89 @@
 <script>
 export default {
   name: "EditAdmin",
-   created () {
-            document.title = "Team Member Edit";
-        },
+  created() {
+    document.title = "Team Member Edit";
+  },
   data() {
     return {
       form: new Form({
-        language: '',
-        name: '',
-        phone: '',
-        roles:[],
-        email: '',
-        password:'',
-        confirm: '',
-        image:'',
-        gender_id:'',
-        status_id:''
+        language: "",
+        name: "",
+        phone: "",
+        roles: [],
+        email: "",
+        password: "",
+        image: "",
+        gender_id: "",
+        status_id: ""
       }),
-       Rolelist:null,
-           };
+      Rolelist: null,
+      Adminrole: null
+    };
   },
   mounted() {
     this.$store.dispatch("allGender"); //for show Gender
     this.$store.dispatch("allStatus"); //for show Status
-     axios.post(`superadmin/allrolename`)
-          .then((response)=>{
-              this.Rolelist=response.data.allrolename
-          });
-          axios.get(`superadmin/editteammember/${this.$route.params.id}`)
-                .then((response)=>{
-                   this.form.fill(response.data.teammemberlist)
-                })
-  
+    axios.post(`superadmin/allrolename`).then(response => {
+      this.Rolelist = response.data.allrolename;
+    });
+    axios
+      .get(`superadmin/editteammember/${this.$route.params.id}`)
+      .then(response => {
+        this.form.fill(response.data.teammemberlist);
+        response.data.teammemberlist.roles.forEach(element => {
+          this.Adminrole = element.name;
+          //alert(element.name);
+        });
+      });
   },
   computed: {
     allGenders() {
       return this.$store.getters.getGender; //for get gender
-
     },
-     allStatuses() {
+    allStatuses() {
       return this.$store.getters.getStatus; //for get Status
-    },
-       
+    }
   },
-    created(){
-            
-
-        },
+  created() {
+    document.title = "Edit Account";
+  },
   methods: {
-    
     UpdateAdmin() {
-this.form.put('/superadmin/updateteammember/'+`${this.$route.params.id}`)
-     // this.form.post("/superadmin/addadmin")
-        //console.log(this.form.accounttype)
+      this.form
+        .put("/superadmin/updateteammember/" + `${this.$route.params.id}`)
         .then(({ response }) => {
           [toastr.success("Account Update Successfull")],
             [this.$router.push("/superadmin/teammemberlist")];
         })
         .catch(function(response) {
-          console.log(response);
           toastr.warning("Sorry Try Agin");
         });
     },
-    changephoto(event){
-      let file=event.target.files[0];
-      let reader=new FileReader();
-      reader.onload=event=>{
-        this.form.image=event.target.result
-      },
-      reader.readAsDataURL(file);
+    changephoto(event) {
+      let file = event.target.files[0];
+      let reader = new FileReader();
+      (reader.onload = event => {
+        this.form.image = event.target.result;
+      }),
+        reader.readAsDataURL(file);
     },
-    changephoto(event){
-      let file=event.target.files[0];
-      let reader=new FileReader();
-      reader.onload=event=>{
-        this.form.image=event.target.result
-      },
-      reader.readAsDataURL(file);
+    changephoto(event) {
+      let file = event.target.files[0];
+      let reader = new FileReader();
+      (reader.onload = event => {
+        this.form.image = event.target.result;
+      }),
+        reader.readAsDataURL(file);
     },
-   updateImage(){
-                let img = this.form.image;
-                if(img.length>100){
-                    return  this.form.image
-                }else{
-                    return `/images/profileimage/${this.form.image}`
-                }
-
-            }
+    updateImage() {
+      let img = this.form.image;
+      if (img.length > 100) {
+        return this.form.image;
+      } else {
+        return `/images/profileimage/${this.form.image}`;
+      }
+    }
   }
 };
-
 </script>

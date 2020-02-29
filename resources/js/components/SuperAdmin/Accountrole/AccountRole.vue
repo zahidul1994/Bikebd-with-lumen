@@ -63,7 +63,7 @@
                 <thead>
                 <tr>
                   <th>Sl</th>
-                   <th>Delete</th>
+                   <th>Permission</th>
                 </tr>
                 </thead>
                 <tbody>

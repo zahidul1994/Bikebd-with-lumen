@@ -20,7 +20,7 @@
                 </div>
                   <div class="form-group">
                     <label for="roles">Select Permission</label>
-                    <select   class="form-control" :class="{'is-invalid' :form.errors.has('roles')}" v-model="form.roles">
+                    <select   class="form-control" :class="{'is-invalid' :form.errors.has('roles')}" v-model="form.roles" required>
                         <option   v-for="rolename in Rolelist" :value="rolename.name">{{rolename.name}}</option>
                     </select>
                      <has-error :form="form" field="roles"></has-error>
@@ -103,51 +103,48 @@
 <script>
 export default {
   name: "NewAdmin",
-   created () {
-            document.title = "Create Team Member ";
-        },
+  created() {
+    document.title = "Create Team Member ";
+  },
   data() {
     return {
       form: new Form({
-        language: 'en',
-        roles:[],
-        accountname: '',
-        phone: '',
-        email: '',
-        password: '',
-        confirm: '',
-        photo: '',
-        gender: '1',
-        active: '1'
+        language: "en",
+        roles: [],
+        accountname: "",
+        phone: "",
+        email: "",
+        password: "",
+        confirm: "",
+        photo: "",
+        gender: "1",
+        active: "1"
       }),
-      Rolelist:null,
+      Rolelist: null
     };
   },
   mounted() {
     this.$store.dispatch("allGender"); //for show Gender
     this.$store.dispatch("allStatus"); //for show Status
-     
-      axios.post(`superadmin/allrolename`)
-          .then((response)=>{
-              this.Rolelist=response.data.allrolename
-          })
+
+    axios.post(`superadmin/allrolename`).then(response => {
+      this.Rolelist = response.data.allrolename;
+    });
   },
   computed: {
     allGenders() {
       return this.$store.getters.getGender; //for get gender
-
     },
-     allStatuses() {
+    allStatuses() {
       return this.$store.getters.getStatus; //for get Status
-    },
-    
+    }
   },
 
   methods: {
-    
     addAdmin() {
-console.log(this.form);
-      this.form.post("/superadmin/createteammember")
+      console.log(this.form);
+      this.form
+        .post("/superadmin/createteammember")
         //console.log(this.form.accounttype)
         .then(({ response }) => {
           [toastr.success("Account Create Successfull")],
@@ -158,13 +155,13 @@ console.log(this.form);
           toastr.warning("Sorry Try Agin");
         });
     },
-    changephoto(event){
-      let file=event.target.files[0];
-      let reader=new FileReader();
-      reader.onload=event=>{
-        this.form.photo=event.target.result
-      },
-      reader.readAsDataURL(file);
+    changephoto(event) {
+      let file = event.target.files[0];
+      let reader = new FileReader();
+      (reader.onload = event => {
+        this.form.photo = event.target.result;
+      }),
+        reader.readAsDataURL(file);
     }
   }
 };
