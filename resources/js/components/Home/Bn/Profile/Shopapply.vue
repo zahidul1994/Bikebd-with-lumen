@@ -28,7 +28,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-info">Apply </button>
-                <router-link to="/en/myprofile" class="btn btn-default ">Cancle</router-link>
+                <router-link to="/en/myprofile" class="btn btn-default ">Cancel</router-link>
             </div>
             <!-- /.card-footer -->
         </form>

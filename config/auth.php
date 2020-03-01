@@ -3,11 +3,11 @@
 
 return [
      'defaults' => [
-        'guard' => 'api',
-        'passwords' => 'users',
+        'guard' => 'admin',
+        'passwords' => 'admins',
     ],
     'guards' => [
-        'api' => [
+        'user' => [
             'driver' => 'jwt',
             'provider' => 'users',
         ],

@@ -16,7 +16,7 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
      use Authenticatable, Authorizable;
      use HasRoles;
      use SoftDeletes;
-
+     protected $guard = 'admin';
         protected $guard_name = 'superadmin';
     protected $dates = ['deleted_at'];
     // protected $connection = 'mongodb';

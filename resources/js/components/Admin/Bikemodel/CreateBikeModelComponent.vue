@@ -19,7 +19,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                   <router-link to="/admin/bikemodellist" class="btn btn-default ">Cancle</router-link>
+                   <router-link to="/admin/bikemodellist" class="btn btn-default ">Cancel</router-link>
                </div>
             </form>
                 </div>

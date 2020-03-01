@@ -39,7 +39,7 @@
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-info">Sign in</button>
-                  <router-link to="/en" class="btn btn-default ">Cancle</router-link>
+                  <router-link to="/en" class="btn btn-default ">Cancel</router-link>
                 </div>
                 <!-- /.card-footer -->
               </form>

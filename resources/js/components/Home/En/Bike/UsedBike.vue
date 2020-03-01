@@ -190,7 +190,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-info">Add Post</button>
-                  <router-link to="/en/biketypepost" class="btn btn-default ">Cancle</router-link>
+                  <router-link to="/en/biketypepost" class="btn btn-default ">Cancel</router-link>
             </div>
             <!-- /.card-footer -->
         </form>

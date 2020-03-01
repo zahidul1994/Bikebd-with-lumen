@@ -90,7 +90,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Update</button>
-                   <router-link to="/admin/blogpage" class="btn btn-default ">Cancle</router-link>
+                   <router-link to="/admin/blogpage" class="btn btn-default ">Cancel</router-link>
                </div>
             </form>
                 </div>

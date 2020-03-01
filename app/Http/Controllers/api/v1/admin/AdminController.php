@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\api\v1\admin;
+use app;
 use App\Shop;
-use App\Admin;
 use App\User;
+use App\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -13,7 +14,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
-
+use Spatie\Permission\Models\Permission;
 class AdminController extends Controller
 {
     
@@ -25,8 +26,7 @@ class AdminController extends Controller
             'admin'=>Auth::guard('admin')->user(),
              'token_type' => 'bearer',
              'isAuthenticated' => true,
-             'expires_in' => Auth::factory()->getTTL() * 60000
-        ], 200);
+           ], 200);
         //redirect('https://www.example.com', 302);
     }
     
@@ -38,28 +38,7 @@ class AdminController extends Controller
             'password' => 'required|min:6|max:30'
 
         ]);
-       //return response($request->all());
-       
-    
-        // $validator = Validator::make($request->all(), [
-
-        //     'email' => 'required|email',
-        //     'password' => 'required|min:6|max:30'
-
-        // ]);
-
-        // if ($validator->fails()) {
-
-
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => 'Validation Fails',
-        //         'errors' => $validator->errors()->all()
-        //     ], 422);
-        // }
-
-        
-        if (! $token = Auth::guard('admin')->attempt($request->only(['email', 'password']))) {
+        if (! $token =app('auth')->attempt(['email' => $request->email, 'password' => $request->password,'status_id'=>'1'])) {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized'
@@ -68,6 +47,7 @@ class AdminController extends Controller
 
         return $this->respondWithToken($token);
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -407,5 +387,7 @@ if(!empty($request->password)){
     //    Notify::success("User Recover Successfully", "User");
     //         return Redirect::route('addadmin.index');
     // }
+
+   
 }
 

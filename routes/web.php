@@ -36,7 +36,7 @@ $router->get('/', function () use ($router) {
 $router->get('register', function () use ($router) {
     return view('home');
 });
-$router->get('en/login', function () use ($router) {
+$router->get('/login', function () use ($router) {
     return view('home');
 });
 
@@ -65,6 +65,9 @@ function()use($router){
     $router->get('page/{id}','PageController@show'); 
     $router->post('pagelist','PageController@pagelist'); //page link in dropdown
     $router->post('relatedpage/{id}','PageController@relatedpage');
+
+
+    $router->post('login','UserController@login'); //for user login
 });
 
 $router->group([

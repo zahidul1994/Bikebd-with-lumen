@@ -74,7 +74,7 @@
           methods: {
             userlogin(){
               console.log(this.form);
-               this.form.post("login", this.form)
+               this.form.post("/login", this.form)
               .then(response => { [toastr.success('Login  Successfull')],[this.$router.push({name: 'UserDashboard'})]
               if(response.data.token){
               localStorage.setItem("token", response.data.token); 
