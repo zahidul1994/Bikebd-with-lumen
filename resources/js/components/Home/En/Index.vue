@@ -51,7 +51,8 @@
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
                              <router-link class="nav-link" :to="`/`" >Home</router-link>
-                        </li>
+                        </li> 
+                      
                         <li class="nav-item">
                             <a class="nav-link" href="#">PRICE</a>
                         </li>
@@ -125,7 +126,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <img :src="'/images/Fontimage/add1.webp'" alt="" class="w-100">
+                    <img :src="'/images/Fontimage/add1.gif'" alt="" class="w-100">
                 </div>
             </div>
         </div>

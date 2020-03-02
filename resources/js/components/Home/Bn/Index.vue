@@ -336,7 +336,9 @@
                 <h3 class="mb-4">
                     Recently Viewed and Recommended
                 </h3>
+                 
                 <div class="row product-slider">
+                   
                     <div class="col-md-12">
                         <div class="card c-bdr">
                             <a href="#">
@@ -416,6 +418,8 @@
 
 
                 </div>
+                
+                
             </div>
 
 
@@ -423,15 +427,16 @@
 
             <div class="latest-news mt-5">
                 <h3 class="mb-4">
-                    Latest News  547776
+                    Latest News  
                    
                 </h3>
-                <div class="row product-slider1">
-                  
+                <div class="row product-slider">
+                   
+                                <div class="card ">
+                                    <slick ref="slick" :options="slickOptions"  v-if="AllLatestBlog.length">
                      <div class="col-md-12" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
-                                <div class="card c-bdr">
-                                   <router-link  :to="`/bn/blog/${encodeURI(bloginfo.slug)}`">
-                                        <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-100" alt="...">
+                                   <router-link  :to="`/bn/blog/${encodeURI(bloginfo.slug)}`" class="card c-bdr">
+                                        <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-10" alt="...">
                                         <div class="card-body pb-0">
                                             <h5 class="bike-n text-dark">{{bloginfo.title|shortlength(30,"..")}}</h5>
                                          <span class="bike-p">{{bloginfo.shortdescription|shortlength(40,"..")}}"</span>
@@ -442,8 +447,9 @@
                                         
                                     </router-link>
                                 </div>
+                                  </slick> 
                             </div>
-                    
+                       
 
                 </div>
             </div>
@@ -1101,10 +1107,24 @@
 
 <script>
 
+import Slick from 'vue-slick';
+ 
+    
 export default {
+    
+       components: { Slick },
   name: "BNIndex",
       data(){
         return {
+            slickOptions: {
+             slidesToShow: 4,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: true,
+        prevArrow: '<span class="right-round"><i class="fal fa-angle-right"></i></span>',
+        nextArrow: '<span class="left-round"><i class="fal fa-angle-left"></i></span>',
+
+                    },
           authenticatedname:null,
          authenticatedimage:null,
          AllLatestBlog:[],
@@ -1128,22 +1148,25 @@ export default {
       
          
       };
-        axios.get('bn/latestblog')
-        .then(response => {
-            (this.AllLatestBlog = response.data.blogpost);
-            
-        });
+       
        
        axios.post('/bn/pagelist')
         .then(response => {
             (this.Pagelist = response.data.bnpage);
            
         });
-               
-      
+       
+        
+         axios.get('bn/latestblog')
+        .then(response => {
+            (this.AllLatestBlog = response.data.blogpost);
+                                    
+        });
+            
+       
       
   },
-  
+   
   methods: {
       logOutNow(){
         //alert(5);
@@ -1151,7 +1174,6 @@ export default {
         this.$router.push("/login")
       },
     
-      
        
     }
 

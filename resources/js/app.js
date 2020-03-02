@@ -19,6 +19,9 @@ const store = new Vuex.Store(
     //for use jque
 import JQuery from 'jquery'
 window.$ = JQuery;
+
+
+import Slick from 'vue-slick';
 // import fileter js
 import { filter } from './filter'
 //fro multi image for lightbox show multi image

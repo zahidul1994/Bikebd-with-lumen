@@ -10,11 +10,11 @@
   <!-- Font Awesome Icons -->
    <link href="{{ @asset('css/app.css') }}" rel="stylesheet">
    <link rel="stylesheet" href="{{@asset('FontStyle/css/all.min.css')}}" />
-   <link rel="stylesheet" href="{{@asset('FontStyle/css/slick.css')}}" />
+   {{-- <link rel="stylesheet" href="{{@asset('FontStyle/css/slick.css')}}" /> --}}
    <link rel="stylesheet" href="{{@asset('FontStyle/css/com_ui_1.12.1_themes_base_jquery-ui.css')}}" />
    <link rel="stylesheet" href="{{@asset('FontStyle/css/bootstrap.min.css')}}" />
    <link rel="stylesheet" href="{{@asset('FontStyle/css/style.css')}}" />
-
+<link rel="stylesheet" href="{{@asset('FontStyle/css/responsive.css')}}">
   <!-- IonIcons -->
   
   <!-- Google Font: Source Sans Pro -->
@@ -34,11 +34,11 @@
         <script src="{{@asset('js/app.js')}}"></script> 
        <script src="{{@asset('FontStyle/js/bootstrap.min.js')}}"></script>
     
-      <script src="{{@asset('FontStyle/js/slick.min.js')}}"></script>
+      {{-- <script src="{{@asset('FontStyle/js/slick.min.js')}}"></script> --}}
       <script src="{{@asset('FontStyle/js/com_ui_1.12.1_jquery-ui.js')}}"></script>
       <script src="{{@asset('FontStyle/js/popper.min.js')}}"></script>
      
-      <script src="{{@asset('FontStyle/js/custom.js')}}"></script>
+      {{-- <script src="{{@asset('FontStyle/js/custom.js')}}"></script> --}}
     
  
 </body>

@@ -1,5 +1,4 @@
 /*basic css*/
-
 * {
     padding: 0;
     margin: 0;
@@ -25,19 +24,17 @@ body {
     padding-left: 15px;
 }
 
-.navbar-expand-lg>.container,
-.navbar-expand-lg>.container-fluid,
-.navbar-expand-lg>.container-lg,
-.navbar-expand-lg>.container-md,
-.navbar-expand-lg>.container-sm,
-.navbar-expand-lg>.container-xl {
+.navbar-expand-lg > .container,
+.navbar-expand-lg > .container-fluid,
+.navbar-expand-lg > .container-lg,
+.navbar-expand-lg > .container-md,
+.navbar-expand-lg > .container-sm,
+.navbar-expand-lg > .container-xl {
     padding-right: 15px;
     padding-left: 15px;
 }
 
-
 /*top araea*/
-
 .tr-btn {
     display: flex
 }
@@ -49,11 +46,14 @@ body {
 #top-area form input {
     border-top-right-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
+
+
 }
 
 #top-area form button {
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
+
 }
 
 .btn.btn-outline-success.my-2.my-sm-0 {
@@ -65,11 +65,13 @@ body {
 .btn.btn-outline-success.my-2.my-sm-0:hover {
     background-color: #fff;
     color: #000;
+
 }
 
 .tr-btn .t-btn {
     border-color: #DC181F;
     color: #DC181F;
+    font-size: 12px;
 }
 
 .tr-btn .t-btn:hover {
@@ -80,6 +82,7 @@ body {
 .tr-btn .t-btn-act {
     background-color: #DC181F;
     color: #fff;
+
 }
 
 .tr-btn .t-btn-act:hover {
@@ -87,7 +90,6 @@ body {
     color: #DC181F;
     border-color: #DC181F;
 }
-
 
 /*menu area*/
 
@@ -119,6 +121,7 @@ body {
 .dropdown-item:hover {
     background-color: #DC181F;
     color: #fff;
+
 }
 
 .dropdown-divider {
@@ -129,9 +132,7 @@ body {
     padding: 0;
 }
 
-
 /*add area*/
-
 #add {
     padding: 10px 0
 }
@@ -139,7 +140,6 @@ body {
 .c-body {
     padding: 10px;
 }
-
 
 /*find area*/
 
@@ -155,6 +155,7 @@ body {
 
 .left.slick-arrow i {
     font-size: 22px;
+
 }
 
 .right.slick-arrow {
@@ -174,9 +175,7 @@ body {
     font-size: 22px;
 }
 
-
 /*contant area*/
-
 .bike-n {
     font-size: 16px;
     font-weight: 700;
@@ -254,9 +253,7 @@ body {
     border-color: #DC181F;
 }
 
-
 /*subscribe area*/
-
 #subscribe {
     margin-top: 30px;
     padding: 10px 0;
@@ -283,15 +280,12 @@ body {
     color: #fff;
 }
 
-
 /*footer area*/
-
 #footer {
     padding: 30px 0;
     background-color: #000;
     color: #fff;
 }
-
 
 /*bottom menu area*/
 
@@ -309,6 +303,7 @@ body {
     padding: 0 20px;
     border-right: 1px solid #666666;
     color: #666666;
+
 }
 
 .btm-menu li {
@@ -317,7 +312,6 @@ body {
 
 
 /*copy area*/
-
 #copy {
     background-color: #DC181F;
     padding: 10px 0;
@@ -330,7 +324,6 @@ body {
 
 
 /*product page*/
-
 .product-contant {
     background-color: #fff;
 }
@@ -343,11 +336,6 @@ body {
     color: #DC181F;
 }
 
-#single-product h5 {
-    font-weight: 700;
-    font-size: 16px;
-}
-
 .pr-cns li {
     list-style-type: circle
 }
@@ -355,6 +343,8 @@ body {
 .pr-cns p i {
     font-size: 22px;
 }
+
+
 
 .left-round.slick-arrow {
     position: absolute;
@@ -372,6 +362,7 @@ body {
 .left-round.slick-arrow i {
     font-size: 25px;
     line-height: 40px;
+
 }
 
 .right-round.slick-arrow {
@@ -395,6 +386,7 @@ body {
 .row.by-product ul li {
     margin: 7px 0;
     border-bottom: 1px solid #ddd;
+
 }
 
 .row.by-product ul li a {
@@ -431,11 +423,14 @@ body {
     width: 100%;
     font-weight: 700;
     color: #fff;
+
+
 }
 
 .submit-btn:hover {
     color: #fff;
     background-color: red;
+
 }
 
 .single-bike {
@@ -453,4 +448,540 @@ body {
 
 .clrcng {
     color: #23527C
+}
+
+.find-button button {
+    width: 100%;
+    padding: 5px 0;
+    border: 1px solid #DC181F;
+    margin-top: 15px;
+    background-color: #DC181F;
+    color: #fff;
+    font-weight: 700;
+    transition: all .3s linear;
+    margin-bottom: 50px;
+}
+
+.find-button button:hover {
+    background-color: transparent;
+    color: #DC181F;
+}
+
+#amount {
+    color: #DC181F !important;
+}
+
+
+/*user review*/
+#user-review {}
+
+#user-review .back-page {
+    color: #DC181F;
+}
+
+#user-review .t-btn {
+    border-color: #DC181F;
+    color: #DC181F;
+    padding: 2px 10px;
+}
+
+#user-review .t-btn:hover {
+    background-color: #DC181F;
+    color: #fff;
+}
+
+.top-competitor p {
+    color: #999999
+}
+
+.top-competitor p a {
+    color: #259556;
+    font-size: 16px;
+    font-weight: 700;
+
+}
+
+.top-competitor p a:hover {
+    color: red;
+    text-decoration: underline
+}
+
+
+
+
+.tc-right.slick-arrow {
+    position: absolute;
+    right: 0;
+    top: 45%;
+    z-index: 999;
+    right: 2%;
+    opacity: 70%;
+    font-size: 25px;
+}
+
+.tc-left.slick-arrow {
+    position: absolute;
+    top: 45%;
+    z-index: 999;
+    left: 2%;
+    opacity: 70%;
+    font-size: 25px;
+}
+
+.gclr {
+    color: #616161;
+}
+
+.product-contant h4 {
+    font-size: 18px;
+    color: #424242;
+    font-weight: 600
+}
+
+.product-contant p {
+    font-size: 16px;
+}
+
+.recent-product-contant {
+    background-color: #fff;
+}
+
+.recent-content a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+.recent-content {
+    transition: all .1s linear;
+    margin-bottom: 10px;
+}
+
+.recent-content:hover {
+    box-shadow: 6px 6px 3px grey;
+
+}
+
+
+.rv-right.slick-arrow {
+    position: absolute;
+    right: 0;
+    top: 25%;
+    z-index: 999;
+    right: 2%;
+    opacity: 70%;
+    font-size: 25px;
+}
+
+.rv-left.slick-arrow {
+    position: absolute;
+    top: 25%;
+    z-index: 999;
+    left: 2%;
+    opacity: 70%;
+    font-size: 25px;
+}
+
+.eprt-review a {
+    color: #DC181F;
+}
+
+.eprt-review p {
+    text-transform: uppercase;
+    /*    font-size: 14px;*/
+    color: #333;
+    padding-left: 0 !important;
+}
+
+.ex-rating a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #424242 !important
+}
+
+.ex-rating a:hover {
+    text-decoration: none
+}
+
+.btm-ex-rating a {
+    color: #DC181F;
+}
+
+.k-spcs h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.k-spcs a {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.ks-details h5 {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(51, 51, 51, 0.87)
+}
+
+.ks-details p {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 0.87)
+}
+
+.ks-details ul {
+    display: flex
+}
+
+.ks-details ul li {
+    height: 4px;
+    width: 18px;
+    background-color: #ddd;
+    margin-right: 7px;
+}
+
+.suggest-product h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.specs h4 {
+    font-size: 24px;
+    font-weight: 200;
+    color: #666
+}
+
+.specs .spec-titel {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.specs p {
+    padding-left: 0 !important;
+    color: #333
+}
+
+.specs .spec-detail {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ask-qus {}
+
+.ask-qus .form-control.mr-sm-2 {
+    width: 65%;
+    height: 40px;
+}
+
+.ask-qus button {
+    background-color: #DC181F;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    height: 40px;
+}
+
+.ask-qus button:hover {
+    color: #fff;
+}
+
+.qus-area p a {
+    font-size: 22px;
+    color: #454545;
+    font-weight: 500
+}
+
+
+.qus-area p a:hover {
+    text-decoration: none;
+}
+
+.qa-read {
+    color: #DC181F;
+    font-size: 14px;
+
+}
+
+.qa-read:hover {
+    text-decoration: none;
+    color: #222;
+}
+
+#qa-bottom ul li {
+    list-style: none;
+    display: inline-block
+}
+
+#qa-bottom ul li a {
+    color: #666;
+    padding: 0 10px;
+
+}
+
+.aa-button {
+    text-align: right
+}
+
+.aa-button button {
+    background-color: transparent;
+    color: #DC181F;
+    border: 1px solid #DC181F;
+    height: 30px;
+    line-height: 15px;
+    font-weight: 400;
+}
+
+.aa-button button:hover {
+    background-color: #DC181F;
+    color: #fff;
+    border: 1px solid #DC181F;
+}
+
+.ans {
+    color: rgb(68, 68, 68);
+    font-size: 14px;
+}
+
+.top-lg0 {
+    display: flex
+}
+
+.top-lg0 li a {
+    font-size: 30px;
+    line-height: 60px;
+    padding-right: 15px;
+}
+
+.m-bikename {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Roboto', ;
+}
+
+.m-bikename span {
+    font-size: 12px;
+    color: #222;
+    display: block;
+    padding-top: 15px;
+    font-weight: 200;
+}
+
+.rev p {
+    color: rgba(102, 102, 102, 0.87)
+}
+
+.n-icn {
+    height: 30px;
+    width: 30px;
+    background-color: #B7C0C7;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 27px;
+
+}
+
+.n-icn span {
+    font-size: 22px;
+    color: #fff;
+}
+
+.details-head p {
+    text-transform: uppercase;
+    color: #333;
+}
+
+.progress-bar {
+    background-color: #DC181F !important;
+}
+
+.progress {
+    margin: 10px 0;
+    border-radius: 0;
+    width: 80%;
+    margin: 10px auto
+}
+
+.rev .btn {
+    padding: 7px 17px;
+    border: 1px solid #DC181F;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #DC181F;
+    width: 175px;
+    margin-top: 33px;
+
+}
+
+.rev .btn:hover {
+    background-color: #DC181F;
+    color: #fff;
+}
+
+.user-btns-h {
+    text-transform: uppercase;
+    font-size: 14px !important;
+    font-weight: 400;
+    color: #333 !important;
+}
+
+.user-btns-a .btn {
+    padding: 7px 10px;
+    border: solid 1px #ccc;
+    border-radius: 18px;
+    float: left;
+    margin: 10px 10px 0 0;
+    color: #424242;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.user-btns-a .btn:hover {
+    background-color: #DC181F;
+    color: #fff;
+}
+
+.btn-active {
+    background-color: #DC181F;
+    color: #fff !important;
+}
+
+
+
+.rcnt-right.slick-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 999;
+    right: 1%;
+    opacity: 70%;
+    font-size: 25px;
+}
+
+.rcnt-left.slick-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 999;
+    left: 1%;
+    opacity: 70%;
+    font-size: 25px;
+}
+
+.showroom {
+    padding: 30px 10px;
+}
+
+.showroom button {
+    background-color: #DC181F;
+    border-color: #DC181F;
+    text-transform: uppercase;
+    border: 1px solid #DC181F;
+
+}
+
+.showroom button:hover {
+    border: 1px solid #DC181F !important;
+    color: #DC181F !important;
+}
+
+.showroom input {
+    border-color: #DC181F;
+
+    margin-bottom: 30px;
+}
+
+.Competitors .body-p {
+
+    border-top: 1px solid #ddd
+}
+
+.Competitors .body-p a {
+    color: #666;
+
+}
+
+.Competitors .body-p a span {
+    color: #000;
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+
+}
+.com-details{
+    margin-top: 10px;
+}
+.com-details li{
+    font-size: 14px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.com-details li i{
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+
+.vs span{
+    display: block;
+    margin: auto;
+    color: #000;
+    border-radius: 50%;
+    font-weight: 700;
+}
+.vs a{
+    color: #DC181F;
+    font-size: 14px;
+    font-weight: 600
+}
+.vs a:hover{
+    color: #000;
+}
+
+.cmpt-right.slick-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 999;
+    right: -1%;
+    opacity: 70%;
+    font-size: 25px;
+}
+
+.cmpt-left.slick-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 999;
+    left: -1%;
+    opacity: 70%;
+    font-size: 25px;
+}
+.articale{
+   padding: 30px 12px 12px 12px;
+}
+.articale h3{
+    font-size: 20px;
+    color: #424242;
+    font-weight: 600
+}
+.articale ul{
+     padding: 10px 30px 0 30px;
+}
+.articale ul li{
+    list-style: disc
+}
+
+.articale ul li a{
+    color: #222222
+}
+.articale ul li a:hover{
+    text-decoration: none;
+    
+}
+
+.form-active{
+    width: 100% !important;
+    transition: all .2s linear;
+/*    height: 100px !important;*/
+    margin-bottom: 10px !important;
+    padding-bottom: 90px !important;
+    padding-top: 20px !important
 }

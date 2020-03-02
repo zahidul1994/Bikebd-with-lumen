@@ -14,7 +14,7 @@
    <link rel="stylesheet" href="{{@asset('FontStyle/css/com_ui_1.12.1_themes_base_jquery-ui.css')}}" />
    <link rel="stylesheet" href="{{@asset('FontStyle/css/bootstrap.min.css')}}" />
    <link rel="stylesheet" href="{{@asset('FontStyle/css/style.css')}}" />
-
+   <link rel="stylesheet" href="{{@asset('FontStyle/css/responsive.css')}}">
   <!-- IonIcons -->
   
   <!-- Google Font: Source Sans Pro -->
