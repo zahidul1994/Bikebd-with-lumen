@@ -121,11 +121,18 @@ import BlogPage from './components/Admin/Blogpage/BlogpageComponent.vue'
 import CreateBlogPage from './components/Admin/Blogpage/CreateBlogpageComponent.vue'
 import EditBlogPage from './components/Admin/Blogpage/EditBlogpageComponent.vue'
 //Blog page end
+
 //Patentpage area start
 import Parentpagelist from './components/Admin/Parentpage/Parentpagelist.vue'
 import Createparentpage from './components/Admin/Parentpage/Createparentpage.vue'
 import EditParentpageList from './components/Admin/Parentpage/EditParentpage.vue'
 //Patentpage area end
+
+//Company area start
+import Companylist from './components/Admin/Company/Company.vue'
+import CreateCompany from './components/Admin/Company/CreateCompany.vue'
+import EditCompany from './components/Admin/Company/EditCompany.vue'
+//Company area end
 
 //create user start
 import Useraccounttype from './components/Admin/UserCreate/Useraccounttype.vue'
@@ -335,6 +342,13 @@ export const routes = [
             { path: 'createparentpage', component: Createparentpage },
             { path: 'editparentpage/:id', component: EditParentpageList },
             //Patent page  area end
+
+            //Company page  area start
+            { path: 'companylist', component: Companylist },
+            { path: 'createcompany', component: CreateCompany },
+            { path: 'editcompany/:id', component: EditCompany },
+            //Company page  area end
+
             //createuser area start
             { path: 'userlist', component: Useraccounttype },
             { path: 'createuseraccount', component: Createuseraccount },

@@ -330,6 +330,17 @@ $router->post('createblogpage','PageController@store');
  $router->patch('updateparentpage/{id}','ParentpageController@update');
  $router->delete('deleteparentpage/{id}','ParentpageController@destroy');
  //Parent Page  Area end 
+ 
+ //Company area start 
+ $router->get('companylist','CompanyController@index');
+ $router->get('createcompany','CompanyController@store');
+ $router->post('createcompany','CompanyController@store');
+ $router->get('editcompany/{id}','CompanyController@edit');    
+ $router->patch('updatecompany/{id}','CompanyController@update');
+ $router->delete('deletecompany/{id}','CompanyController@destroy');
+ $router->post('companydactive/{id}', 'CompanyController@companydactive'); //for inactive company
+ $router->post('companyactive/{id}', 'CompanyController@companyactive');//for user create active account status
+ //Company  Area end 
 
 
 });
