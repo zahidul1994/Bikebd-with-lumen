@@ -134,6 +134,21 @@ import CreateCompany from './components/Admin/Company/CreateCompany.vue'
 import EditCompany from './components/Admin/Company/EditCompany.vue'
 //Company area end
 
+//Brand area start
+import Brandlist from './components/Admin/Brand/Brand.vue'
+import CreateBrand from './components/Admin/Brand/CreateBrand.vue'
+import EditBrand from './components/Admin/Brand/EditBrand.vue'
+//Company area end
+
+
+//Product start
+import ProductList from './components/Admin/Product/ProductComponent.vue'
+import CreateProduct from './components/Admin/Product/CreateProductComponent.vue'
+import EditProduct from './components/Admin/Product/EditProductComponent.vue'
+//Product end
+
+
+
 //create user start
 import Useraccounttype from './components/Admin/UserCreate/Useraccounttype.vue'
 import Createuseraccount from './components/Admin/UserCreate/CreateUseraccount.vue'
@@ -348,6 +363,18 @@ export const routes = [
             { path: 'createcompany', component: CreateCompany },
             { path: 'editcompany/:id', component: EditCompany },
             //Company page  area end
+
+            //Brand  area start
+            { path: 'brandlist', component: Brandlist },
+            { path: 'createbrand', component: CreateBrand },
+            { path: 'editbrand/:id', component: EditBrand },
+            //Brand area end
+
+            //Product  area start
+            { path: 'productlist', component: ProductList },
+            { path: 'createproduct', component: CreateProduct },
+            { path: 'editproduct/:id', component: EditProduct },
+            //Product  area end
 
             //createuser area start
             { path: 'userlist', component: Useraccounttype },

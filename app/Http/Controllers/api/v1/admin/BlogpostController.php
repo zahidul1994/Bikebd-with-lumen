@@ -354,8 +354,17 @@ class BlogpostController extends Controller
 
  }
  
- 
- 
+   //for search
+ public function bloginsearch(Request $request){
+    $id =$request->s;
+     if ($id !==null) {
+        return Blog::with('blogcategorylist')->where('admin_id',Auth::guard('admin')->user()->id)->where('language', Auth::guard('admin')->user()->language)->where('title','LIKE','%%%'.urldecode($id).'%%%')->paginate();
+     }
+    
+else {
+    return $this->index();
+}
+ }
 
  
 

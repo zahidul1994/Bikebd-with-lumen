@@ -19,7 +19,8 @@ const store = new Vuex.Store(
     //for use jque
 import JQuery from 'jquery'
 window.$ = JQuery;
-
+import _ from 'lodash'
+//window._ = require('lodash');
 
 import Slick from 'vue-slick';
 // import fileter js

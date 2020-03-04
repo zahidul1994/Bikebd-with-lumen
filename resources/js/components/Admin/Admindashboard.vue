@@ -282,10 +282,33 @@
              <li class="nav-item">
                  <a  class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/productlist">Product   </router-link></p>
+                </a>
+              </li>
+            </ul>
+          </li> 
+               <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+               Company Info
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+             <li class="nav-item">
+                 <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
                   <p><router-link to="/admin/companylist">Company  </router-link></p>
                 </a>
               </li>
-              
+               <li class="nav-item">
+                 <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/brandlist"> Brand </router-link></p>
+                </a>
+              </li>
             </ul>
           </li>  
              <li class="nav-item has-treeview">

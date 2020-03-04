@@ -276,6 +276,7 @@ $router->group(['middleware'=>'admin'],function() use($router){
 
   //blog area start 
   $router->get('blogpost','BlogpostController@index');
+  $router->get('bloginsearch','BlogpostController@bloginsearch');   //for search
   $router->post('createblogpost','BlogpostController@store');
   $router->get('createblogpost','BlogpostController@store');
   $router->get('blogpostdetails/{id}','BlogpostController@show');
@@ -341,6 +342,28 @@ $router->post('createblogpage','PageController@store');
  $router->post('companydactive/{id}', 'CompanyController@companydactive'); //for inactive company
  $router->post('companyactive/{id}', 'CompanyController@companyactive');//for user create active account status
  //Company  Area end 
+
+ //Brand area start 
+ $router->get('brandlist','BrandController@index');
+ $router->get('createbrand','BrandController@store');
+ $router->post('createbrand','BrandController@store');
+ $router->get('editbrand/{id}','BrandController@edit');    
+ $router->patch('updatebrand/{id}','BrandController@update');
+ $router->delete('deletebrand/{id}','BrandController@destroy');
+ $router->post('branddactive/{id}', 'BrandController@companydactive'); //for inactive company
+ $router->post('brandactive/{id}', 'BrandController@companyactive');//for user create active account status
+ //Brand  Area end 
+ 
+ //Product area start 
+ $router->get('productlist','ProductController@index');
+ $router->get('createproduct','ProductController@store');
+ $router->post('createproduct','ProductController@store');
+ $router->get('editcompany/{id}','ProductController@edit');    
+ $router->patch('updatecompany/{id}','ProductController@update');
+ $router->delete('deletecompany/{id}','ProductController@destroy');
+ $router->post('companydactive/{id}', 'ProductController@companydactive'); //for inactive company
+ $router->post('companyactive/{id}', 'ProductController@companyactive');//for user create active account status
+ //Product  Area end 
 
 
 });
