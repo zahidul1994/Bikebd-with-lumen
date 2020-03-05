@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->bigInteger('superadmin_id')->unsigned()->nullable();
             $table->foreign('superadmin_id')->references('id')->on('superadmins')->onDelete('cascade');   
-            $table->string('shortname')->unique();
+            $table->string('brand')->unique();
             $table->string('fullname',280)->nullable();
             $table->string('profileimage');
             $table->string('coverimage')->nullable();

@@ -134,12 +134,54 @@ import CreateCompany from './components/Admin/Company/CreateCompany.vue'
 import EditCompany from './components/Admin/Company/EditCompany.vue'
 //Company area end
 
-//Brand area start
-import Brandlist from './components/Admin/Brand/Brand.vue'
-import CreateBrand from './components/Admin/Brand/CreateBrand.vue'
-import EditBrand from './components/Admin/Brand/EditBrand.vue'
-//Company area end
+//Brandcategory area start
+import BrandCategorylist from './components/Admin/Brandcategory/Brandcategory.vue'
+import CreateBrandCategory from './components/Admin/Brandcategory/CreateBrandcategory.vue'
+import EditBrandCategory from './components/Admin/Brandcategory/EditBrandcategory.vue'
+//Brandcategory area end
 
+
+//Engine  area start
+import EngineList from './components/Admin/Engine/EngineComponent.vue'
+import CreateEngineList from './components/Admin/Engine/CreateEngineComponent.vue'
+import EditeEngienList from './components/Admin/Engine/EditeEngineComponent.vue'
+//Engine area end
+
+//Bore  area start
+import BoreList from './components/Admin/Bore/BoreComponent.vue'
+import CreateBoreList from './components/Admin/Bore/CreateBoreComponent.vue'
+import EditeBoreList from './components/Admin/Bore/EditBoreComponent.vue'
+//bore area end
+
+//stroke  area start
+import StrokeList from './components/Admin/Stroke/StrokeComponent.vue'
+import CreateStrokeList from './components/Admin/Stroke/CreateStrokeComponent.vue'
+import EditeStrokeList from './components/Admin/Stroke/EditStrokeComponent.vue'
+//stroke area end
+
+//cylinder  area start
+import CylinderList from './components/Admin/Cylinder/CylinderComponent.vue'
+import CreateCylinderList from './components/Admin/Cylinder/CreateCylinderComponent.vue'
+import EditeCylinderList from './components/Admin/Cylinder/EditCylinderComponent.vue'
+//cylinder area end
+
+//gear   area start
+import GearList from './components/Admin/Gear/GearComponent.vue'
+import CreateGearList from './components/Admin/Gear/CreateGearComponent.vue'
+import EditeGearList from './components/Admin/Gear/EditGearComponent.vue'
+//gear  area end
+
+//clutch   area start
+import ClutchList from './components/Admin/Clutch/ClutchComponent.vue'
+import CreateClutchList from './components/Admin/Clutch/CreateClutchComponent.vue'
+import EditeClutchList from './components/Admin/Clutch/EditClutchComponent.vue'
+//clutch  area end
+
+//Chassis   area start
+import ChassisList from './components/Admin/Chassis/ChassisComponent.vue'
+import CreateChassisList from './components/Admin/Chassis/CreateChassisComponent.vue'
+import EditeChassisList from './components/Admin/Chassis/EditChassisComponent.vue'
+//Chassis  area end
 
 //Product start
 import ProductList from './components/Admin/Product/ProductComponent.vue'
@@ -364,12 +406,54 @@ export const routes = [
             { path: 'editcompany/:id', component: EditCompany },
             //Company page  area end
 
-            //Brand  area start
-            { path: 'brandlist', component: Brandlist },
-            { path: 'createbrand', component: CreateBrand },
-            { path: 'editbrand/:id', component: EditBrand },
-            //Brand area end
+            //BrandCategory  area start
+            { path: 'brandcategorylist', component: BrandCategorylist },
+            { path: 'createbrandcategory', component: CreateBrandCategory },
+            { path: 'editbrandcategory/:id', component: EditBrandCategory },
+            //Brandcategory area end
 
+     //Engine  area start
+            { path: 'enginelist', component: EngineList },
+            { path: 'createengine', component: CreateEngineList },
+            { path: 'editeengine/:id', component: EditeEngienList },
+            //Engine  area end
+            
+            //Bore  area start
+            { path: 'borelist', component: BoreList },
+            { path: 'createbore', component: CreateBoreList },
+            { path: 'editbore/:id', component: EditeBoreList },
+            //Bore  area end
+            
+            //Stroke  area start
+            { path: 'strokelist', component: StrokeList },
+            { path: 'createstroke', component: CreateStrokeList },
+            { path: 'editstroke/:id', component: EditeStrokeList },
+            //Stroke  area end
+            
+            //cylinder  area start
+            { path: 'cylinderelist', component: CylinderList },
+            { path: 'createcylinder', component: CreateCylinderList },
+            { path: 'editcylinder/:id', component: EditeCylinderList },
+            //cylinder  area end
+            
+            //gear  area start
+            { path: 'gearlist', component: GearList },
+            { path: 'creategear', component: CreateGearList },
+            { path: 'editgear/:id', component: EditeGearList },
+            //gear  area end 
+            
+            //Clutch  area start
+            { path: 'clutchlist', component: ClutchList },
+            { path: 'createclutch', component: CreateClutchList },
+            { path: 'editclutch/:id', component: EditeClutchList },
+            //Clutch  area end
+            
+            //Chassis  area start
+            { path: 'chassislist', component: ChassisList },
+            { path: 'createchassis', component: CreateChassisList },
+            { path: 'editchassis/:id', component: EditeChassisList },
+            //Chassis  area end
+			
             //Product  area start
             { path: 'productlist', component: ProductList },
             { path: 'createproduct', component: CreateProduct },

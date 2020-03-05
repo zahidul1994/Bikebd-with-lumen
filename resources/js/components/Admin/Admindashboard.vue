@@ -263,7 +263,61 @@
               </li>
             </ul>
           </li>
-         
+         <li class="nav-item has-treeview ">
+            <a  class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+               Product
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                   <p><router-link to="/admin/enginelist">Engine</router-link></p>
+                </a>
+              </li> 
+             
+               <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                   <p><router-link to="/admin/borelist">Bore</router-link></p>
+                </a>
+              </li> 
+               <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/strokelist">Stroke</router-link></p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                   <p><router-link to="/admin/cylinderelist">Cylinder</router-link></p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/gearlist">Gear</router-link></p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/clutchlist">Clutch</router-link></p>
+                </a>
+              </li>
+                <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/chassislist">Chassis</router-link></p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
@@ -279,12 +333,7 @@
                   <p><router-link to="/admin/blogpost">BlogPost  </router-link></p>
                 </a>
               </li>
-             <li class="nav-item">
-                 <a  class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p><router-link to="/admin/productlist">Product   </router-link></p>
-                </a>
-              </li>
+            
             </ul>
           </li> 
                <li class="nav-item has-treeview">
@@ -306,7 +355,31 @@
                <li class="nav-item">
                  <a  class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p><router-link to="/admin/brandlist"> Brand </router-link></p>
+                  <p><router-link to="/admin/brandcategorylist"> Brand Category</router-link></p>
+                </a>
+              </li>
+            </ul>
+          </li> 
+            <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+              Product Page
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                 <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/productlist">Product   </router-link></p>
+                </a>
+              </li>
+               <li class="nav-item">
+                 <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/brandcategorylist"> Brand Category</router-link></p>
                 </a>
               </li>
             </ul>

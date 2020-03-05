@@ -10,9 +10,9 @@
                 <div class="card-body">
                   
                   <div class="form-group">
-                    <label for="shortname">Company Short Name *</label>
-                     <input  v-model="form.shortname" type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('shortname') }" id="bikemodel" placeholder="Company Short Name">
-                        <has-error :form="form" field="shortname"></has-error>
+                    <label for="brand">Brand *</label>
+                     <input  v-model="form.brand" type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('brand') }" id="brand" placeholder="Company Brand Name">
+                        <has-error :form="form" field="brand"></has-error>
                   </div> 
                   <div class="form-group">
                     <label for="fullname">Company Full Name</label>
@@ -72,7 +72,7 @@ export default {
   data() {
     return {
       form: new Form({
-        shortname: "",
+        brand: "",
         fullname: "",
         description: "",
         profileimage: "",

@@ -11,7 +11,7 @@
                 <thead>
                 <tr>
                   <th>Sl</th>
-                  <th>Short Name</th>
+                  <th>Brand</th>
                    <th>Image</th>
                   <th>Full Name</th>
                  <th>Description</th>
@@ -24,7 +24,7 @@
                 <tr v-for="company, index in allCompanyList.data">
                         
                           <td>{{ index + 1 }}</td>
-                          <td>{{company.shortname}}</td>
+                          <td>{{company.brand}}</td>
                           <td><img :src="'/images/companyimage/'+ company.profileimage" alt="no image" width=50 data-lightbox="image-1"></td>
                           <td>{{company.fullname}}</td>
                           <td>{{company.description}}</td>

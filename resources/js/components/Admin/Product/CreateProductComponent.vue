@@ -96,44 +96,64 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="company_id">Company Name *</label>
-                   <select :class="{'is-invalid' :form.errors.has('company_id')}" id="company_id" v-model="form.company_id" class="form-control" >
+    <div class="form-group col-md-4">
+      <label for="company_id">Brand Name *</label>
+                   <select  :class="{'is-invalid' :form.errors.has('company_id')}" id="brand" @change="onBrandChange"  v-model="form.company_id" class="form-control select2" >
                         <option disabled value="">Select One</option>
-                      <option v-for="parentpagename in allparentpage" :value="parentpagename.id" >{{parentpagename.parentpage}}</option>
+                      <option v-for="brandname in allBrandname" :value="brandname.id" >{{brandname.brand}}</option>
                      
                     </select>
                      <has-error :form="form" field="company_id" ></has-error>
     </div> 
-    <div class="form-group col-md-6">
-      <label for="marketstatus" class="col-form-label">Available In Bangladesh *</label><br>
-                    <div class="checkbox">
+    <div class="form-group col-md-4">
+     
+    <label for="brandcategory_id">Brand Category *</label>
+      <select  :class="{'is-invalid' :form.errors.has('brandcategory_id')}" id="brand"  v-model="form.brandcategory_id" class="form-control" >
+          <option disabled value="">Select One</option>
+        <option v-for="brancate in allBrandCategory" :value="brancate.id" >{{brancate.brandcategory}}</option>
+        
+      </select>
+        <has-error :form="form" field="brandcategory_id" ></has-error>
 
-                        <label class="radio-inline">
-                            <input type ="radio"  id="marketstatus" v-model="form.marketstatus"  value="Yes">Yes</label> 
-
-                        <label class="radio-inline">
-                    <input type ="radio"  id="marketstatus" value="no" v-model="form.marketstatus">No</label>
-                    </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="regularprice">Regular Price *</label>
+     <div class="form-group col-md-4">
+     
+    <label for="brandcategory_id">Brand Category *</label>
+      <select  :class="{'is-invalid' :form.errors.has('brandcategory_id')}" id="brand"  v-model="form.brandcategory_id" class="form-control select2" >
+          <option disabled value="">Select One</option>
+        <option v-for="brancate in allBrandCategory" :value="brancate.id" >{{brancate.brandcategory}}</option>
+        
+      </select>
+        <has-error :form="form" field="brandcategory_id" ></has-error>
+
+    </div>
+    <div class="form-group col-md-4">
+      <label for="regularprice">Engine Type </label>
       <input type="number" v-model="form.regularprice" class="form-control" id="regularprice" required>
     </div> 
-    <div class="form-group col-md-6">
-      <label for="offerprice">Offer Price </label>
+    <div class="form-group col-md-4">
+      <label for="offerprice">Maximum Power  </label>
+      <input type="number" v-model="form.offerprice"   class="form-control" id="offerprice">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="offerprice">Maximum Torque </label>
+      <input type="number" v-model="form.offerprice"   class="form-control" id="offerprice">
+    </div> 
+    <div class="form-group col-md-4">
+      <label for="regularprice">Bore </label>
+      <input type="number" v-model="form.regularprice" class="form-control" id="regularprice" required>
+    </div> 
+    <div class="form-group col-md-4">
+      <label for="offerprice">Stroke </label>
+      <input type="number" v-model="form.offerprice"   class="form-control" id="offerprice">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="offerprice">Compression Ratio </label>
       <input type="number" v-model="form.offerprice"   class="form-control" id="offerprice">
     </div>
   </div>
 
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
+  
                
                  </div><!-- /.card-body -->
 
@@ -161,13 +181,13 @@ export default {
   },
   name: "CreateBlogpost",
    created () {
-            document.title = "Create New Blog";
+            document.title = "Create New Product";
         },
   data() {
     return {
       form: new Form({
         title: "",
-         slug: "",
+        slug: "",
         marketstatus: "",
         producttype: "new",
         regularprice: "",
@@ -179,36 +199,61 @@ export default {
         torquenm: "",
         torquerpm: "",
         company_id: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
-        marketstatus: "",
+        brandcategory_id: "",
+        engine: "",
+        enginemaximumpower: "",
+        enginemaximumtorque: "",
+        stroke: "",
+        compressionratio: "",
+        gears: "",
+        clutch: "",
+        chassis: "",
+        frontsuspension: "",
+        rearsuspension: "",
+        frontbrake: "",
+        rearbrake: "",
+        frontbrakediameter: "",
+        rearbrakediameter: "",
+        abs: "",
+        fronttire: "",
+        reartire: "",
+        overalllength: "",
+        overallwidth: "",
+        weight: "",
+        fueltankcapacity: "",
+        wheelbase: "",
+        voltage: "",
+        battery: "",
+        headlight: "",
+        taillight: "",
+        indicators: "",
+        speedometer: "",
+        odometer: "",
+        rpmmeter: "",
+        handle: "",
+        passenger: "",
+        videoourl: "",
+        handle: "",
+        handle: "",
         category:[],
         description: "",
         postimage: "",
         language:'',
         keyword: "",
-       
-        url: "",
-        metadescription: "",
+       metadescription: "",
         shortdescription: "",
       }),
       categoryVal:[],
-      Company:[],
+      allBrandname:null,
       Brand:[],
+      allBrandCategory:[],
       
       
     }
     
   },
     mounted() {
+     
       //offer url show 
 $('#offerprice').keyup(function () {
  
@@ -220,6 +265,11 @@ $('#offerprice').keyup(function () {
          $('#offeruinfo').addClass('d-hide');
     }
 });
+axios.get('admin/companybrandname')
+    .then(response => {
+       this.allBrandname = response.data
+     // console.log(response.data);
+    });
 
 var token = localStorage.getItem("token");
        var admin =localStorage.getItem("admin");
@@ -231,15 +281,7 @@ var token = localStorage.getItem("token");
          this.$router.push("/admin/login");
       };
 
-    axios.get('category')
-    .then(response => {
-        response.data.category.forEach(element => {
-          this.categoryVal.push(element.categoryname)
-            //console.log(element.categoryname);
-        });
-                
-    });
-
+   
     },
   methods: {
     addBlogPost() {
@@ -264,7 +306,17 @@ this.form.slug=this.form.title;
         this.form.postimage=event.target.result
       },
       reader.readAsDataURL(file);
-    }
+    },
+        
+   onBrandChange(event) {
+           axios.post('/admin/brandcategory/'+ event.target.value)
+      .then(response =>{
+         (this.allBrandCategory = response.data.brandcategory)
+      // console.log(response);
+       
+          });
+             },
   }
 };
 </script>
+ 

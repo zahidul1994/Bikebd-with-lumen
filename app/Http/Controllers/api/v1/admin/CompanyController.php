@@ -54,7 +54,7 @@ class CompanyController extends Controller
     {
        // return response($request->all());
         $this->validate($request,[
-            'shortname' => 'required|min:3|unique:companies|max:350',
+            'brand' => 'required|min:3|unique:companies|max:350',
             'fullname' => 'required|min:3|max:160',
             'description' => 'required|min:3',
             'profileimage' => 'required',
@@ -95,7 +95,7 @@ class CompanyController extends Controller
     };
     // $slug = SlugService::createSlug(Blog::class, 'slug', );
     $list = new Company();
-    $list->shortname = $request->shortname;
+    $list->brand = $request->brand;
     $list->fullname = $request->fullname;
     $list->description = $request->description;
     $list->profileimage = $profileimagename;
@@ -180,7 +180,7 @@ class CompanyController extends Controller
          //return response($request->all());
 
          $this->validate($request,[
-            'shortname' => 'required|min:3|max:350|unique:companies,shortname,'.$id,
+            'brand' => 'required|min:3|max:350|unique:companies,brand,'.$id,
             'fullname' => 'required|min:3|max:160',
             'description' => 'required|min:3',
             'profileimage' => 'required',
@@ -236,7 +236,7 @@ class CompanyController extends Controller
     };
     // $slug = SlugService::createSlug(Blog::class, 'slug', );
     $list =Company::find($id);
-    $list->shortname = $request->shortname;
+    $list->brand = $request->brand;
     $list->fullname = $request->fullname;
     $list->description = $request->description;
     $list->profileimage = $profileimagename;
@@ -343,14 +343,17 @@ class CompanyController extends Controller
          return response()->json(['success' => false,],500);
      }
 
+ // account active inactive area end
+
 
  }
  
- 
- 
+ //for get brand name only
 
- 
+ public function companybrandname(){
+    $brandname=Company::select('id','brand')->get();
+    return response($brandname);
+}
 
- // account active inactive area end
 
 }

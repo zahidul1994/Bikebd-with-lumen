@@ -334,6 +334,7 @@ $router->post('createblogpage','PageController@store');
  
  //Company area start 
  $router->get('companylist','CompanyController@index');
+ $router->get('companybrandname','CompanyController@companybrandname'); //for get all brand name only
  $router->get('createcompany','CompanyController@store');
  $router->post('createcompany','CompanyController@store');
  $router->get('editcompany/{id}','CompanyController@edit');    
@@ -344,15 +345,81 @@ $router->post('createblogpage','PageController@store');
  //Company  Area end 
 
  //Brand area start 
- $router->get('brandlist','BrandController@index');
- $router->get('createbrand','BrandController@store');
- $router->post('createbrand','BrandController@store');
- $router->get('editbrand/{id}','BrandController@edit');    
- $router->patch('updatebrand/{id}','BrandController@update');
- $router->delete('deletebrand/{id}','BrandController@destroy');
- $router->post('branddactive/{id}', 'BrandController@companydactive'); //for inactive company
- $router->post('brandactive/{id}', 'BrandController@companyactive');//for user create active account status
+ $router->get('brandcategorylist','BrandcategoryController@index');
+$router->get('createbrandcategory','BrandcategoryController@store');
+ $router->post('createbrandcategory','BrandcategoryController@store');
+ $router->post('brandcategory/{id}','BrandcategoryController@getbrandcategory');
+ $router->get('editbrandcategory/{id}','BrandcategoryController@edit');    
+ $router->patch('updatebrandcategory/{id}','BrandcategoryController@update');
+ $router->delete('deletebrandcategory/{id}','BrandcategoryController@destroy');
+ $router->post('brandcategorydactive/{id}', 'BrandcategoryController@companydactive'); //for inactive company
+ $router->post('brandcategoryactive/{id}', 'BrandcategoryController@companyactive');//for user create active account status
  //Brand  Area end 
+ 
+ 
+ 
+ // product all start
+ 
+ 
+    //Engine area start 
+    $router->get('enginelist','EngineController@index');
+    $router->post('createengine','EngineController@store');
+    $router->get('editeengine/{id}','EngineController@edit');
+    $router->patch('updateengine/{id}','EngineController@update');
+    $router->delete('deleteengine/{id}','EngineController@destroy');
+    //Engine Area end  
+ 
+     //bore area start 
+    $router->get('borelist','BoreController@index');
+    $router->post('createbore','BoreController@store');
+    $router->get('editbore/{id}','BoreController@edit');
+    $router->patch('updatebore/{id}','BoreController@update');
+    $router->delete('deletebore/{id}','BoreController@destroy');
+    //bore  Area end 
+    
+    //stroke area start 
+    $router->get('strokelist','StrokeController@index');
+    $router->post('createstroke','StrokeController@store');
+    $router->get('editstroke/{id}','StrokeController@edit');
+    $router->patch('updatestroke/{id}','StrokeController@update');
+    $router->delete('deletestroke/{id}','StrokeController@destroy');
+    //stroke  Area end 
+    
+    //cylinder area start 
+    $router->get('cylinderelist','CylindersController@index');
+    $router->post('createcylinder','CylindersController@store');
+    $router->get('editcylinder/{id}','CylindersController@edit');
+    $router->patch('updatecylinder/{id}','CylindersController@update');
+    $router->delete('deletecylinder/{id}','CylindersController@destroy');
+    //cylinder  Area end 
+    
+    //gear area start 
+    $router->get('gearlist','GearsController@index');
+    $router->post('creategear','GearsController@store');
+    $router->get('editgear/{id}','GearsController@edit');
+    $router->patch('updategear/{id}','GearsController@update');
+    $router->delete('deletegear/{id}','GearsController@destroy');
+    //gear  Area end
+    
+    //clutch area start 
+    $router->get('clutchlist','ClutchController@index');
+    $router->post('createclutch','ClutchController@store');
+    $router->get('editclutch/{id}','ClutchController@edit');
+    $router->patch('updateclutch/{id}','ClutchController@update');
+    $router->delete('deleteclutch/{id}','ClutchController@destroy');
+    //clutch  Area end  
+    
+    //chassis area start 
+    $router->get('chassislist','ChassisController@index');
+    $router->post('createchassis','ChassisController@store');
+    $router->get('editchassis/{id}','ChassisController@edit');
+    $router->patch('updatechassis/{id}','ChassisController@update');
+    $router->delete('deletechassis/{id}','ChassisController@destroy');
+    //chassis  Area end 
+ 
+ 
+ 
+ 
  
  //Product area start 
  $router->get('productlist','ProductController@index');
@@ -364,7 +431,8 @@ $router->post('createblogpage','PageController@store');
  $router->post('companydactive/{id}', 'ProductController@companydactive'); //for inactive company
  $router->post('companyactive/{id}', 'ProductController@companyactive');//for user create active account status
  //Product  Area end 
-
+ 
+ // product all end
 
 });
 
