@@ -425,6 +425,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
  $router->get('productlist','ProductController@index');
  $router->get('createproduct','ProductController@store');
  $router->post('createproduct','ProductController@store');
+ $router->post('alldropdown','ProductController@alldropwown'); //for select option all info get
  $router->get('editcompany/{id}','ProductController@edit');    
  $router->patch('updatecompany/{id}','ProductController@update');
  $router->delete('deletecompany/{id}','ProductController@destroy');

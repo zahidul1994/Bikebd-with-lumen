@@ -38,9 +38,10 @@ class CreateProductsTable extends Migration
             $table->float('torquerpm', 8);
             $table->string('enginemaximumpower')->nullable();
             $table->string('enginemaximumtorque')->nullable();
+            $table->string('bore')->nullable();
             $table->string('stroke')->nullable();
             $table->string('compressionratio')->nullable();
-            $table->integer('cylinders')->nullable();
+            $table->integer('cylinder')->nullable();
             $table->string('transmission')->nullable();
             $table->integer('gears')->nullable();
             $table->string('clutch')->nullable();

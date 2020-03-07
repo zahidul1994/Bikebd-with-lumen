@@ -3,17 +3,22 @@
 namespace App\Http\Controllers\api\v1\admin;
 
 use App\Blog;
+use App\Bore;
+use App\Gears;
+use App\Engine;
 use App\Gender;
+use App\Stroke;
+use App\Cylinders;
+use App\Helper\CommonFx;
 use App\Blogcategorylist;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Support\Facades\Redirect;
-use App\Helper\CommonFx;
 
 class ProductController extends Controller
 {
@@ -354,11 +359,30 @@ class ProductController extends Controller
 
  }
  
- 
- 
-
- 
-
  // account active inactive area end
+
+ //add productinfo dropdown start
+ public function alldropwown(){
+     $engin=Engine::all();
+     $bore=Bore::all();
+     $stroke=Stroke::all();
+     $cylinder=Cylinders::all();
+     $Gears=Gears::all();
+     $engin=Engine::all();
+     $engin=Engine::all();
+     $engin=Engine::all();
+     $engin=Engine::all();
+     return response()->json([
+'success'=>true,
+'engine'=>$engin,
+'bore'=>$bore,
+'cylinder'=>$cylinder,
+'stroke'=>$stroke,
+'gear'=>$Gears,
+'stroke'=>$stroke,
+'stroke'=>$stroke,
+     ],200);
+ }
+ //add productinfo dropdown end
 
 }

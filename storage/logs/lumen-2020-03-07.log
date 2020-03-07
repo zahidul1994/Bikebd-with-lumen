@@ -1,0 +1,10 @@
+[2020-03-07 11:22:31] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Class 'Jenssegers\Mongodb\Eloquent\Model' not found in C:\xampp\htdocs\Lumen\NewBikeBD03032020\app\Bikemodel.php:7
+Stack trace:
+#0 C:\xampp\htdocs\Lumen\NewBikeBD03032020\vendor\laravel\lumen-framework\src\Concerns\RegistersExceptionHandlers.php(54): Laravel\Lumen\Application->handleShutdown()
+#1 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\Concerns\{closure}()
+#2 {main} {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Class 'Jenssegers\\Mongodb\\Eloquent\\Model' not found at C:\\xampp\\htdocs\\Lumen\\NewBikeBD03032020\\app\\Bikemodel.php:7)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\Lumen\\NewBikeBD03032020\\vendor\\laravel\\lumen-framework\\src\\Concerns\\RegistersExceptionHandlers.php(54): Laravel\\Lumen\\Application->handleShutdown()
+#1 [internal function]: Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#2 {main}
+"} 
