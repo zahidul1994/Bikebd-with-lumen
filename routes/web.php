@@ -207,13 +207,6 @@ $router->group(['middleware'=>'admin'],function() use($router){
     $router->delete('deletebikemodel/{id}','BikemodelController@destroy');
     //Bikemodel Area end 
 
-  //modelYear area start 
-  $router->get('modelyearlist','ModelyearController@index');
-  $router->post('createmodelyear','ModelyearController@store');
-  $router->get('editmodelyear/{id}','ModelyearController@edit');
-  $router->patch('updatemodelyear/{id}','ModelyearController@update');
-  $router->delete('deletemodelyear/{id}','ModelyearController@destroy');
-  //modelYear Area end 
 
      //Subdivision area start 
     $router->get('subdivisionlist','SublocationController@index');
@@ -418,6 +411,53 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     //chassis  Area end 
  
  
+  //CC area start 
+  $router->get('cclist','CcController@index');
+  $router->post('createcclist','CcController@store');
+  $router->get('editcclist/{id}','CcController@edit');
+  $router->patch('updatecclist/{id}','CcController@update');
+  $router->delete('deletecclist/{id}','CcController@destroy');
+  //CC Area end 
+  
+   //ftyre area start 
+    $router->get('ftyrelist','FtyreController@index');
+    $router->post('createftyre','FtyreController@store');
+    $router->get('editftyre/{id}','FtyreController@edit');
+    $router->patch('updateftyre/{id}','FtyreController@update');
+    $router->delete('deleteftyre/{id}','FtyreController@destroy');
+    //ftyre  Area end
+    
+    //ftyre area start 
+    $router->get('rtyrelist','RtyreController@index');
+    $router->post('creatertyre','RtyreController@store');
+    $router->get('editrtyre/{id}','RtyreController@edit');
+    $router->patch('updatertyre/{id}','RtyreController@update');
+    $router->delete('deletertyre/{id}','RtyreController@destroy');
+    //ftyre  Area end 
+    
+    //Weight area start 
+    $router->get('weightlist','WeightController@index');
+    $router->post('createweight','WeightController@store');
+    $router->get('editweight/{id}','WeightController@edit');
+    $router->patch('updateweight/{id}','WeightController@update');
+    $router->delete('deleteweight/{id}','WeightController@destroy');
+    //Weight  Area end 
+    
+    //Ftcapacity area start 
+    $router->get('ftcapacitylist','FtcapacityController@index');
+    $router->post('createftcapacity','FtcapacityController@store');
+    $router->get('editftcapacity/{id}','FtcapacityController@edit');
+    $router->patch('updateftcapacity/{id}','FtcapacityController@update');
+    $router->delete('deleteftcapacity/{id}','FtcapacityController@destroy');
+    //Ftcapacity  Area end 
+    
+    //Bvoltage area start 
+    $router->get('bvoltagelist','BetteryvoltageController@index');
+    $router->post('createbvoltage','BetteryvoltageController@store');
+    $router->get('editbvoltage/{id}','BetteryvoltageController@edit');
+    $router->patch('updatebvoltage/{id}','BetteryvoltageController@update');
+    $router->delete('deletebvoltage/{id}','BetteryvoltageController@destroy');
+    //Bvoltage  Area end 
  
  
  

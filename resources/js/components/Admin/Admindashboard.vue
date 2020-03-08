@@ -193,12 +193,7 @@
                   <p><router-link to="/admin/modelyearlist">Model Year</router-link></p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a  class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p><router-link to="/admin/bikeversionlist">Bike Version </router-link></p>
-                </a>
-              </li>
+             
               <li class="nav-item">
                 <a  class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
@@ -315,7 +310,43 @@
                   <p><router-link to="/admin/chassislist">Chassis</router-link></p>
                 </a>
               </li>
-              
+               <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/cclist">Cc </router-link></p>
+                </a>
+              </li>
+			  
+			  <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/ftyrelist">FTyre Size</router-link></p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/rtyrelist">RTyre Size</router-link></p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/weightlist">Weight</router-link></p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/ftcapacitylist">Fuel Tank Capacaty</router-link></p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><router-link to="/admin/bvoltagelist">Bettery Voltage</router-link></p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">

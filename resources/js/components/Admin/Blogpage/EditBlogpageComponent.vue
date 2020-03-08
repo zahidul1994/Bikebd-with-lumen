@@ -39,7 +39,7 @@
                         <has-error :form="form" field="pageurl"></has-error>
                   </div>
                    <div class="form-group">
-                    <label for="pagekeyword">Key Word*</label>
+                    <label for="pagekeyword">Keyword *</label>
                      <input  v-model="form.pagekeyword " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('pagekeyword') }"  id="pagekeyword" placeholder="pagekeyword Name">
                         <has-error :form="form" field="pagekeyword"></has-error>
                   </div>

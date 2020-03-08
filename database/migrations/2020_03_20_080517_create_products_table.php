@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->string('slug')->unique();
             $table->string('productname',280);
+            $table->string('cc');
+            $table->string('keyword');
             $table->integer('clickview')->default(0);
             $table->string('producttype')->default('new');
             $table->bigInteger('company_id')->unsigned()->nullable();

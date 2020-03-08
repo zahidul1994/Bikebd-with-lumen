@@ -64,11 +64,7 @@ import CreateBikeModelList from './components/Admin/Bikemodel/CreateBikeModelCom
 import EditBikeModelList from './components/Admin/Bikemodel/EditBikeModelComponent.vue'
 //Model area end
 
-//ModelYear  area start
-import ModelYearList from './components/Admin/Modelyear/ModelyearComponent.vue'
-import CreateModelYearList from './components/Admin/Modelyear/CreateModelyearComponent.vue'
-import EditModelYearList from './components/Admin/Modelyear/EditModelyearComponent.vue'
-//ModelYear area end
+
 
 //subdivision  area start
 import SubDivisionList from './components/Admin/Subdivision/SubdivisionComponent.vue'
@@ -182,6 +178,42 @@ import ChassisList from './components/Admin/Chassis/ChassisComponent.vue'
 import CreateChassisList from './components/Admin/Chassis/CreateChassisComponent.vue'
 import EditeChassisList from './components/Admin/Chassis/EditChassisComponent.vue'
 //Chassis  area end
+
+//Cc area start
+import CcList from './components/Admin/Cc/CcComponent.vue'
+import CreateCcList from './components/Admin/Cc/CreateCcComponent.vue'
+import EditCcList from './components/Admin/Cc/EditCcComponent.vue'
+//Cc area  end
+
+//Ftyre   area start
+import FtyreList from './components/Admin/Ftyre/FtyreComponent.vue'
+import CreateFtyreList from './components/Admin/Ftyre/CreateFtyreComponent.vue'
+import EditeFtyreList from './components/Admin/Ftyre/EditFtyreComponent.vue'
+//Ftyre  area end
+
+//Rtyre   area start
+import RtyreList from './components/Admin/Rtyre/RtyreComponent.vue'
+import CreateRtyreList from './components/Admin/Rtyre/CreateRtyreComponent.vue'
+import EditeRtyreList from './components/Admin/Rtyre/EditRtyreComponent.vue'
+//Rtyre  area end
+
+//Waight   area start
+import WeightList from './components/Admin/Weight/WeightComponent.vue'
+import CreateWeightList from './components/Admin/Weight/CreateWeightComponent.vue'
+import EditeWeightList from './components/Admin/Weight/EditWeightComponent.vue'
+//Waight  area end
+
+//Ftcapacity   area start
+import FtcapacityList from './components/Admin/Ftcapacity/FtcapacityComponent.vue'
+import CreateFtcapacityList from './components/Admin/Ftcapacity/CreateFtcapacityComponent.vue'
+import EditeFtcapacityList from './components/Admin/Ftcapacity/EditFtcapacityComponent.vue'
+//Ftcapacity  area end
+
+//Bvoltage   area start
+import BvoltageList from './components/Admin/Voltage/VoltageComponent.vue'
+import CreateBvoltageList from './components/Admin/Voltage/CreateVoltageComponent.vue'
+import EditeBvoltageList from './components/Admin/Voltage/EditVoltageComponent.vue'
+//Bvoltage  area end
 
 //Product start
 import ProductList from './components/Admin/Product/ProductComponent.vue'
@@ -343,17 +375,7 @@ export const routes = [
             { path: 'editcategory/:id', component: EditCategoryList },
             //category  area end
 
-            //BikeModel  area start
-            { path: 'bikemodellist', component: BikeModelList },
-            { path: 'createbikemodel', component: CreateBikeModelList },
-            { path: 'editbikemodel/:id', component: EditBikeModelList },
-            //BikeModel  area end
 
-            //BikeModelyear  area start
-            { path: 'modelyearlist', component: ModelYearList },
-            { path: 'createmodelyear', component: CreateModelYearList },
-            { path: 'editmodelyear/:id', component: EditModelYearList },
-            //BikeModel year area end
             //version
             { path: 'bikeversionlist', component: BikevesionList },
             { path: 'createbikeversion', component: CreateBikeversionList },
@@ -412,48 +434,86 @@ export const routes = [
             { path: 'editbrandcategory/:id', component: EditBrandCategory },
             //Brandcategory area end
 
-     //Engine  area start
+            //Engine  area start
             { path: 'enginelist', component: EngineList },
             { path: 'createengine', component: CreateEngineList },
             { path: 'editeengine/:id', component: EditeEngienList },
             //Engine  area end
-            
+
             //Bore  area start
             { path: 'borelist', component: BoreList },
             { path: 'createbore', component: CreateBoreList },
             { path: 'editbore/:id', component: EditeBoreList },
             //Bore  area end
-            
+
             //Stroke  area start
             { path: 'strokelist', component: StrokeList },
             { path: 'createstroke', component: CreateStrokeList },
             { path: 'editstroke/:id', component: EditeStrokeList },
             //Stroke  area end
-            
+
             //cylinder  area start
             { path: 'cylinderelist', component: CylinderList },
             { path: 'createcylinder', component: CreateCylinderList },
             { path: 'editcylinder/:id', component: EditeCylinderList },
             //cylinder  area end
-            
+
             //gear  area start
             { path: 'gearlist', component: GearList },
             { path: 'creategear', component: CreateGearList },
             { path: 'editgear/:id', component: EditeGearList },
             //gear  area end 
-            
+
             //Clutch  area start
             { path: 'clutchlist', component: ClutchList },
             { path: 'createclutch', component: CreateClutchList },
             { path: 'editclutch/:id', component: EditeClutchList },
             //Clutch  area end
-            
+
             //Chassis  area start
             { path: 'chassislist', component: ChassisList },
             { path: 'createchassis', component: CreateChassisList },
             { path: 'editchassis/:id', component: EditeChassisList },
             //Chassis  area end
+
+
+            //CC  area start
+            { path: 'cclist', component: CcList },
+            { path: 'createcclist', component: CreateCcList },
+            { path: 'editcclist/:id', component: EditCcList },
+            //CC  area end
 			
+			 //Ftyre  area start
+            { path: 'ftyrelist', component: FtyreList },
+            { path: 'createftyre', component: CreateFtyreList },
+            { path: 'editftyre/:id', component: EditeFtyreList },
+            //Ftyre  area end
+            
+            //Rtyre  area start
+            { path: 'rtyrelist', component: RtyreList },
+            { path: 'creatertyre', component: CreateRtyreList },
+            { path: 'editrtyre/:id', component: EditeRtyreList },
+            //Rtyre  area end
+            
+            //Waight  area start
+            { path: 'weightlist', component: WeightList },
+            { path: 'createweight', component: CreateWeightList },
+            { path: 'editweight/:id', component: EditeWeightList },
+            //Waight  area end
+
+              //Ftcapacity  area start
+            { path: 'ftcapacitylist', component: FtcapacityList },
+            { path: 'createftcapacity', component: CreateFtcapacityList },
+            { path: 'editftcapacity/:id', component: EditeFtcapacityList },
+            //Ftcapacity  area end 
+            
+            //Voltage  area start
+            { path: 'bvoltagelist', component: BvoltageList },
+            { path: 'createbvoltage', component: CreateBvoltageList },
+            { path: 'editbvoltage/:id', component: EditeBvoltageList },
+            //Voltage  area end
+
+
             //Product  area start
             { path: 'productlist', component: ProductList },
             { path: 'createproduct', component: CreateProduct },

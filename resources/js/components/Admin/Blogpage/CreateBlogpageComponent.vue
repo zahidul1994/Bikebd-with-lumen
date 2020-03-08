@@ -40,7 +40,7 @@
                         <has-error :form="form" field="pageurl"></has-error>
                   </div>
                   <div class="form-group">
-                    <label for="title">Kew Word *</label>
+                    <label for="title">keyword *</label>
                      <input  v-model="form.pagekeyword " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('pagekeyword') }" id="pagekeyword" placeholder="Page Keyword">
                         <has-error :form="form" field="pagekeyword"></has-error>
                   </div>

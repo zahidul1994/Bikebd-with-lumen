@@ -13,27 +13,16 @@
                      <input  v-model="form.title " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" v-on:keydown="Title" id="Title" placeholder="Title Name">
                         <has-error :form="form" field="title"></has-error>
                   </div>
-                    <div class="form-group row">
-                     <label for="exampleInputFile" class="col-sm-2 col-form-label"> Image *</label>
-                     <div class="col-sm-10">
-                                  <vue-upload-multiple-image
-                                    @upload-success="uploadImageSuccess"
-                                    @before-remove="beforeRemove"
-                                    @edit-image="editImage"
-                                    :data-images="images"
-                                    idUpload="myIdUpload"
-                                    editUpload="myIdEdit"
-                                    ></vue-upload-multiple-image>
-                      
-                      </div>
-                      
-                     
-                    </div>
                   <div class="form-row">
-    <div class="form-group col-md-6">
+ 
+    <div class="form-group col-md-3">
       <label for="slug">Custom Slug</label>
                      <input  v-model="form.slug" type="text"  class="form-control"  :class="{ 'is-invalid': form.errors.has('slug') }"  id="slug" >
                         <has-error :form="form" field="slug"></has-error>
+    </div> 
+     <div class="form-group col-md-3">
+      <label for="cc">CC *</label>
+                 <v-select  v-model="form.cc" :options="allCC" label=cc :reduce="cc=>cc.id" required />     
     </div> 
       <div class="form-group col-md-3">
       <label for="marketstatus" class="col-form-label">Product Type *</label><br>
@@ -43,6 +32,7 @@
                         <option value="old">Old</option>
                         <option selected value="New">New</option>
                         <option  value="upcoming">Upcoming</option>
+                        <option  value="premium">Premium</option>
                                            
                     </select>
                      <has-error :form="form" field="producttype" ></has-error>
@@ -60,11 +50,15 @@
                     </div>
     </div>
   
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
+      <label for="keyword">Keyword *</label>
+      <input type="text" v-model="form.keyword" class="form-control" id="keyword" required>
+    </div> 
+     <div class="form-group col-md-4">
       <label for="regularprice">Regular Price *</label>
       <input type="number" v-model="form.regularprice" class="form-control" id="regularprice" required>
     </div> 
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="offerprice">Offer Price </label>
       <input type="number" v-model="form.offerprice"   class="form-control" id="offerprice">
     </div>
@@ -79,7 +73,7 @@
     <div class="form-group col-md-2">
      <label for="displacement">Displacement(cc) *</label>
      
-      <input type="number" v-model="form.displacement"   class="form-control" id="offerprice" required placeholder="Number Only">
+      <input type="number" v-model="form.displacement"   class="form-control" id="displacement" required placeholder="Number Only">
    </div>
     <div class="form-group col-md-2">
      <label for="mileage">Mileage(kmpl) *</label>
@@ -138,11 +132,11 @@
 </div> 
     <div class="form-group col-md-4">
       <label for="enginemaximumpower">Maximum Power  *</label>
-   <input type="number" v-model="form.enginemaximumpower" step="0.01"   class="form-control" id="enginemaximumpower" required>
+   <input type="text" v-model="form.enginemaximumpower"  class="form-control" id="enginemaximumpower" required>
     </div> 
     <div class="form-group col-md-4">
       <label for="enginemaximumtorque">Maximum Torque *</label>
-   <input type="number" v-model="form.enginemaximumtorque" step="0.01"   class="form-control" id="enginemaximumtorque" required>
+   <input type="text" v-model="form.enginemaximumtorque"    class="form-control" id="enginemaximumtorque" required>
     </div>
     <div class="form-group col-md-4">
       <label for="bore">Bore * </label>
@@ -154,10 +148,10 @@
     </div> 
     <div class="form-group col-md-4">
       <label for="compressionratio">Compression Ratio * </label>
-      <input type="text" v-model="form.offerprice"   class="form-control" id="compressionratio" required>
+      <input type="text" v-model="form.compressionratio"   class="form-control" id="compressionratio" required>
     </div>
     <div class="form-group col-md-4">
-      <label for="offerprice">No of Cylinders *</label>
+      <label for="cylinder">No of Cylinders *</label>
      <v-select  v-model="form.cylinder" :options="allCylinder" label=cylinder :reduce="cylinder=>cylinder.cylinder" required />
     </div>
 
@@ -182,7 +176,7 @@
       <v-select  v-model="form.gears" :options="AllGears" label=gear :reduce="gear=>gear.gear" required />
     </div>
     <div class="form-group col-md-4">
-      <label for="offerprice">Clutch Type *</label>
+      <label for="clutch">Clutch Type *</label>
       <select :class="{'is-invalid' :form.errors.has('clutch')}" id="clutch" v-model="form.clutch" class="form-control" required >
                         <option disabled value="">Select One</option>
                     <option selected value="Auto">Auto </option>
@@ -197,15 +191,15 @@
 <!-- Chassis & Suspension  start -->
 
  <div class="form-group col-md-4">
-      <label for="stroke">Chassis Type  *</label>
-      <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
+      <label for="chassis">Chassis Type  *</label>
+      <select :class="{'is-invalid' :form.errors.has('chassis')}" id="transmission" v-model="form.chassis" class="form-control" required >
                         <option disabled value="">Select One</option>
-                    <option selected value="Auto">Auto </option>
-                    <option selected value="Manual">Manual </option>
-                        <option  value="Both">Both</option>
+                    <option selected value="doble">Double Cradle </option>
+                    <option selected value="single">Single Cradle </option>
+                        <option  value="both">Both</option>
                                            
                     </select>
-                     <has-error :form="form" field="transmission" ></has-error>
+                     <has-error :form="form" field="chassis" ></has-error>
     </div> 
     <div class="form-group col-md-4">
       <label for="frontsuspension">Front Suspension  * </label>
@@ -222,12 +216,31 @@
 
 <!-- Chassis & Suspension  end -->
 
-
-
-<!-- Wheels & Tires   start -->
+<!-- Breakes    start -->
 
  <div class="form-group col-md-4">
-      <label for="stroke">Front Tire Size  *</label>
+      <label for="frontbrake">Front Brake Type   *</label>
+      <select :class="{'is-invalid' :form.errors.has('frontbrake')}" id="frontbrake" v-model="form.frontbrake" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="Auto">Auto </option>
+                    <option selected value="Manual">Manual </option>
+                        <option  value="Both">Both</option>
+                                           
+                    </select>
+                     <has-error :form="form" field="frontbrake" ></has-error>
+    </div> 
+    <div class="form-group col-md-4">
+      <label for="frontsuspension">Rear Brake Type    * </label>
+      <v-select  v-model="form.bvoltage" :options="allBetery" label=bvoltage :reduce="bvoltage=>bvoltage.bvoltage" required />
+  
+    </div>
+    <div class="form-group col-md-4">
+      <label for="rearsuspension">Front Brake Diameter   *</label>
+         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
+           <has-error :form="form" field="rearsuspension" ></has-error>
+    </div>
+ <div class="form-group col-md-4">
+      <label for="stroke">Rear Brake Diameter *</label>
       <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
                         <option disabled value="">Select One</option>
                     <option selected value="Auto">Auto </option>
@@ -238,15 +251,32 @@
                      <has-error :form="form" field="transmission" ></has-error>
     </div> 
     <div class="form-group col-md-4">
-      <label for="frontsuspension">Rear Tire Size   * </label>
+      <label for="frontsuspension">Anti-Lock Braking System (ABS)   * </label>
       <input type="text" v-model="form.frontsuspension"   class="form-control" id="frontsuspension" required>
       <has-error :form="form" field="frontsuspension" ></has-error>
   
     </div>
+   
+
+
+<!-- Breaks  end -->
+
+
+<!-- Wheels & Tires   start -->
+
+ <div class="form-group col-md-4">
+      <label for="ftyre">Front Tire Size  *</label>
+   <v-select  v-model="form.ftyre" :options="allFronttyre" label=ftyre :reduce="ftyre=>ftyre.ftyre" required />
+    </div> 
     <div class="form-group col-md-4">
-      <label for="rearsuspension">Tubeless Tires  *</label>
-         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
-           <has-error :form="form" field="rearsuspension" ></has-error>
+      <label for="rtyre">Rear Tire Size   * </label>
+      <v-select  v-model="form.rtyre" :options="allReartyre" label=rtyre :reduce="rtyre=>rtyre.rtyre" required />
+  
+    </div>
+    <div class="form-group col-md-4">
+      <label for="tubeless">Tubeless Tires  *</label>
+         <input type="text" v-model="form.tubeless"   class="form-control" id="tubeless" required>
+           <has-error :form="form" field="tubeless" ></has-error>
     </div>
 
 
@@ -278,19 +308,12 @@
     </div>
  <div class="form-group col-md-4">
       <label for="stroke">Weight  *</label>
-      <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
-                        <option disabled value="">Select One</option>
-                    <option selected value="Auto">Auto </option>
-                    <option selected value="Manual">Manual </option>
-                        <option  value="Both">Both</option>
-                                           
-                    </select>
-                     <has-error :form="form" field="transmission" ></has-error>
+    
+                       <v-select  v-model="form.weight" :options="allWeightlist" label=weight :reduce="cylinder=>weight.weight" required />
     </div> 
     <div class="form-group col-md-4">
-      <label for="frontsuspension">Fuel Tank Capacity    * </label>
-      <input type="text" v-model="form.frontsuspension"   class="form-control" id="frontsuspension" required>
-      <has-error :form="form" field="frontsuspension" ></has-error>
+      <label for="ftcapacity">Fuel Tank Capacity    * </label>
+      <v-select  v-model="form.ftcapacity" :options="allFtcapacity" label=ftcapacity :reduce="ftcapacity=>ftcapacity.ftcapacity" required />
   
     </div>
     <div class="form-group col-md-4">
@@ -320,8 +343,7 @@
     </div> 
     <div class="form-group col-md-4">
       <label for="frontsuspension">Battery Voltage    * </label>
-      <input type="text" v-model="form.frontsuspension"   class="form-control" id="frontsuspension" required>
-      <has-error :form="form" field="frontsuspension" ></has-error>
+      <v-select  v-model="form.bvoltage" :options="allBetery" label=bvoltage :reduce="bvoltage=>bvoltage.bvoltage" required />
   
     </div>
     <div class="form-group col-md-4">
@@ -408,11 +430,24 @@
 <!-- Features   end -->
 
 
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-7">
               <label for="metadescription">Short Description * [Shortdescription may not be greater than 160 characters]</label>
                     <textarea v-model="form.shortdescription" class="form-control" rows="5" placeholder="Short Description" :class="{ 'is-invalid': form.errors.has('shortdescription') }"></textarea>
                   <has-error :form="form" field="shortdescription"></has-error>
             </div>
+   <div class="form-group col-md-5">
+                     <label for="exampleInputFile"> Image *</label>
+                   
+                                  <vue-upload-multiple-image
+                                    @upload-success="uploadImageSuccess"
+                                    @before-remove="beforeRemove"
+                                    @edit-image="editImage"
+                                    :data-images="images"
+                                    idUpload="myIdUpload"
+                                    editUpload="myIdEdit"
+                                    ></vue-upload-multiple-image>
+                      
+                      </div>  
 
   </div> <!--row-->
 
@@ -454,14 +489,17 @@ export default {
       form: new Form({
         title: "",
         slug: "",
-        marketstatus: "",
+        cc: "",
         producttype: "new",
+        marketstatus: "",
+        keyword: "",
         regularprice: "",
         offerprice: "",
         offerurl: "",
         displacement: "",
         mileage: "",
         rm: "",
+        rpm: "",
         torquenm: "",
         torquerpm: "",
         company_id: "",
@@ -471,11 +509,14 @@ export default {
         enginemaximumtorque: "",
         bore: "",
         stroke: "",
+         gears: "",
+         clutch: "",
+          transmission: "",
         cylinder: "",
         compressionratio: "",
-        transmission: "",
-        gears: "",
-        clutch: "",
+       
+       
+        
         chassis: "",
         frontsuspension: "",
         rearsuspension: "",
@@ -522,10 +563,12 @@ export default {
        allStoke:[],
        allCylinder:[],
        AllGears:[],
-       allEnginelist:[],
-       allEnginelist:[],
-       allEnginelist:[],
-       allEnginelist:[],
+       allCC:[],
+       allFronttyre:[],
+       allReartyre:[],
+       allWeightlist:[],
+       allBetery:[],
+       allFtcapacity:[],
        allEnginelist:[],
        
       
@@ -557,10 +600,12 @@ axios.get('admin/companybrandname')
        this.allStoke = response.data.stroke;
        this.allCylinder = response.data.cylinder;
        this.AllGears = response.data.gear;
-       this.allEnginelist = response.data.engine;
-       this.allEnginelist = response.data.engine;
-       this.allEnginelist = response.data.engine;
-       this.allEnginelist = response.data.engine;
+       this.allCC = response.data.cc;
+       this.allFronttyre = response.data.fronttyre;
+       this.allReartyre = response.data.reartyre;
+       this.allWeightlist = response.data.weight;
+       this.allBetery = response.data.bettery;
+       this.allFtcapacity = response.data.ftcapacity;
       //console.log(this.allEnginelist);
     });
 
@@ -619,12 +664,11 @@ this.form.slug=this.form.title;
       //console.log('edit data', formData, index, fileList)
     }
    
-
-    
-        
-
-
   }
 };
 </script>
- 
+ <style>
+ .vs__search, .vs__search:focus{
+line-height: 1.7;
+ }
+ </style>

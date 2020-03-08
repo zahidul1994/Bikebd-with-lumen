@@ -39,7 +39,7 @@
       <script src="<?php echo e(@asset('FontStyle/js/popper.min.js')); ?>"></script>
      
       <script src="<?php echo e(@asset('FontStyle/js/custom.js')); ?>"></script>
-    
+        
  
 </body>
 </html><?php /**PATH C:\xampp\htdocs\Lumen\NewBikeBD03032020\resources\views/home.blade.php ENDPATH**/ ?>

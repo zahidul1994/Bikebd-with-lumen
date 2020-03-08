@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent; //for use mongodb
+use Illuminate\Database\Eloquent\Model;
 
-class Bikemodel extends Eloquent
+class Bikemodel extends Model
 {
     protected $fillable = [
         'admin_id', 'bikemodel',

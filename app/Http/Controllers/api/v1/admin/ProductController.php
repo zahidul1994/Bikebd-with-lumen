@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\api\v1\admin;
 
+use App\Cc;
 use App\Blog;
 use App\Bore;
+use App\Ftyre;
 use App\Gears;
+use App\Rtyre;
 use App\Engine;
 use App\Gender;
 use App\Stroke;
+use App\Weight;
+use App\Product;
 use App\Cylinders;
+use App\Ftcapacity;
+use App\Betteryvoltage;
 use App\Helper\CommonFx;
 use App\Blogcategorylist;
 use Illuminate\Support\Str;
@@ -96,11 +103,51 @@ class ProductController extends Controller
      $name = 'not-found.jpg';
     };
     // $slug = SlugService::createSlug(Blog::class, 'slug', );
-    $list = new Blog();
-    $list->language = $request->language;
-    $list->keyword = $request->keyword;
+    $list = new Product();
+     $list->keyword = $request->keyword;
     $list->title =$request->title;
     $list->slug =CommonFx::make_slug($request->slug);
+    $list->cc = $request->cc;
+    $list->producttype = $request->producttype;
+    $list->marketstatus = $request->marketstatus;
+    $list->keyword = $request->keyword;
+    $list->regularprice = $request->regularprice;
+    $list->offerprice = $request->offerprice;
+    $list->offerurl = $request->offerurl;
+    $list->displacement = $request->displacement;
+    $list->mileage = $request->mileage;
+    $list->rm = $request->rm;
+    $list->rpm = $request->rpm;
+    $list->torquenm = $request->torquenm;
+    $list->torquerpm = $request->torquerpm;
+    $list->company_id = $request->company_id;
+    $list->brandcategory_id = $request->brandcategory_id;
+    $list->engine = $request->engine;
+    $list->enginemaximumpower = $request->enginemaximumpower;
+    $list->enginemaximumtorque = $request->enginemaximumtorque;
+    $list->bore = $request->bore;
+    $list->stroke = $request->stroke;
+    $list->gears = $request->gears;
+    $list->clutch = $request->clutch;
+    $list->transmission = $request->transmission;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
+    $list->description = $request->description;
     $list->description = $request->description;
     $list->url = $request->url;
     $list->metadescription = $request->metadescription;
@@ -368,10 +415,12 @@ class ProductController extends Controller
      $stroke=Stroke::all();
      $cylinder=Cylinders::all();
      $Gears=Gears::all();
-     $engin=Engine::all();
-     $engin=Engine::all();
-     $engin=Engine::all();
-     $engin=Engine::all();
+     $cc=Cc::all();
+     $Rtyre=Rtyre::all();
+     $Ftyre=Ftyre::all();
+     $Bettery=Betteryvoltage::all();
+     $Weight=Weight::all();
+     $ftcapacity=Ftcapacity::all();
      return response()->json([
 'success'=>true,
 'engine'=>$engin,
@@ -379,8 +428,14 @@ class ProductController extends Controller
 'cylinder'=>$cylinder,
 'stroke'=>$stroke,
 'gear'=>$Gears,
-'stroke'=>$stroke,
-'stroke'=>$stroke,
+'cc'=>$cc,
+'fronttyre'=>$Ftyre,
+'reartyre'=>$Rtyre,
+'weight'=>$Weight,
+'bettery'=>$Bettery,
+'ftcapacity'=>$ftcapacity,
+'fronttyre'=>$Ftyre,
+'fronttyre'=>$Ftyre,
      ],200);
  }
  //add productinfo dropdown end
