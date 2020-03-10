@@ -460,17 +460,20 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     //Bvoltage  Area end 
  
  
- 
+
  //Product area start 
  $router->get('productlist','ProductController@index');
+ $router->get('productsearch','ProductController@productsearch');//for search
+ $router->post('sliderimage/{id}','ProductController@sliderimage');//for sliderimage
+ $router->get('deleteproductimage/{id}','ProductController@deleteproductimage');//for sliderimage delete
  $router->get('createproduct','ProductController@store');
  $router->post('createproduct','ProductController@store');
  $router->post('alldropdown','ProductController@alldropwown'); //for select option all info get
- $router->get('editcompany/{id}','ProductController@edit');    
- $router->patch('updatecompany/{id}','ProductController@update');
- $router->delete('deletecompany/{id}','ProductController@destroy');
- $router->post('companydactive/{id}', 'ProductController@companydactive'); //for inactive company
- $router->post('companyactive/{id}', 'ProductController@companyactive');//for user create active account status
+ $router->get('editproduct/{id}','ProductController@edit');    
+$router->put('updateproduct/{id}','ProductController@update');
+ $router->delete('deleteproduct/{id}','ProductController@destroy');
+ $router->post('productinactive/{id}', 'ProductController@productinactive'); //for inactive company
+ $router->post('productactive/{id}', 'ProductController@producactive');//for user create active account status
  //Product  Area end 
  
  // product all end

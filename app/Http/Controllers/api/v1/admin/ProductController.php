@@ -15,6 +15,8 @@ use App\Weight;
 use App\Product;
 use App\Cylinders;
 use App\Ftcapacity;
+use App\Productimage;
+use App\Brandcategory;
 use App\Betteryvoltage;
 use App\Helper\CommonFx;
 use App\Blogcategorylist;
@@ -39,7 +41,7 @@ class ProductController extends Controller
     public function index()
     {
         
-        return Blog::with('blogcategorylist')->where('admin_id',Auth::guard('admin')->user()->id)->where('language', Auth::guard('admin')->user()->language)->latest()->paginate(8);
+        return Product::where('admin_id',Auth::guard('admin')->user()->id)->latest()->paginate(8);
       
         //dd($purchase);
        // 
@@ -66,43 +68,26 @@ class ProductController extends Controller
        // return response($request->all());
         $this->validate($request,[
             
-            'title' => 'required|min:3|max:350',
-            'language' => 'required',
+   
             //'category' => 'required|min:3|max:350',
-            'title' => 'required|min:3|unique:blogs|max:350',
-            'description' => 'required|min:3',
-            'metadescription' => 'required|min:3|max:160',
-            'shortdescription' => 'required|min:3|max:160',
+            'title' => 'required|min:3|unique:products|max:350',
+            'shortdescription' => 'required|min:3|max:500',
             'keyword' => 'required',
-            'postimage' => 'required',
-            'slug' => 'unique:blogs',
+            'featureimage' => 'required',
+            'images' => 'required',
+            'slug' => 'unique:products',
 
         ]);
 
-    // if ($validator->fails()) {
+        $strpos = strpos($request->featureimage,';');
+        $sub = substr($request->featureimage,0,$strpos);
+        $ex = explode('/',$sub)[1];
+        $rand = mt_rand(100000, 999999);
+        $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
+        $img = Image::make($request->featureimage)->resize(200, 200);
+        $upload_path = public_path()."/images/productimages/";
+        $img->save($upload_path.$name);
 
-
-    //     return response()->json([
-    //      'success' =>false,
-    //      'message'=>'Validation Fails',
-    //      'errors'=>$validator->errors()->all()],401);
-    // }
-
-
-    if ($request->postimage!=null) {
-        $strpos = strpos($request->postimage,';');
-            $sub = substr($request->postimage,0,$strpos);
-            $ex = explode('/',$sub)[1];
-            $rand = mt_rand(100000, 999999);
-            $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
-            $img = Image::make($request->postimage)->resize(200, 200);
-            $upload_path = public_path()."/images/blogpost/";
-            $img->save($upload_path.$name);
-    }
-    else{
-     $name = 'not-found.jpg';
-    };
-    // $slug = SlugService::createSlug(Blog::class, 'slug', );
     $list = new Product();
      $list->keyword = $request->keyword;
     $list->title =$request->title;
@@ -120,51 +105,74 @@ class ProductController extends Controller
     $list->rpm = $request->rpm;
     $list->torquenm = $request->torquenm;
     $list->torquerpm = $request->torquerpm;
-    $list->company_id = $request->company_id;
+    $list->brand_id = $request->company_id;
     $list->brandcategory_id = $request->brandcategory_id;
     $list->engine = $request->engine;
     $list->enginemaximumpower = $request->enginemaximumpower;
     $list->enginemaximumtorque = $request->enginemaximumtorque;
     $list->bore = $request->bore;
     $list->stroke = $request->stroke;
+    $list->cylinder = $request->cylinder;
+    $list->compressionratio = $request->compressionratio;
     $list->gears = $request->gears;
     $list->clutch = $request->clutch;
     $list->transmission = $request->transmission;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->description = $request->description;
-    $list->url = $request->url;
-    $list->metadescription = $request->metadescription;
+    $list->chassis = $request->chassis;
+    $list->frontsuspension = $request->frontsuspension;
+    $list->rearsuspension = $request->rearsuspension;
+    $list->frontbrake = $request->frontbrake;
+    $list->rearbrake = $request->rearbrake;
+    $list->frontbrakediameter = $request->frontbrakediameter;
+    $list->rearbrakediameter = $request->rearbrakediameter;
+    $list->abs = $request->abs;
+    $list->ftyre = $request->ftyre;
+    $list->rtyre = $request->rtyre;
+    $list->tubeless = $request->tubeless;
+    $list->overalllength = $request->overalllength;
+    $list->overallwidth = $request->overallwidth;
+    $list->groundclearness = $request->groundclearness;
+    $list->weight = $request->weight;
+    $list->ftcapacity = $request->ftcapacity;
+    $list->wheelbase = $request->wheelbase;
+    $list->battery = $request->battery;
+    $list->bvoltage = $request->bvoltage;
+    $list->headlight = $request->headlight;
+    $list->taillight = $request->taillight;
+    $list->indicators = $request->indicators;
+    $list->speedometer = $request->speedometer;
+    $list->odometer = $request->odometer;
+    $list->rpmmeter = $request->rpmmeter;
+    $list->handle = $request->handle;
+    $list->seattype = $request->seattype;
+    $list->passenger = $request->passenger;
+    $list->engineks = $request->engineks;
     $list->shortdescription = $request->shortdescription;
-    $list->postimage = $name;
-    $list->admin_id  =  Auth::guard('admin')->user()->id;
+    $list->featureimage = $name;
+    $list->headlight = $request->headlight;
+    $list->embedurl = $request->embedurl;
+     $list->embedurl = $request->embedurl;
+   $list->admin_id  =  Auth::guard('admin')->user()->id;
      $list->save();
-
     if ($list->save()) {
-        for ($i = 0; $i < count($request->category); $i++) {
-            $category= new Blogcategorylist();
-            $category->blog_id = $list->id;
-            $category->categorylist = $request['category'][$i];
-            $category->save();
-        }
-    }
-        if( $category->save()){
+        if ($request->images!=null) {
+            foreach($request->images as $value)
+         {
+             $strpos = strpos($value['path'],';');
+             $sub = substr($value['path'],0,$strpos);
+             $ex = explode('/',$sub)[1];
+             $rand = mt_rand(100000, 999999);
+             $name = time() . "_" .app('auth')->user()->id. "_" . $rand . "." .$ex;
+             $img = Image::make($value['path'])->resize(200, 200);
+             $upload_path = public_path()."/images/productimages/slider/";
+             $img->save($upload_path.$name);
+             $image = new Productimage();
+             $image->product_id =$list['id'];
+             $image->productimage =$name;
+             $image->save();
+         }
+ }
+ 
+    
       return response()->json([
           'success' => true,
            'message'=>'Post Create Successfully',
@@ -204,6 +212,7 @@ class ProductController extends Controller
             ],404);
     }
     }
+   
     /**
      * Show the form for editing the specified resource.
      *
@@ -212,13 +221,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-    
-        $info = Blog::with('blogcategorylist')->where('admin_id', Auth::guard('admin')->user()->id)->find($id);
+    $info = Product::where('admin_id', Auth::guard('admin')->user()->id)->find($id);
         if($info){
             return response()->json([
                 'success'=>true,
                 'message'=>'Record Found',
-                'blogpost' => $info], 200);
+                'productinfo' => $info], 200);
         }
         else{
             return response()->json([
@@ -226,8 +234,6 @@ class ProductController extends Controller
                 'message'=>'Record Not Found',
                 'id' => $id], 404);
         }
-
-        
     }
 
 
@@ -245,16 +251,9 @@ class ProductController extends Controller
         {
             
              $this->validate($request,[
-                 
-               
-                 'language' => 'required',
-                 //'category' => 'required|min:3|max:350',
-                 'title' => 'required|min:3|max:350|unique:blogs,title,'.$id,
-                 'slug' => 'required|min:3|max:350|unique:blogs,slug,'.$id,
-                 'description' => 'required|min:3',
-                 'shortdescription' => 'required|min:3|max:160',
-                 'keyword' => 'required',
-                 'metadescription' => 'required|min:3|max:160',
+                 'title' => 'required|min:3|max:350|unique:products,title,'.$id,
+                 'slug' => 'required|min:3|max:350|unique:products,slug,'.$id,
+                 'featureimage' => 'required',
              ]);
      
          // if ($validator->fails()) {
@@ -266,47 +265,92 @@ class ProductController extends Controller
          //      'errors'=>$validator->errors()->all()],401);
          // }
      
-         $image=Blog::find($id);
-         if (($request->postimage != $image->postimage)) {
-            $imagepath=public_path('/images/blogpost/').$image->postimage;
-            if(file_exists( $imagepath) && $image->postimage !='not-found.jpg' ){
+         $image=Product::find($id);
+         if (($request->featureimage != $image->featureimage)) {
+            $imagepath=public_path('/images/productimages/').$image->featureimage;
+            if(file_exists( $imagepath) && $image->featureimage !='not-found.jpg' ){
                 unlink($imagepath);
         
             }
-             $strpos = strpos($request->postimage,';');
-                 $sub = substr($request->postimage,0,$strpos);
-                 $ex = explode('/',$sub)[1];
-                 $rand = mt_rand(100000, 999999);
-                 $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
-                 $img = Image::make($request->postimage)->resize(200, 200);
-                 $upload_path = public_path()."/images/blogpost/";
-                 $img->save($upload_path.$name);
+            $strpos = strpos($request->featureimage,';');
+            $sub = substr($request->featureimage,0,$strpos);
+            $ex = explode('/',$sub)[1];
+            $rand = mt_rand(100000, 999999);
+            $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
+            $img = Image::make($request->featureimage)->resize(200, 200);
+            $upload_path = public_path()."/images/productimages/";
+            $img->save($upload_path.$name);
          }
          else{
-          $name = $request->postimage;
+          $name = $request->featureimage;
          };
      
-         $list = Blog::find($id);
+         $list = Product::find($id);
          $list->keyword = $request->keyword;
-         $list->language = $request->language;
-        $list->metadescription = $request->metadescription;
-         $list->title = $request->title;
+         $list->title =$request->title;
          $list->slug =CommonFx::make_slug($request->slug);
-         $list->description = $request->description;
-         $list->url = $request->url;
+         $list->cc = $request->cc;
+         $list->producttype = $request->producttype;
+         $list->marketstatus = $request->marketstatus;
+         $list->keyword = $request->keyword;
+         $list->regularprice = $request->regularprice;
+         $list->offerprice = $request->offerprice;
+         $list->offerurl = $request->offerurl;
+         $list->displacement = $request->displacement;
+         $list->mileage = $request->mileage;
+         $list->rm = $request->rm;
+         $list->rpm = $request->rpm;
+         $list->torquenm = $request->torquenm;
+         $list->torquerpm = $request->torquerpm;
+         $list->brand_id = $request->brand_id;
+         $list->brandcategory_id = $request->brandcategory_id;
+         $list->engine = $request->engine;
+         $list->enginemaximumpower = $request->enginemaximumpower;
+         $list->enginemaximumtorque = $request->enginemaximumtorque;
+         $list->bore = $request->bore;
+         $list->stroke = $request->stroke;
+         $list->cylinder = $request->cylinder;
+         $list->compressionratio = $request->compressionratio;
+         $list->gears = $request->gears;
+         $list->clutch = $request->clutch;
+         $list->transmission = $request->transmission;
+         $list->chassis = $request->chassis;
+         $list->frontsuspension = $request->frontsuspension;
+         $list->rearsuspension = $request->rearsuspension;
+         $list->frontbrake = $request->frontbrake;
+         $list->rearbrake = $request->rearbrake;
+         $list->frontbrakediameter = $request->frontbrakediameter;
+         $list->rearbrakediameter = $request->rearbrakediameter;
+         $list->abs = $request->abs;
+         $list->ftyre = $request->ftyre;
+         $list->rtyre = $request->rtyre;
+         $list->tubeless = $request->tubeless;
+         $list->overalllength = $request->overalllength;
+         $list->overallwidth = $request->overallwidth;
+         $list->groundclearness = $request->groundclearness;
+         $list->weight = $request->weight;
+         $list->ftcapacity = $request->ftcapacity;
+         $list->wheelbase = $request->wheelbase;
+         $list->battery = $request->battery;
+         $list->bvoltage = $request->bvoltage;
+         $list->headlight = $request->headlight;
+         $list->taillight = $request->taillight;
+         $list->indicators = $request->indicators;
+         $list->speedometer = $request->speedometer;
+         $list->odometer = $request->odometer;
+         $list->rpmmeter = $request->rpmmeter;
+         $list->handle = $request->handle;
+         $list->seattype = $request->seattype;
+         $list->passenger = $request->passenger;
+         $list->engineks = $request->engineks;
          $list->shortdescription = $request->shortdescription;
-         $list->postimage = $name;
-         $list->admin_id  =  Auth::guard('admin')->user()->id;
-          $list->update();
-          if ($list->update()) {
-              if($request->category !==null){
-            for ($i = 0; $i < count($request->category); $i++) {
-                $list= new Blogcategorylist();
-                $list->blog_id =$id;
-                $list->categorylist = $request['category'][$i];
-                $list->save();
-            }}
-        }
+         $list->featureimage = $name;
+         $list->headlight = $request->headlight;
+         $list->embedurl = $request->embedurl;
+          $list->embedurl = $request->embedurl;
+        $list->admin_id  =  Auth::guard('admin')->user()->id;
+        $list->save();
+        
              if( $list->save()){
            return response()->json([
                'success' => true,
@@ -332,49 +376,31 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $image=Blog::where('admin_id', Auth::guard('admin')->user()->id)->find($id);
-        
-        $imagepath=public_path('/images/profileimage/').$image->postimage;
-       if(file_exists( $imagepath) && $image->postimage !='not-found.jpg' ){
-           unlink($imagepath);
-
-       }
-       $forcedele=  Blog::where('id', $id)->forcedelete();
-       if($forcedele == true) {
-           
-            return response()->json([
-                'success' => true,
-                'message'=>'Data Delete Success'
+        $destroy=Product::destroy($id);
+        if ($destroy) {
+             return response()->json([
+            'success' => true,
             ],200);
-        } else {
-            
-            return response()->json([
-                'success' => false,
-                'message'=>'Record Not Found',
-                'id'=>$id  
-              ],404);
-        }
+    } 
+    else {
+        
+        return response()->json([
+            'success' => false,
+             'message'=>'Record Not Found',
+            'id'=>$id],404);
+    }
     
     }
 
-    public function deletecategorylist($id)
-    {
-
-    $category=Blogcategorylist::destroy($id);
-        if($category){
-    return response()->json([
-    'success' => true,
+ 
     
-],200);
-
-       }
-       }
+ 
     
    // account active inactive start
-   public function blogpostactive(Request $request){
+   public function producactive(Request $request){
        
     $id=$request->id;
-     $activestatus = Blog::find($id);
+     $activestatus = Product::find($id);
      $activestatus->status= 1;
      $activestatus->admin_id=Auth::guard('admin')->user()->id;
      $activestatus->save();
@@ -388,10 +414,10 @@ class ProductController extends Controller
 
 
  }
-    public function blogpostinactive(Request $request){
+    public function productinactive(Request $request){
        
     $id=$request->id;
-     $activestatus = Blog::find($id);
+     $activestatus = Product::find($id);
      $activestatus->status= 2;
      $activestatus->admin_id=Auth::guard('admin')->user()->id;
      $activestatus->save();
@@ -406,22 +432,21 @@ class ProductController extends Controller
 
  }
  
- // account active inactive area end
-
  //add productinfo dropdown start
  public function alldropwown(){
-     $engin=Engine::all();
-     $bore=Bore::all();
-     $stroke=Stroke::all();
-     $cylinder=Cylinders::all();
-     $Gears=Gears::all();
-     $cc=Cc::all();
-     $Rtyre=Rtyre::all();
-     $Ftyre=Ftyre::all();
-     $Bettery=Betteryvoltage::all();
-     $Weight=Weight::all();
-     $ftcapacity=Ftcapacity::all();
-     return response()->json([
+    $engin=Engine::all();
+    $bore=Bore::all();
+    $stroke=Stroke::all();
+    $cylinder=Cylinders::all();
+    $Gears=Gears::all();
+    $cc=Cc::all();
+    $Rtyre=Rtyre::all();
+    $Ftyre=Ftyre::all();
+    $Bettery=Betteryvoltage::all();
+    $Weight=Weight::all();
+    $ftcapacity=Ftcapacity::all();
+    $brandcategory=Brandcategory::all();
+    return response()->json([
 'success'=>true,
 'engine'=>$engin,
 'bore'=>$bore,
@@ -434,10 +459,55 @@ class ProductController extends Controller
 'weight'=>$Weight,
 'bettery'=>$Bettery,
 'ftcapacity'=>$ftcapacity,
-'fronttyre'=>$Ftyre,
-'fronttyre'=>$Ftyre,
-     ],200);
+'brandcategory'=>$brandcategory,
+    ],200);
+}
+//add productinfo dropdown end
+
+
+//for search
+ public function productsearch(Request $request){
+    $id =$request->s;
+     if ($id !==null) {
+        return Product::where('admin_id',Auth::guard('admin')->user()->id)->where('title','LIKE','%%%'.urldecode($id).'%%%')->paginate();
+     }
+    
+else {
+    return $this->index();
+}
  }
- //add productinfo dropdown end
+
+ public function sliderimage($id)
+    {
+        $productimage = Productimage::where('product_id',$id)->get();
+       
+        if($productimage){
+        return response()->json([
+            'success'=>true,
+            'sliderim' => $productimage],200);
+     }
+     else{
+         return response()->json([
+             'success'=>false,
+             'message'=>'Record Not  Found',
+            ],404);
+    }
+    }
+
+ public function deleteproductimage($id)
+ {
+    $image=Productimage::find($id);
+        
+    $imagepath=public_path('/images/productimages/slider/').$image->productimage;
+   unlink($imagepath);
+   Productimage::destroy($id);
+     if($imagepath){
+ return response()->json([
+ 'success' => true,
+ 
+],200);
+
+    }
+    }
 
 }

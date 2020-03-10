@@ -5,12 +5,12 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-               <form role="form" @submit.prevent="addBlogPost" enctype="multipart/form-data">
+               <form role="form" @submit.prevent="addProduct" enctype="multipart/form-data">
              
                 <div class="card-body">
                   <div class="form-group">
                     <label for="title">Title *</label>
-                     <input  v-model="form.title " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" v-on:keydown="Title" id="Title" placeholder="Title Name">
+                     <input  v-model="form.title " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" v-on:keydown="Title" id="Title" placeholder="Title Name" required>
                         <has-error :form="form" field="title"></has-error>
                   </div>
                   <div class="form-row">
@@ -46,7 +46,7 @@
                             <input type ="radio"  id="marketstatus" v-model="form.marketstatus"  value="Yes">  Yes</label> 
 
                         
-                    <input type ="radio"  id="marketstatus" value="no" v-model="form.marketstatus">  <label class="radio-inline">No</label>
+                    <input type ="radio"  id="marketstatus" value="No" v-model="form.marketstatus">  <label class="radio-inline">No</label>
                     </div>
     </div>
   
@@ -64,7 +64,7 @@
     </div>
   </div>
    <div class="form-group d-none" id="offeruinfo">
-                    <label for="title">Offer Url </label>
+                    <label for="offerurl">Offer Url </label>
                      <input  v-model="form.offerurl " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('offerurl') }"  id="offerurl" placeholder="Offer-Url Name">
                         <has-error :form="form" field="offerurl"></has-error>
                   </div>
@@ -161,7 +161,7 @@
 
 <!-- Transmission  start-->
  <div class="form-group col-md-4">
-      <label for="stroke">Transmission Type  *</label>
+      <label for="transmission">Transmission Type  *</label>
       <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
                         <option disabled value="">Select One</option>
                     <option selected value="Auto">Auto </option>
@@ -172,7 +172,7 @@
                      <has-error :form="form" field="transmission" ></has-error>
     </div> 
     <div class="form-group col-md-4">
-      <label for="compressionratio">No of Gears * </label>
+      <label for="gears">No of Gears * </label>
       <v-select  v-model="form.gears" :options="AllGears" label=gear :reduce="gear=>gear.gear" required />
     </div>
     <div class="form-group col-md-4">
@@ -230,30 +230,41 @@
                      <has-error :form="form" field="frontbrake" ></has-error>
     </div> 
     <div class="form-group col-md-4">
-      <label for="frontsuspension">Rear Brake Type    * </label>
-      <v-select  v-model="form.bvoltage" :options="allBetery" label=bvoltage :reduce="bvoltage=>bvoltage.bvoltage" required />
-  
-    </div>
-    <div class="form-group col-md-4">
-      <label for="rearsuspension">Front Brake Diameter   *</label>
-         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
-           <has-error :form="form" field="rearsuspension" ></has-error>
-    </div>
- <div class="form-group col-md-4">
-      <label for="stroke">Rear Brake Diameter *</label>
-      <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
+      <label for="rearbrake">Rear Brake Type    * </label>
+      <select :class="{'is-invalid' :form.errors.has('rearbrake')}" id="rearbrake" v-model="form.rearbrake" class="form-control" required >
                         <option disabled value="">Select One</option>
                     <option selected value="Auto">Auto </option>
                     <option selected value="Manual">Manual </option>
                         <option  value="Both">Both</option>
                                            
                     </select>
-                     <has-error :form="form" field="transmission" ></has-error>
+                     <has-error :form="form" field="rearbrake" ></has-error>
+  
+    </div>
+    <div class="form-group col-md-4">
+      <label for="frontbrakediameter">Front Brake Diameter   *</label>
+         <input type="text" v-model="form.frontbrakediameter"   class="form-control" id="frontbrakediameter" required>
+           <has-error :form="form" field="frontbrakediameter" ></has-error>
+    </div>
+ <div class="form-group col-md-4">
+      <label for="rearbrakediameter">Rear Brake Diameter *</label>
+      <select :class="{'is-invalid' :form.errors.has('rearbrakediameter')}" id="rearbrakediameter" v-model="form.rearbrakediameter" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="Auto">Auto </option>
+                    <option selected value="Manual">Manual </option>
+                        <option  value="Both">Both</option>
+                                           
+                    </select>
+                     <has-error :form="form" field="rearbrakediameter" ></has-error>
     </div> 
     <div class="form-group col-md-4">
-      <label for="frontsuspension">Anti-Lock Braking System (ABS)   * </label>
-      <input type="text" v-model="form.frontsuspension"   class="form-control" id="frontsuspension" required>
-      <has-error :form="form" field="frontsuspension" ></has-error>
+      <label for="abs">Anti-Lock Braking System (ABS)   * </label>
+      <select :class="{'is-invalid' :form.errors.has('abs')}" id="abs" v-model="form.abs" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="yes">Yes </option>
+                    <option selected value="no">No </option>                 
+                    </select>
+                     <has-error :form="form" field="abs" ></has-error>
   
     </div>
    
@@ -285,31 +296,26 @@
 <!-- Dimensions    start -->
 
  <div class="form-group col-md-4">
-      <label for="stroke">Overall Length   *</label>
-      <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
-                        <option disabled value="">Select One</option>
-                    <option selected value="Auto">Auto </option>
-                    <option selected value="Manual">Manual </option>
-                        <option  value="Both">Both</option>
-                                           
-                    </select>
-                     <has-error :form="form" field="transmission" ></has-error>
+      <label for="overalllength">Overall Length   *</label>
+      <input type="text" v-model="form.overalllength"   class="form-control" id="overalllength" required>
+           <has-error :form="form" field="overalllength" ></has-error>
+                    
     </div> 
     <div class="form-group col-md-4">
-      <label for="frontsuspension">Overall Width    * </label>
-      <input type="text" v-model="form.frontsuspension"   class="form-control" id="frontsuspension" required>
-      <has-error :form="form" field="frontsuspension" ></has-error>
+      <label for="overallwidth">Overall Width    * </label>
+      <input type="text" v-model="form.overallwidth"   class="form-control" id="overallwidth" required>
+      <has-error :form="form" field="overallwidth" ></has-error>
   
     </div>
     <div class="form-group col-md-4">
-      <label for="rearsuspension">Ground Clearance   *</label>
-         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
-           <has-error :form="form" field="rearsuspension" ></has-error>
+      <label for="groundclearness">Ground Clearance   *</label>
+         <input type="text" v-model="form.groundclearness"   class="form-control" id="groundclearness" required>
+           <has-error :form="form" field="groundclearness" ></has-error>
     </div>
  <div class="form-group col-md-4">
       <label for="stroke">Weight  *</label>
     
-                       <v-select  v-model="form.weight" :options="allWeightlist" label=weight :reduce="cylinder=>weight.weight" required />
+                       <v-select  v-model="form.weight" :options="allWeightlist" label=weight :reduce="weight=>weight.weight" required />
     </div> 
     <div class="form-group col-md-4">
       <label for="ftcapacity">Fuel Tank Capacity    * </label>
@@ -317,9 +323,9 @@
   
     </div>
     <div class="form-group col-md-4">
-      <label for="rearsuspension">Wheelbase  *</label>
-         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
-           <has-error :form="form" field="rearsuspension" ></has-error>
+      <label for="wheelbase">Wheelbase  *</label>
+         <input type="text" v-model="form.wheelbase"   class="form-control" id="wheelbase" required>
+           <has-error :form="form" field="wheelbase" ></has-error>
     </div>
 
 
@@ -331,15 +337,15 @@
 <!-- Electricals    start -->
 
  <div class="form-group col-md-4">
-      <label for="stroke">Battery Type   *</label>
-      <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
+      <label for="battery">Battery Type   *</label>
+      <select :class="{'is-invalid' :form.errors.has('battery')}" id="battery" v-model="form.battery" class="form-control" required >
                         <option disabled value="">Select One</option>
-                    <option selected value="Auto">Auto </option>
-                    <option selected value="Manual">Manual </option>
+                    <option value="Auto">Maintenance Free</option>
+                    <option selected value="Manual">Maintenance </option>
                         <option  value="Both">Both</option>
                                            
                     </select>
-                     <has-error :form="form" field="transmission" ></has-error>
+                     <has-error :form="form" field="battery" ></has-error>
     </div> 
     <div class="form-group col-md-4">
       <label for="frontsuspension">Battery Voltage    * </label>
@@ -347,31 +353,43 @@
   
     </div>
     <div class="form-group col-md-4">
-      <label for="rearsuspension">Head Light   *</label>
-         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
-           <has-error :form="form" field="rearsuspension" ></has-error>
+      <label for="headlight">Head Light   *</label>
+         <input type="text" v-model="form.headlight"   class="form-control" id="headlight" required>
+           <has-error :form="form" field="headlight" ></has-error>
     </div>
  <div class="form-group col-md-4">
-      <label for="stroke">Tail Light  *</label>
-      <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
+      <label for="taillight">Tail Light  *</label>
+      <select :class="{'is-invalid' :form.errors.has('taillight')}" id="taillight" v-model="form.taillight" class="form-control" required >
                         <option disabled value="">Select One</option>
-                    <option selected value="Auto">Auto </option>
-                    <option selected value="Manual">Manual </option>
+                    <option selected value="led">LED </option>
+                    <option  value="Manual">Manual </option>
                         <option  value="Both">Both</option>
                                            
                     </select>
-                     <has-error :form="form" field="transmission" ></has-error>
+                     <has-error :form="form" field="taillight" ></has-error>
     </div> 
     <div class="form-group col-md-4">
-      <label for="frontsuspension">Indicators    * </label>
-      <input type="text" v-model="form.frontsuspension"   class="form-control" id="frontsuspension" required>
-      <has-error :form="form" field="frontsuspension" ></has-error>
+      <label for="indicators">Indicators    * </label>
+       <select :class="{'is-invalid' :form.errors.has('indicators')}" id="indicators" v-model="form.indicators" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="bulb">Bulb </option>
+                    <option  value="Manual">Manual </option>
+                        <option  value="Both">Both</option>
+                                           
+                    </select>
+                     <has-error :form="form" field="indicators" ></has-error>
   
     </div>
     <div class="form-group col-md-4">
-      <label for="rearsuspension">Speedometer  *</label>
-         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
-           <has-error :form="form" field="rearsuspension" ></has-error>
+      <label for="speedometer">Speedometer  *</label>
+         <select :class="{'is-invalid' :form.errors.has('speedometer')}" id="speedometer" v-model="form.speedometer" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="digital">Digital </option>
+                    <option  value="analog">Analog </option>
+                        <option  value="Both">Both</option>
+                                           
+                    </select>
+                     <has-error :form="form" field="speedometer" ></has-error>
     </div>
 
 
@@ -382,72 +400,109 @@
 <!-- Features     start -->
 
  <div class="form-group col-md-4">
-      <label for="stroke">Odometer   *</label>
-      <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
+      <label for="odometer">Odometer   *</label>
+     <select :class="{'is-invalid' :form.errors.has('odometer')}" id="odometer" v-model="form.odometer" class="form-control" required >
                         <option disabled value="">Select One</option>
-                    <option selected value="Auto">Auto </option>
-                    <option selected value="Manual">Manual </option>
+                    <option selected value="digital">Digital </option>
+                    <option  value="analog">Analog </option>
                         <option  value="Both">Both</option>
                                            
                     </select>
-                     <has-error :form="form" field="transmission" ></has-error>
+                     <has-error :form="form" field="odometer" ></has-error>
     </div> 
     <div class="form-group col-md-4">
-      <label for="frontsuspension">RPM Meter    * </label>
-      <input type="text" v-model="form.frontsuspension"   class="form-control" id="frontsuspension" required>
-      <has-error :form="form" field="frontsuspension" ></has-error>
+      <label for="rpmmeter">RPM Meter    * </label>
+      <select :class="{'is-invalid' :form.errors.has('rpmmeter')}" id="rpmmeter" v-model="form.rpmmeter" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="digital">Digital </option>
+                    <option value="analog">Analog </option>
+                        <option  value="Both">Both</option>
+                                           
+                    </select>
+                     <has-error :form="form" field="rpmmeter" ></has-error>
   
     </div>
     <div class="form-group col-md-4">
-      <label for="rearsuspension">Handle Type   *</label>
-         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
-           <has-error :form="form" field="rearsuspension" ></has-error>
+      <label for="handle">Handle Type   *</label>
+          <select :class="{'is-invalid' :form.errors.has('handle')}" id="seattype" v-model="form.handle" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="2-Part ">2-Part Handle </option>
+                    <option value="3-Part ">3-Part Handle </option>
+                                         
+                    </select>
+                     <has-error :form="form" field="handle" ></has-error>
     </div>
  <div class="form-group col-md-4">
-      <label for="stroke">Seat Type   *</label>
-      <select :class="{'is-invalid' :form.errors.has('transmission')}" id="transmission" v-model="form.transmission" class="form-control" required >
+      <label for="seattype">Seat Type   *</label>
+      <select :class="{'is-invalid' :form.errors.has('seattype')}" id="seattype" v-model="form.seattype" class="form-control" required >
                         <option disabled value="">Select One</option>
-                    <option selected value="Auto">Auto </option>
-                    <option selected value="Manual">Manual </option>
+                    <option selected value="unibody">Unibody </option>
+                    <option value="singlebody">Singlebody </option>
                         <option  value="Both">Both</option>
                                            
                     </select>
-                     <has-error :form="form" field="transmission" ></has-error>
+                     <has-error :form="form" field="seattype" ></has-error>
     </div> 
     <div class="form-group col-md-4">
-      <label for="frontsuspension">Passenger Grab Rail    * </label>
-      <input type="text" v-model="form.frontsuspension"   class="form-control" id="frontsuspension" required>
-      <has-error :form="form" field="frontsuspension" ></has-error>
+      <label for="passenger">Passenger Grab Rail    * </label>
+        <select :class="{'is-invalid' :form.errors.has('passenger')}" id="passenger" v-model="form.passenger" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="yes">Yes </option>
+                    <option value="no">No </option>
+                        <option  value="Both">Both</option>
+                                           
+                    </select>
+                     <has-error :form="form" field="passenger" ></has-error>
   
     </div>
     <div class="form-group col-md-4">
-      <label for="rearsuspension">Engine Kill Switch   *</label>
-         <input type="text" v-model="form.rearsuspension"   class="form-control" id="rearsuspension" required>
-           <has-error :form="form" field="rearsuspension" ></has-error>
+      <label for="engineks">Engine Kill Switch   *</label>
+       <select :class="{'is-invalid' :form.errors.has('engineks')}" id="engineks" v-model="form.engineks" class="form-control" required >
+                        <option disabled value="">Select One</option>
+                    <option selected value="yes">Yes </option>
+                    <option value="no">No </option>
+                        <option  value="Both">Both</option>
+                                           
+                    </select>
+                     <has-error :form="form" field="engineks" ></has-error>
     </div>
 
-
+ <div class="form-group col-md-4">
+      <label for="embedurl">Embed Url  *</label>
+        <input type="url" v-model="form.embedurl"   class="form-control" id="embedurl" required>
+           <has-error :form="form" field="embedurl" ></has-error>
+       
+    </div>
 <!-- Features   end -->
+<div class="form-group col-md-12">
+                     <label for="exampleInputFile">Feature Image * [imge must ....]</label>
+                      <div class="custom-file">
+                        <input type="file" :class="{'is-invalid' :form.errors.has('featureimage')}" id="featureimage"  class="custom-file-input"   @change="changephoto($event)">
+                           
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <has-error :form="form" field="featureimage" ></has-error>
+                      </div>
+                      
+                     <img :src="form.featureimage" alt="" height="30px" >
+                    </div>
 
-
-                <div class="form-group col-md-7">
+                <div class="form-group col-md-10">
               <label for="metadescription">Short Description * [Shortdescription may not be greater than 160 characters]</label>
-                    <textarea v-model="form.shortdescription" class="form-control" rows="5" placeholder="Short Description" :class="{ 'is-invalid': form.errors.has('shortdescription') }"></textarea>
+                    <textarea v-model="form.shortdescription" class="form-control" rows="7" placeholder="Short Description" :class="{ 'is-invalid': form.errors.has('shortdescription') }"></textarea>
                   <has-error :form="form" field="shortdescription"></has-error>
             </div>
-   <div class="form-group col-md-5">
-                     <label for="exampleInputFile"> Image *</label>
-                   
-                                  <vue-upload-multiple-image
-                                    @upload-success="uploadImageSuccess"
-                                    @before-remove="beforeRemove"
-                                    @edit-image="editImage"
-                                    :data-images="images"
-                                    idUpload="myIdUpload"
-                                    editUpload="myIdEdit"
-                                    ></vue-upload-multiple-image>
-                      
-                      </div>  
+        <div class="form-group col-md-2">
+        <label for="exampleInputFile">Slider Image *</label>
+          <vue-upload-multiple-image
+          @upload-success="uploadImageSuccess"
+          @before-remove="beforeRemove"
+          @edit-image="editImage"
+          :data-images="images"
+          idUpload="myIdUpload"
+          editUpload="myIdEdit"
+          ></vue-upload-multiple-image>
+
+        </div>  
 
   </div> <!--row-->
 
@@ -457,7 +512,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                   <router-link to="/admin/blogpost" class="btn btn-default ">Cancel</router-link>
+                   <router-link to="/admin/productlist" class="btn btn-default ">Cancel</router-link>
                </div>
             </form>
                 </div>
@@ -475,7 +530,7 @@
 import VueUploadMultipleImage from 'vue-upload-multiple-image'
 export default {
  
-  name: "CreateBlogpost",
+  name: "CreateProduct",
         components: {
     VueUploadMultipleImage
   },
@@ -491,7 +546,7 @@ export default {
         slug: "",
         cc: "",
         producttype: "new",
-        marketstatus: "",
+        marketstatus: "Yes",
         keyword: "",
         regularprice: "",
         offerprice: "",
@@ -509,15 +564,12 @@ export default {
         enginemaximumtorque: "",
         bore: "",
         stroke: "",
+         compressionratio: "",
          gears: "",
          clutch: "",
           transmission: "",
         cylinder: "",
-        compressionratio: "",
-       
-       
-        
-        chassis: "",
+       chassis: "",
         frontsuspension: "",
         rearsuspension: "",
         frontbrake: "",
@@ -525,15 +577,17 @@ export default {
         frontbrakediameter: "",
         rearbrakediameter: "",
         abs: "",
-        fronttire: "",
-        reartire: "",
+        ftyre: "",
+        rtyre: "",
+        tubeless: "",
         overalllength: "",
         overallwidth: "",
+        groundclearness:"",
         weight: "",
-        fueltankcapacity: "",
+        ftcapacity: "",
         wheelbase: "",
-        voltage: "",
         battery: "",
+        bvoltage: "",
         headlight: "",
         taillight: "",
         indicators: "",
@@ -541,19 +595,16 @@ export default {
         odometer: "",
         rpmmeter: "",
         handle: "",
+        seattype: "",
         passenger: "",
-        videoourl: "",
-        handle: "",
-        handle: "",
-        category:[],
-        description: "",
-        postimage: "",
-        language:'',
-        keyword: "",
-       metadescription: "",
+        engineks:"",
+        embedurl:"",
+        featureimage: "",
         shortdescription: "",
+         images:[],
+   
       }),
-       images:[],
+      
       categoryVal:[],
       allBrandname:null,
       Brand:[],
@@ -570,7 +621,7 @@ export default {
        allBetery:[],
        allFtcapacity:[],
        allEnginelist:[],
-       
+        images:[],
       
     }
     
@@ -622,16 +673,17 @@ var token = localStorage.getItem("token");
    
     },
   methods: {
-    addBlogPost() {
+    addProduct() {
       this.form
-        .post("admin/createblogpost")
+        .post("admin/createproduct")
         //console.log('ok');
         .then(({ response }) => {
-          [toastr.success("Blogpost Create Successfull")],
-            [this.$router.push("/admin/blogpost")];
+          [toastr.success("Product Create Successfull")],
+            [this.$router.push("/admin/productlist")];
         })
         .catch(function(response) {
             toastr.warning("Sorry Try Agin");
+            console.log(response);
         });
     },
     Title(event){
@@ -650,11 +702,11 @@ this.form.slug=this.form.title;
 
 
  uploadImageSuccess(formData, index, fileList) {
-            this.form.allimage=fileList;
+            this.form.images=fileList;
           },
     beforeRemove (index, done, fileList) {
      // console.log('index', index, fileList)
-      var r = confirm("remove image")
+      var r = confirm("Remove image")
       if (r == true) {
         done()
       } else {
@@ -662,6 +714,14 @@ this.form.slug=this.form.title;
     },
     editImage (formData, index, fileList) {
       //console.log('edit data', formData, index, fileList)
+    },
+     changephoto(event){
+      let file=event.target.files[0];
+      let reader=new FileReader();
+      reader.onload=event=>{
+        this.form.featureimage=event.target.result
+      },
+      reader.readAsDataURL(file);
     }
    
   }

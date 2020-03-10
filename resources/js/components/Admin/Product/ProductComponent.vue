@@ -1,13 +1,6 @@
 <template>
 <div class="card">
-  <div class="input-group">
-              <input type="text" name="search" v-model="keyword" class="form-control" placeholder="Search">
-
-              <div class="input-group-btn">
-                <button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </div>
-            </div>
+ 
             <div class="card-header">
               <h3 class="card-title">Product List </h3>
                 <div class="text-right">  <div class="btn btn-outline-info "> <router-link to="/admin/createproduct">Create Product</router-link></div></div>
@@ -15,6 +8,13 @@
           
             <!-- /.card-header -->
             <div class="card-body">
+              <form role="form" class="form-inline">
+<div class="input-group-btn">
+  <input type="text" @keyup="RealSearch" v-model="keyword" class="form-control inline" placeholder="Search">
+<button type="submit" @click.prevent="RealSearch"  class="btn btn-info "><i class="fa fa-search"></i>
+</button>
+</div>
+ </form>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -22,59 +22,99 @@
                   <th>Title</th>
                   <th>Image</th>
                   
-                  <th>Category</th>
-                  <!-- <th>Description</th> -->
+                  <th>CC</th>
+                  <th>Reqular Price</th>
+                  <th>Displacement </th>
+                  <th>Mileage </th>
                  <th>Status </th>
-                  <th>Preview</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="bloginfo in allBlogpostlist.data" :key="bloginfo.id">
+                <tr v-for="productinfo in allProductlist.data" :key="productinfo.id">
                         
-                          <td style="width:116px">{{bloginfo.created_at}}</td>
-                          <td>{{bloginfo.title}}</td>
-
-                          <td><img :src="'/images/blogpost/'+ bloginfo.postimage" alt="no image" width=50 data-lightbox="image-1"></td>
-
-                            <td><span v-for="catelist in  bloginfo.blogcategorylist" :key="(catelist.id)">{{catelist.categorylist}} <br></span></td>
-                            
-                          <!-- <td>  <span v-html="bloginfo.description"></span></td> -->
+                          <td style="width:116px">{{productinfo.created_at}}</td>
+                          <td>{{productinfo.title }}</td>
+                          <!-- <td>{{productinfo.cc}}</td> -->
+                       <td>
+                                                        
+                        <img :src="'/images/productimages/'+ productinfo.featureimage" alt="no image" width=50 title="Click Me" @click.prevent="Slider(productinfo.id)" data-toggle="modal" data-target="#showimagemodal"> 
+                          
+                           </td>
+                      <td>{{productinfo.cc}}</td>
+                      <td>{{productinfo.regularprice}}</td>
+                      <td>{{productinfo.displacement}}</td>
+                      <td>{{productinfo.mileage }}</td>
                           <td>    
-                         <span class="btn btn-sm btn-primary" @click.prevent="activestatus(bloginfo.id)" v-if="bloginfo.status==1"><i class="fas fa-check-square"></i> </span>
-                         <span class="btn btn-sm btn-danger" @click.prevent="inactivestatus(bloginfo.id)"  v-else><i class="fas fa-ban"></i></span>
+                         <span class="btn btn-sm btn-primary" @click.prevent="activestatus(productinfo.id)" v-if="productinfo.status==1"><i class="fas fa-check-square"></i> </span>
+                         <span class="btn btn-sm btn-danger" @click.prevent="inactivestatus(productinfo.id)"  v-else><i class="fas fa-ban"></i></span>
                          </td>
-                          <td>
-               <span v-if="bloginfo.language=='en'">
-                        <router-link target='_blank' :to="`/blog/${bloginfo.slug}`">
-                         Details
+                        
+                   <td>
+                     <div class="btn-group">
+                    <button type="button" class="btn btn-success btn-sm">Action</button>
+                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon btn-sm" data-toggle="dropdown">
+                      <div class="dropdown-menu pull-right" role="menu">
+                         <router-link class="dropdown-item" :to="`/admin/editproduct/${productinfo.id}`">
+                       <i class="fas fa-edit"> Edit</i>
+                        </router-link> 
+                        <router-link class="dropdown-item" target='_blank' :to="`/blog/${productinfo.slug}`">
+                       <i class="fas fa-info"> Details</i>
                         </router-link>
-                        </span>
-                        <span v-else><router-link target='_blank' :to="`/bn/blog/${encodeURI(bloginfo.slug)}`">
-                         Details
-                        </router-link></span>
-                    </td> 
-                       <td>
+                         <button class="dropdown-item btn btn-sm btn-warning" @click.prevent="deleteProduct(productinfo.id)"><i class="fas fa-trash-alt"></i> Delete</button>
                         
-                        <router-link :to="`/admin/editblogpost/${bloginfo.id}`">
-                       <i class="fas fa-edit"></i>
-                        </router-link>
-                        
-                    </td>
-                       <td>
-                        <button class="btn btn-sm btn-warning" @click.prevent="deleteBlog(bloginfo.id)"><i class="fas fa-trash-alt"></i></button>
-                        
-                        
-                    </td>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                      </div>
+                    </button>
+                  </div>
+                     
+                  </td>
+
+                  
                 </tr>
                 
                 </tbody>
              </table>
             
              <!-- /.card-body -->
-             <div class="card-footer"><pagination :data="allBlogpostlist" @pagination-change-page="getResults" style="text-align:center"></pagination></div>
+             <div class="card-footer"><pagination :data="allProductlist" @pagination-change-page="getResults" style="text-align:center"></pagination></div>
           </div>
+
+
+          <!--create Modal-->
+      <div class="modal fade" id="showimagemodal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Slider Images</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                </div>
+            <div class="modal-body">
+            
+           <span  v-for="image in Sliderimage" class="img-prnt">
+                                         
+                            <img  :src="'/images/productimages/slider/'+ image.productimage"  width=200 >
+                            
+                            <button class="btn btn-danger" @click="deleteimage(image.id)">
+                                x
+                            </button>
+                            </span>
+              
+            </div>
+            <div class="modal-footer justify-content-between">
+            
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+
+
           </div>
  
 </template>
@@ -85,8 +125,9 @@ export default {
    data() {
     return {
       // Our data object that holds the Laravel paginator data
-      allBlogpostlist: {},
-      
+      allProductlist: {},
+        keyword:'',
+      Sliderimage:null,
     };
   },
    created () {
@@ -100,37 +141,46 @@ export default {
  
  methods: {
        getResults(page = 1) {
-      axios.get("/admin/blogpost?page=" + page).then(response => {
-        this.allBlogpostlist = response.data;
+      axios.get("/admin/productlist?page=" + page).then(response => {
+        this.allProductlist = response.data;
       });
     },
-    deleteBlog(id) {
+    deleteProduct(id) {
       if (confirm("Do you really want to delete it?")) {
                    
-      axios.delete("/admin/deleteblogpost/" + id)
+      axios.delete("/admin/deleteproduct/" + id)
         .then(({ response = true }) => {
-          [toastr.warning("Post Delete Successfully", " BlogPost")];
+          [toastr.warning("Product Delete Successfully", " Product")];
         
         });
-      };
-      axios.get("/admin/blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
-        this.allBlogpostlist = response.data;
+      }; 
+
+      axios.get("/admin/productlist?page=" +  this.allProductlist.current_page).then(response => {
+        this.allProductlist = response.data;
       })
         .catch(function(response = false) {
           console.log(response);
           toastr.error("Sorry Try Agin");
         }); //for show Division
     },
+           //for search
+    RealSearch:_.debounce(function () {
+      //alert(5);
+      axios.get("/admin/productsearch?s=" + encodeURI(this.keyword)).then(response => {
+        this.allProductlist = response.data;
+      });
+             
+            },1000),
 
-       activestatus(id){
+      activestatus(id){
     
-          axios.post("/admin/blogpostinactive/" + id)
+          axios.post("/admin/productinactive/" + id)
         .then(({ response = true }) => {
-          [toastr.info("Blog Post  Private Successfully", "Blogpost")];
+          [toastr.info("Product  Inactive Successfully", "Product")];
         });
            
-      axios.get("/admin/blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
-        this.allBlogpostlist = response.data;
+      axios.get("/admin/productlist?page=" +  this.allProductlist.current_page).then(response => {
+        this.allProductlist = response.data;
       })
         .catch(function(response = false) {
           console.log(response);
@@ -141,21 +191,39 @@ export default {
       inactivestatus(id){
         //alert(5);
       axios
-        .post("/admin/blogpostactive/" + id)
+        .post("/admin/productactive/" + id)
         .then(({ response = true }) => {
-          [toastr.success("Blog Post  Public Successfully", "Blogpost")];
+          [toastr.success("Product  Active Successfully", "Product")];
         });
    
-      axios.get("/admin/blogpost?page=" +  this.allBlogpostlist.current_page).then(response => {
-        this.allBlogpostlist = response.data;
+      axios.get("/admin/productlist?page=" +  this.allProductlist.current_page).then(response => {
+        this.allProductlist = response.data;
       })
         .catch(function(response = false) {
-          console.log(response);
+          //console.log(response);
           toastr.error("Sorry Try Agin");
         }); //for active Account
 // alert('Hello');
     },
+    Slider(id){
+ axios.post("/admin/sliderimage/" + id)
+        .then(response => {
+        this.Sliderimage = response.data.sliderim;
+      })
+    },
+
+     deleteimage(id){
+         if (confirm("Do you really want to delete it?")) {
+         axios.get('/admin/deleteproductimage/'+id)
+          .then(({ response = true }) => {
+          [toastr.warning("Slider Image Delete Successfully", " Image")][this.id={
+
+          }];
+        
+        });
+        }
+    
+    }
       },
 };
 </script>
-

@@ -23,7 +23,8 @@ import _ from 'lodash'
 //window._ = require('lodash');
 
 import Slick from 'vue-slick';
-// import fileter js
+Vue.use(Slick)
+    // import fileter js
 import { filter } from './filter'
 //fro multi image for lightbox show multi image
 import VueLazyload from 'vue-lazyload'
@@ -81,5 +82,5 @@ router.beforeEach((to, from, next) => {
 const app = new Vue({
     el: '#app',
     router,
-    store
+    store,
 });
