@@ -244,6 +244,7 @@ import UsedBikePostDetails from './components/Home/En/UsedBikePostDetails.vue'
 import Index from './components/Home/En/Index.vue'
 import Blogpostdetails from './components/Home/En/Blogpostdetails.vue'
 import Pagedetails from './components/Home/En/Blogpagedetails.vue'
+import Productdetails from './components/Home/En/Productdetails.vue'
 import UserRegister from './components/Home/En/Userregister.vue'
 import UserLogin from './components/Home/En/Userlogin.vue'
 import UserDashboard from './components/Home/En/Userdashboard.vue'
@@ -546,6 +547,7 @@ export const routes = [
         children: [
             { path: 'blog/:id', component: Blogpostdetails },
             { path: 'page/:id', component: Pagedetails },
+            { path: 'product/:id', component: Productdetails },
             { path: 'myprofile', component: Myprofile },
             { path: 'shop/:id', component: Shop },
             { path: 'editmyprofile/:id', component: EditMyprofile },

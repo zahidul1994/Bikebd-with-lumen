@@ -64,6 +64,8 @@ function()use($router){
     //page area start
     $router->get('page/{id}','PageController@show'); 
     $router->post('pagelist','PageController@pagelist'); //page link in dropdown
+    $router->get('productlist','ProductController@index'); //product show
+    $router->get('product/{id}','ProductController@show'); //product show
     $router->post('relatedpage/{id}','PageController@relatedpage');
 
 
@@ -460,11 +462,11 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     //Bvoltage  Area end 
  
  
-
  //Product area start 
  $router->get('productlist','ProductController@index');
  $router->get('productsearch','ProductController@productsearch');//for search
  $router->post('sliderimage/{id}','ProductController@sliderimage');//for sliderimage
+ $router->post('createsliderimage','ProductController@createsliderimage');//for Create sliderimage
  $router->get('deleteproductimage/{id}','ProductController@deleteproductimage');//for sliderimage delete
  $router->get('createproduct','ProductController@store');
  $router->post('createproduct','ProductController@store');
@@ -475,8 +477,6 @@ $router->put('updateproduct/{id}','ProductController@update');
  $router->post('productinactive/{id}', 'ProductController@productinactive'); //for inactive company
  $router->post('productactive/{id}', 'ProductController@producactive');//for user create active account status
  //Product  Area end 
- 
- // product all end
 
 });
 

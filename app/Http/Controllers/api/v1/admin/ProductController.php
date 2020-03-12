@@ -500,14 +500,44 @@ else {
         
     $imagepath=public_path('/images/productimages/slider/').$image->productimage;
    unlink($imagepath);
-   Productimage::destroy($id);
-     if($imagepath){
+  if($image){
+    Productimage::destroy($id);
+        $productimage = Productimage::where('product_id',$image->product_id)->get();
+        
  return response()->json([
  'success' => true,
- 
+ 'sliderim' => $productimage
 ],200);
 
     }
     }
+    public function createsliderimage(Request $request){
 
+
+
+     foreach($request->images as $value)
+         {
+             $strpos = strpos($value['path'],';');
+             $sub = substr($value['path'],0,$strpos);
+             $ex = explode('/',$sub)[1];
+             $rand = mt_rand(100000, 999999);
+             $name = time() . "_" .app('auth')->user()->id. "_" . $rand . "." .$ex;
+             $img = Image::make($value['path'])->resize(200, 200);
+             $upload_path = public_path()."/images/productimages/slider/";
+             $img->save($upload_path.$name);
+             $image = new Productimage();
+             $image->product_id =$request->id;
+             $image->productimage =$name;
+             $image->save();
+         }
+         if($image->save()){
+          $productimage = Productimage::where('product_id',$image->product_id)->get();
+            
+     return response()->json([
+     'success' => true,
+     'sliderim' => $productimage
+    ],200);
+         }
+
+}
 }

@@ -185,143 +185,65 @@
                 </div>
             </div>
             <div class="col-md-3 align-self-center">
-                <div class="card" style="">
+                 <div class="card" style="">
                     <div class="card-slider">
-                        <div class="card-slide">
-                            <div class="c-head">
-                                <p class="mb-0 p-3">Sport Motorcycle</p>
-                            </div>
-                            <div class="c-body pb-4">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-slide">
-                            <div class="c-head">
-                                <p class="mb-0 p-3">Standard Motorcycle</p>
-                            </div>
-                            <div class="c-body pb-4">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-slide">
-                            <div class="c-head">
-                                <p class="mb-0 p-3">Naked Sport Motorcycle</p>
-                            </div>
-                            <div class="c-body pb-4">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-5">
-                                        <img s:src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="mb-0">Bajaj Pulsar 150</p>
-                                        <p class="mb-0">Price: 172000</p>
-                                    </div>
-                                </div>
-                            </div>
+                         <slick ref="slick" :options="slickMini"  v-if="allRecentProduct.length">
+                    <div class="card-slider">
+                      
 
-                        </div>
+                   
+                         <div class="c-head">
+                                <p class="mb-0 p-3">New Bike</p>
+                            </div>
+                                          <div class="row pt-3"  v-for="product in allNewBike" :key="(product.id)"> 
+                                    <div class="col-md-5">
+                                       <img :src="'/images/productimages/'+ product.featureimage" class="w-100">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p class="mb-0 top-sd-cont">Bajaj Pulsar 150</p>
+                                        <p class="mb-0 top-sd-cont">Price: {{product.regularprice}}</p>
+                                    </div>
+                                  
+                                </div>
+                                  
+                    </div> 
+                     <div class="card-slider">
+                      <div class="c-head">
+                                <p class="mb-0 p-3">Old Bike</p>
+                            </div>
+                                          <div class="row pt-3"  v-for="product in allOldBike" :key="(product.id)"> 
+                                    <div class="col-md-5">
+                                       <img :src="'/images/productimages/'+ product.featureimage" class="w-100">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p class="mb-0 top-sd-cont">Bajaj Pulsar 150</p>
+                                        <p class="mb-0 top-sd-cont">Price: {{product.regularprice}}</p>
+                                    </div>
+                                  
+                                </div>
+                                  
                     </div>
-
-                </div>
+                      <div class="card-slider">
+                      <div class="c-head">
+                                <p class="mb-0 p-3">Upcoming Bike</p>
+                            </div>
+                                          <div class="row pt-3"  v-for="product in allUpcomingBike" :key="(product.id)"> 
+                                    <div class="col-md-5">
+                                       <img :src="'/images/productimages/'+ product.featureimage" class="w-100">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p class="mb-0 top-sd-cont">Bajaj Pulsar 150</p>
+                                        <p class="mb-0 top-sd-cont">Price: {{product.regularprice}}</p>
+                                    </div>
+                                  
+                                </div>
+                                  
+                    </div>
+                     </slick> 
+            </div>
             </div>
         </div>
+   </div>
     </div>
 </section>
 <!--    contant area-->
@@ -333,202 +255,87 @@
                 <h3 class="mb-4">
                     Recently Viewed and Recommended
                 </h3>
+            
                 <div class="row product-slider">
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                    <p class="bike-p">Price:000000</p>
-
+                   
+                                <div class="card c-bdr">
+                                      <slick ref="slick" :options="slickOptions"  v-if="allRecentProduct.length">
+                                            <div class="col-md-12" v-for="product in allRecentProduct" :key="(product.id)">
+                                   <router-link  :to="`/product/${product.slug}`" class="card c-bdr">
+                                        <img :src="'/images/productimages/'+ product.featureimage" class="card-img-top w-100" alt="...">
+                                        <div class="card-body pb-0">
+                                            <h5 class="bike-n text-dark">{{product.title|shortlength(30,"..")}}</h5>
+                                         <span class="bike-p">Product Price: {{product.regularprice}}</span>
+                                              <!-- <span v-html="bloginfo.description"> </span> -->
+                                        </div>
+                                         <div class="c-bottom text-center">
+                                        <span class="">View Details</span>
                                 </div>
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
+                                    </router-link>
+                                     </div>
+                                    </slick> 
                                 </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                    <p class="bike-p">Price:000000</p>
-
-                                </div>
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                    <p class="bike-p">Price:000000</p>
-
-                                </div>
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                    <p class="bike-p">Price:000000</p>
-
-                                </div>
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                <div class="card-body pb-0">
-                                    <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                    <p class="bike-p">Price:000000</p>
-
-                                </div>
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-
-
-                </div>
+                           </div>
             </div>
 
 
-            <!--                latest-news area-->
+     
 
-            <div class="latest-news mt-5">
+    <!--  latest-news area-->
+
+           <div class="recent-view">
                 <h3 class="mb-4">
-                    Latest News  
-                   
+                   Letest News
                 </h3>
-                <div class="row product-slider1">
-                  
-                    <div class="col-md-12" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
+            
+                <div class="row product-slider">
+                   
                                 <div class="card c-bdr">
-                                   <router-link  :to="`/blog/${bloginfo.slug}`">
+                                       <slick ref="slick" :options="slickOptions"  v-if="AllLatestBlog.length">
+                     <div class="col-md-12" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
+                                   <router-link  :to="`/blog/${bloginfo.slug}`" class="card c-bdr">
                                         <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">{{bloginfo.title|shortlength(30,"..")}}</h5>
-                                         <span class="bike-p">{{bloginfo.shortdescription|shortlength(40,"..")}}"</span>
-                                              <!-- <span v-html="bloginfo.description"> </span> -->
-                                          
+                                       <div class="card-body pb-0">
+                                    <h5 class="bike-n text-dark text-left">{{bloginfo.title|shortlength(30,"..")}}</h5>
+                                    <p class="bike-p text-left text-black-50 font-weight-normal">{{bloginfo.shortdescription|shortlength(40,"..")}}</p>
 
-                                        </div>
+                                </div>
                                         
                                     </router-link>
                                 </div>
-                            </div>
-                    
-
-                </div>
+                                  </slick> 
+                                </div>
+                           </div>
             </div>
+              
+      
 
-
-            <!--                upcoming area-->
+            <!-- pcoming area-->
             <div class="row">
                 <div class="col-md-9">
                     <div class="recent-view mt-5">
                         <h3 class="mb-4">
                             Upcoming Bikes
+                            <!-- {{allupcommingProduct}} -->
                         </h3>
                         <div class="row product-slider">
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
+                        <div class="card c-bdr">
+                                      <slick ref="slick" :options="slickOptions"  v-if="allupcommingProduct.length">
+                                            <div class="col-md-12" v-for="product in allupcommingProduct" :key="(product.id)">
+                                   <router-link  :to="`/product/${product.slug}`" class="card c-bdr">
+                                        <img :src="'/images/productimages/'+ product.featureimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
+                                            <h5 class="bike-n text-dark">{{product.title|shortlength(30,"..")}}</h5>
+                                         <span class="bike-p">Product Price: {{product.regularprice}}</span>
+                                              <!-- <span v-html="bloginfo.description"> </span> -->
                                         </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
+                                         <div class="c-bottom text-center">
+                                        <span class="">View Details</span>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
-                                        </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
+                                    </router-link>
+                                     </div>
+                                    </slick> 
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
-                                        </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
-                                        </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
-                                        </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
 
 
 
@@ -542,81 +349,27 @@
                             Latest and Popular Bikes
                         </h3>
                         <div class="row product-slider">
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
+                              <div class="card c-bdr">
+                                      <slick ref="slick" :options="slickOptions"  v-if="allPopular.length">
+                                            <div class="col-md-12" v-for="popular in allPopular" :key="(popular.id)">
+                                   <router-link  :to="`/product/${popular.slug}`" class="card c-bdr">
+                                        <img :src="'/images/productimages/'+ popular.featureimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
+                                            <h5 class="bike-n text-dark">{{popular.title|shortlength(30,"..")}}</h5>
+                                         <span class="bike-p">Product Price: {{popular.regularprice}}</span>
+                                              <!-- <span v-html="bloginfo.description"> </span> -->
                                         </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
+                                         <div class="c-bottom text-center">
+                                        <span class="">View Details</span>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
-                                        </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
+                                    </router-link>
+                                     </div>
+                                    </slick> 
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
-                                        </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
-                                        </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card c-bdr">
-                                    <a href="#">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" class="card-img-top w-100" alt="...">
-                                        <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">Bajaj Pulsar 150</h5>
-                                            <p class="bike-p">Price:000000</p>
-
-                                        </div>
-                                        <div class="c-bottom text-center">
-                                            <span class="">View Details</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
+                           
+                            
+                          
+                          
 
 
 
@@ -635,262 +388,106 @@
             <!--                brand area-->
             <div class="recent-view mt-5">
                 <h3 class="mb-4">
-                    Featured Mobile Brands
+                    Featured Bike Brands
 
                 </h3>
                 <div class="row product-slider">
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/brand-Logo.png'" class="card-img-top w-100" alt="...">
-
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
+                     <div class="card c-bdr">
+                                      <slick ref="slick" :options="slickOptions"  v-if="AllFeature.length">
+                                            <div class="col-md-12" v-for="feature in AllFeature" :key="(feature.id)">
+                                   <router-link  :to="`/product/${feature.slug}`" class="card c-bdr">
+                                        <img :src="'/images/productimages/'+ feature.featureimage" class="card-img-top w-100" alt="...">
+                                        <div class="card-body pb-0">
+                                            <h5 class="bike-n text-dark">{{feature.title|shortlength(30,"..")}}</h5>
+                                         <span class="bike-p">Product Price: {{feature.regularprice}}</span>
+                                              <!-- <span v-html="bloginfo.description"> </span> -->
+                                        </div>
+                                         <div class="c-bottom text-center">
+                                        <span class="">View Details</span>
                                 </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/brand-Logo.png'" class="card-img-top w-100" alt="...">
-
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
+                                    </router-link>
+                                     </div>
+                                    </slick> 
                                 </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/brand-Logo.png'" class="card-img-top w-100" alt="...">
-
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/brand-Logo.png'" class="card-img-top w-100" alt="...">
-
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card c-bdr">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/brand-Logo.png'" class="card-img-top w-100" alt="...">
-
-                                <div class="c-bottom text-center">
-                                    <span class="">View Details</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-
-
-                </div>
+                            </div>
             </div>
 
-
-
-            <!--                best price area-->
+  <!--   best price area-->
             <div class="recent-view mt-5">
-                <h3 class="mb-4">
+                <h3 class="mb-4 product-header">
                     Best Bike by Price
-
                 </h3>
-                <div class="row product-slider">
-                    <div class="col-md-12">
+                 <slick ref="slick" :options="slickOptions"  v-if="AllBestPrice.length">
+                <div class="row product-slider"  v-for="feature in AllBestPrice" :key="(feature.id)">
+                   <div class="col-md-12">
                         <div class="card pt-3 pb-3 bg-secondary p-2">
                             <div class="row">
                                 <div class="col-md-5 align-self-center pr-0">
-                                    <img :src="'/images/Fontimage/bike-icon.png'" alt="" class="w-100">
+                                    <img :src="'/images/productimages/'+ feature.featureimage" alt="" class="w-100">
                                 </div>
                                 <div class="col-md-7 text-center align-self-center">
                                     <p class="mb-0 text-white">
-                                        Best Bike Under
+                                        {{feature.title|shortlength(30,"..")}}
                                     </p>
                                     <p class="font-weight-bold text-white">
-                                        Tk 10000
+                                        TK: {{feature.regularprice}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="card pt-3 pb-3 bg-success p-2">
-                            <div class="row">
-                                <div class="col-md-5 align-self-center pr-0">
-                                    <img :src="'/images/Fontimage/bike-icon.png'" alt="" class="w-100">
-                                </div>
-                                <div class="col-md-7 text-center align-self-center">
-                                    <p class="mb-0 text-white">
-                                        Best Bike Under
-                                    </p>
-                                    <p class="font-weight-bold text-white">
-                                        Tk 10000
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card pt-3 pb-3 bg-danger p-2">
-                            <div class="row">
-                                <div class="col-md-5 align-self-center pr-0">
-                                    <img :src="'/images/Fontimage/bike-icon.png'" alt="" class="w-100">
-                                </div>
-                                <div class="col-md-7 text-center align-self-center">
-                                    <p class="mb-0 text-white">
-                                        Best Bike Under
-                                    </p>
-                                    <p class="font-weight-bold text-white">
-                                        Tk 10000
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card pt-3 pb-3 bg-warning p-2">
-                            <div class="row">
-                                <div class="col-md-5 align-self-center pr-0">
-                                    <img :src="'/images/Fontimage/bike-icon.png'" alt="" class="w-100">
-                                </div>
-                                <div class="col-md-7 text-center align-self-center">
-                                    <p class="mb-0 text-white">
-                                        Best Bike Under
-                                    </p>
-                                    <p class="font-weight-bold text-white">
-                                        Tk 10000
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card pt-3 pb-3 bg-warning p-2">
-                            <div class="row">
-                                <div class="col-md-5 align-self-center pr-0">
-                                    <img :src="'/images/Fontimage/bike-icon.png'" alt="" class="w-100">
-                                </div>
-                                <div class="col-md-7 text-center align-self-center">
-                                    <p class="mb-0 text-white">
-                                        Best Bike Under
-                                    </p>
-                                    <p class="font-weight-bold text-white">
-                                        Tk 10000
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-                </div>
+                     </div>
+                     </slick>
             </div>
 
 
 
-            <!--Trending Collections area-->
-
-            <div class="recent-view mt-5">
-                <h3 class="mb-4">
+           <!--Trending Collections area-->
+  <div class="recent-view mt-5">
+                <h3 class="mb-4 product-header">
                     Trending Collections
 
                 </h3>
-                <div class="row product-slider">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/newly_launched.jpg'" class="card-img-top w-100" alt="...">
-
-                                <div class="pl-2">
-                                    <span class="text-dark">Newly Lounched</span>
+                 <slick ref="slick" :options="slickOptions"  v-if="AllBestPrice.length">
+                <div class="row product-slider"  v-for="feature in AllBestPrice" :key="(feature.id)">
+                   <div class="col-md-12">
+                        <div class="card pt-3 pb-3 bg-primary p-2">
+                            <div class="row">
+                                <div class="col-md-5 align-self-center pr-0">
+                                    <img :src="'/images/productimages/'+ feature.featureimage" alt="" class="w-100">
                                 </div>
-                            </a>
+                                <div class="col-md-7 text-center align-self-center">
+                                    <p class="mb-0 text-white">
+                                        {{feature.title|shortlength(30,"..")}}
+                                    </p>
+                                    <p class="font-weight-bold text-white">
+                                        TK: {{feature.regularprice}}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="card">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/newly_launched.jpg'" class="card-img-top w-100" alt="...">
-
-                                <div class="pl-2">
-                                    <span class="text-dark">Powerful Headlight</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/newly_launched.jpg'" class="card-img-top w-100" alt="...">
-
-                                <div class="pl-2">
-                                    <span class="text-dark">Max Speed</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/newly_launched.jpg'" class="card-img-top w-100" alt="...">
-
-                                <div class="pl-2">
-                                    <span class="text-dark">Best Outlooking</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card">
-                            <a href="#">
-                                <img :src="'/images/Fontimage/newly_launched.jpg'" class="card-img-top w-100" alt="...">
-
-                                <div class="pl-2">
-                                    <span class="text-dark">Best Outlooking</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-
-
-
-                </div>
+                     </div>
+                     </slick>
             </div>
 
 
-            <!--                Comparisons area-->
+            <!-- Comparisons area-->
 
-
-
-            <div class="recent-view mt-5">
-                <h3 class="mb-4">
+ <div class="recent-view mt-5">
+                <h3 class="mb-4 product-header">
                     Comparisons
 
                 </h3>
-                <div class="row Comparison-slider">
+                 <slick ref="slick" :options="SlickComparison"  v-if="AllComparebike.length">
+                <div class="row Comparison-slider" v-for="feature in AllComparebike" :key="(feature.id)">
+                    
                     <div class="col-md-12">
                         <div class="card p-5 cmpr">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="card">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
+                                         <img :src="'/images/productimages/'+ feature.featureimage" alt="" class="w-100">
                                         <p class="text-center">
                                             Bajaj Pulsar 150 <br>
                                             Brand: Bajaj <br>
@@ -906,11 +503,11 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="card">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
+                                         <img :src="'/images/productimages/'+ feature.featureimage" alt="" class="w-100">
                                         <p class="text-center">
                                             Bajaj Pulsar 150 <br>
                                             Brand: Bajaj <br>
-                                            Origin: india <br>
+                                            Origin: Bd <br>
                                         </p>
 
                                     </div>
@@ -924,88 +521,8 @@
 
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="card p-5 cmpr">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="card">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                        <p class="text-center">
-                                            Bajaj Pulsar 150 <br>
-                                            Brand: Bajaj <br>
-                                            Origin: india <br>
-                                        </p>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-2 align-self-center">
-                                    <h3 class="text-center">
-                                        VS
-                                    </h3>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="card">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                        <p class="text-center">
-                                            Bajaj Pulsar 150 <br>
-                                            Brand: Bajaj <br>
-                                            Origin: india <br>
-                                        </p>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button class="compare">
-                                Compare
-                            </button>
-
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card p-5 cmpr">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="card">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                        <p class="text-center">
-                                            Bajaj Pulsar 150 <br>
-                                            Brand: Bajaj <br>
-                                            Origin: india <br>
-                                        </p>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-2 align-self-center">
-                                    <h3 class="text-center">
-                                        VS
-                                    </h3>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="card">
-                                        <img :src="'/images/Fontimage/pulsar.webp'" alt="" class="w-100">
-                                        <p class="text-center">
-                                            Bajaj Pulsar 150 <br>
-                                            Brand: Bajaj <br>
-                                            Origin: india <br>
-                                        </p>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button class="compare">
-                                Compare
-                            </button>
-
-                        </div>
-                    </div>
-
-
-
-
-
-                </div>
+                   </div>
+                    </slick>
             </div>
 
 
@@ -1096,26 +613,116 @@
 </template>
 
 <script>
-
+import Slick from 'vue-slick';
 export default {
+      components: { Slick },
   name: "Index",
       data(){
         return {
+            
+                       slickOptions: {
+                 slidesToShow: 4,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: true,
+        prevArrow: '<span class="right-round"><i class="fal fa-angle-right"></i></span>',
+        nextArrow: '<span class="left-round"><i class="fal fa-angle-left"></i></span>',
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: false
+                }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+                ]
+
+
+                    }, 
+               slickMini: {
+              slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: true,
+        prevArrow: '<span class="right"><i class="fal fa-angle-right"></i></span>',
+        nextArrow: '<span class="left"><i class="fal fa-angle-left"></i></span>',
+        autoplay: true,
+        autoplaySpeed: 2000,
+                    },
+     SlickComparison:{
+       slidesToShow: 2,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: true,
+        prevArrow: '<span class="right-round"><i class="fal fa-angle-right"></i></span>',
+        nextArrow: '<span class="left-round"><i class="fal fa-angle-left"></i></span>',
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false
+                }
+    },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+    },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+    }
+  ]
+                    },
           authenticatedname:null,
          authenticatedimage:null,
          AllLatestBlog:[],
          Pagelist:[],
+         allUpcomingBike:[],
+         allNewBike:[],
+         allOldBike:[],
+         AllBestPrice:[],
+         allRecentProduct:[],
+         allRecentProduct:[],
+         allupcommingProduct:[],
+         AllComparebike:[],
+         allPopular:[],
+         AllFeature:[],
+       
       
         }
     },
       created () {
             document.title = "Home";
-            
-         axios.get('/latestblog')
-        .then(response => {
-            (this.AllLatestBlog = response.data.blogpost);
-            
-        });
+         
         },
   mounted() {
     
@@ -1136,6 +743,33 @@ export default {
             (this.Pagelist = response.data.page);
             
         });
+
+   
+         axios.get('/latestblog')
+        .then(response => {
+            (this.AllLatestBlog = response.data.blogpost);
+            
+        });
+               axios.get('/productlist')
+    .then(response => {
+       this.allNewBike = response.data.newbike;
+       this.allOldBike = response.data.oldbike;
+       this.allUpcomingBike = response.data.upcomingbike;
+       this.AllBestPrice = response.data.bestprice;
+       this.allRecentProduct = response.data.recentproduct;
+       this.allRecentProduct = response.data.recentproduct;
+       this.allupcommingProduct = response.data.upcommingproduct;
+       this.allSport = response.data.sport;
+       this.AllComparebike = response.data.comparebike;
+       this.AllFeature = response.data.feature;
+       this.AllBestPrice = response.data.bestpricebike;
+    //    this.allFronttyre = response.data.fronttyre;
+    //    this.allReartyre = response.data.reartyre;
+    //    this.allWeightlist = response.data.weight;
+    //    this.allBetery = response.data.bettery;
+    //    this.allFtcapacity = response.data.ftcapacity;
+      //console.log(this.allEnginelist);
+    }); 
             
       
   },

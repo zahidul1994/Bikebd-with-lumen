@@ -21,7 +21,6 @@
                   <th>Date Time</th>
                   <th>Title</th>
                   <th>Image</th>
-                  
                   <th>CC</th>
                   <th>Reqular Price</th>
                   <th>Displacement </th>
@@ -89,7 +88,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Slider Images</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" @click="FormReset()" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
                 </div>
             <div class="modal-body">
@@ -104,8 +103,23 @@
                             </span>
               
             </div>
+               <form  @submit.prevent="addSliderimage" enctype="multipart/form-data">
+<div class="form-group col-md-6 ">
+        <label for="exampleInputFile">Upload New Image *</label>
+          <vue-upload-multiple-image
+          @upload-success="uploadImageSuccess"
+          @before-remove="beforeRemove"
+         :data-images="form.images"
+          idUpload="myIdUpload"
+          editUpload="myIdEdit"
+          ></vue-upload-multiple-image>
+<button type="submit" class="btn btn-primary">Upload</button>
+         
+           </div> 
+                </form>
+                
             <div class="modal-footer justify-content-between">
-            
+           
             </div>
           </div>
           <!-- /.modal-content -->
@@ -120,10 +134,18 @@
 </template>
 
 <script>
+import VueUploadMultipleImage from 'vue-upload-multiple-image'
 export default {
+   components: {
+    VueUploadMultipleImage
+  },
   name: "ProductList",
    data() {
-    return {
+    return { form: new Form({
+      id:'',
+         images:[],
+   
+      }),
       // Our data object that holds the Laravel paginator data
       allProductlist: {},
         keyword:'',
@@ -136,6 +158,7 @@ export default {
   mounted() {
     // this.$store.dispatch("allBlogpostlist"); //for show Accessories
      this.getResults();
+   
      
   },
  
@@ -206,6 +229,7 @@ export default {
 // alert('Hello');
     },
     Slider(id){
+      this.form.id=id;
  axios.post("/admin/sliderimage/" + id)
         .then(response => {
         this.Sliderimage = response.data.sliderim;
@@ -215,14 +239,42 @@ export default {
      deleteimage(id){
          if (confirm("Do you really want to delete it?")) {
          axios.get('/admin/deleteproductimage/'+id)
-          .then(({ response = true }) => {
-          [toastr.warning("Slider Image Delete Successfully", " Image")][this.id={
-
-          }];
+          .then(response => {
+          toastr.warning("Slider Image Delete Successfully", " Image");
+           this.Sliderimage = response.data.sliderim;
         
         });
         }
     
+    },
+     uploadImageSuccess(formData, index, fileList) {
+            this.form.images=fileList;
+          },
+    beforeRemove (index, done, fileList) {
+     // console.log('index', index, fileList)
+      var r = confirm("Remove image")
+      if (r == true) {
+        done()
+      } else {
+      }
+    },
+
+      addSliderimage() {
+      this.form
+        .post("admin/createsliderimage")
+        //console.log('ok');
+        .then(response => {
+          toastr.warning("Slider Image Upload Successfully", " Image");
+           this.Sliderimage = response.data.sliderim;
+this.fileList=0;
+        })
+        .catch(function(response) {
+            toastr.warning("Sorry Try Agin111");
+            // console.log(response);
+        });
+    },
+    FormReset(){  //for restore form
+      this.form.reset();
     }
       },
 };
