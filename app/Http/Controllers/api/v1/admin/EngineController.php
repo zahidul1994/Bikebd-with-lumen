@@ -200,4 +200,15 @@ class EngineController extends Controller
         }
     
     }
+
+    public function enginesearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Engine::where('admin_id',Auth::guard('admin')->user()->id)->where('enginetype','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

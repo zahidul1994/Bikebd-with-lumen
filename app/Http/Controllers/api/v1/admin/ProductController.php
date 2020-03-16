@@ -15,6 +15,8 @@ use App\Weight;
 use App\Product;
 use App\Cylinders;
 use App\Ftcapacity;
+use App\Distributor;
+use App\Producttype;
 use App\Productimage;
 use App\Brandcategory;
 use App\Betteryvoltage;
@@ -105,6 +107,7 @@ class ProductController extends Controller
     $list->rpm = $request->rpm;
     $list->torquenm = $request->torquenm;
     $list->torquerpm = $request->torquerpm;
+    $list->distributor_id = $request->distributor_id;
     $list->brand_id = $request->company_id;
     $list->brandcategory_id = $request->brandcategory_id;
     $list->engine = $request->engine;
@@ -303,6 +306,7 @@ class ProductController extends Controller
          $list->torquenm = $request->torquenm;
          $list->torquerpm = $request->torquerpm;
          $list->brand_id = $request->brand_id;
+         $list->distributor_id = $request->distributor_id;
          $list->brandcategory_id = $request->brandcategory_id;
          $list->engine = $request->engine;
          $list->enginemaximumpower = $request->enginemaximumpower;
@@ -434,6 +438,7 @@ class ProductController extends Controller
  
  //add productinfo dropdown start
  public function alldropwown(){
+    $producttype=Producttype::all();
     $engin=Engine::all();
     $bore=Bore::all();
     $stroke=Stroke::all();
@@ -445,9 +450,11 @@ class ProductController extends Controller
     $Bettery=Betteryvoltage::all();
     $Weight=Weight::all();
     $ftcapacity=Ftcapacity::all();
+    $distributor=Distributor::all();
     $brandcategory=Brandcategory::all();
     return response()->json([
 'success'=>true,
+'producttype'=>$producttype,
 'engine'=>$engin,
 'bore'=>$bore,
 'cylinder'=>$cylinder,
@@ -460,6 +467,7 @@ class ProductController extends Controller
 'bettery'=>$Bettery,
 'ftcapacity'=>$ftcapacity,
 'brandcategory'=>$brandcategory,
+'distributor'=>$distributor,
     ],200);
 }
 //add productinfo dropdown end

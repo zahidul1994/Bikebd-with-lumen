@@ -1,12 +1,19 @@
 <template>
 <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Blog List </h3>
+              <h3 class="card-title">Page List </h3>
                 <div class="text-right">  <div class="btn btn-outline-info "> <router-link to="/admin/createblogpage">Create Blog Page</router-link></div></div>
             </div>
           
             <!-- /.card-header -->
             <div class="card-body">
+              <form role="form" class="form-inline">
+<div class="input-group-btn">
+  <input type="text" @keyup="RealSearch" v-model="keyword" class="form-control inline" placeholder="Search">
+<button type="submit" @click.prevent="RealSearch"  class="btn btn-info "><i class="fa fa-search"></i>
+</button>
+</div>
+ </form>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -21,13 +28,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="bloginfo, index in allBlogpagelist.data">
+                <tr v-for="bloginfo, index in allBlogpagelist.data" :key="bloginfo.id">
                         
-                          <td>{{bloginfo.created_at}}</td>
+                          <td style="width:116px">{{bloginfo.created_at}}</td>
                           <td>{{bloginfo.pagename}}</td>
                           <td>{{bloginfo.pagetitle}}</td>
 
-                          <td><img :src="'/images/blogpage/'+ bloginfo.pageimage" alt="no image" width=80 data-lightbox="image-1"></td>
+                          <td><img :src="'/images/blogpage/'+ bloginfo.pageimage" alt="no image" width=50 data-lightbox="image-1"></td>
                            <!-- <td>{{bloginfo.blogcategorylists.categorylist}}</td> -->
 
                             <!-- <td><span v-for="catelist in  bloginfo.pagecategorylist">{{catelist.pagecategorylist}} <br></span></td> -->
@@ -38,7 +45,7 @@
                          <span class="btn btn-sm btn-danger" @click.prevent="inactivestatus(bloginfo.id)"  v-else><i class="fas fa-ban"></i></span>
                          </td>
                           <td>
-                        <router-link target= '_blank' :to="`/en/page/${bloginfo.slug}`">
+                        <router-link target= '_blank' :to="`/page/${bloginfo.slug}`">
                          Details
                         </router-link>
                         
@@ -83,11 +90,11 @@ export default {
     return {
       // Our data object that holds the Laravel paginator data
       allBlogpagelist: {},
-      
+      keyword:''
     }
     },
    created () {
-            document.title = "Blog List ";
+            document.title = "Page List ";
         },
   mounted() {
     //this.$store.dispatch("allBlogpagelist"); //for show Accessories
@@ -107,6 +114,14 @@ export default {
         this.allBlogpagelist = response.data;
       });
     },
+ //for search
+    RealSearch:_.debounce(function () {
+      //alert(5);
+      axios.get("/admin/pageinsearch?s=" + encodeURI(this.keyword)).then(response => {
+        this.allBlogpagelist = response.data;
+      });
+             
+            },1000),
     deletePage(id) {
       if (confirm("Do you really want to delete it?")) {
                    

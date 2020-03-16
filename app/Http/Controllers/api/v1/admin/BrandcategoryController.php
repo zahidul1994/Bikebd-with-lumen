@@ -235,12 +235,15 @@ class BrandcategoryController extends Controller
  }
  
  // account active inactive area end
-
-
-
-
-
-
-
+ public function brandcategorysearch(Request $request){
+    $id =$request->s;
+     if ($id !==null) {
+        return Brandcategory::with('company')->where('admin_id',Auth::guard('admin')->user()->id)->where('brandcategory','LIKE','%%%'.urldecode($id).'%%%')->paginate();
+     }
+    
+else {
+    return $this->index();
+}
+ }
 
 }

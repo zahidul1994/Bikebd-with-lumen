@@ -197,4 +197,14 @@ class GearsController extends Controller
         }
     
     }
+    public function gearsearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Gears::where('admin_id',Auth::guard('admin')->user()->id)->where('gear','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

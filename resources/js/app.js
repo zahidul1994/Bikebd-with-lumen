@@ -13,11 +13,9 @@ Vue.use(Vuex)
 import storeData from "./Store/index"
 
 const store = new Vuex.Store(
-        storeData,
-
-    )
-    //for use jque
-import JQuery from 'jquery'
+    storeData);
+//for use jque
+import JQuery from 'jquery';
 window.$ = JQuery;
 import _ from 'lodash'
 //window._ = require('lodash');

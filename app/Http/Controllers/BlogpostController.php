@@ -86,7 +86,7 @@ class BlogpostController extends Controller
     public function show(Request $request, $id)
     { 
          if($request->ajax()){
-        $blogpost = Blog::with('blogcategorylist','admin','blogcomment')->whereSlug($id)->get()->first();
+        $blogpost = Blog::with('blogcategorylist','admin','blogcomment')->whereSlug(urldecode($id))->get()->first();
         $blogpost->clickview +=1;
         $blogpost->update();
         if($blogpost){

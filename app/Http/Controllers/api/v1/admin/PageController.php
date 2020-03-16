@@ -71,7 +71,7 @@ class PageController extends Controller
             $rand = mt_rand(100000, 999999);
             $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
             $img = Image::make($request->pageimage)->resize(200, 200);
-            $upload_path = public_path()."/images/blogpage/";
+            $upload_path ="images/blogpage/";
             $img->save($upload_path.$name);
     }
     else{
@@ -203,7 +203,7 @@ class PageController extends Controller
      
          $image=Page::find($id);
          if (($request->pageimage != $image->pageimage)) {
-            $imagepath=public_path('/images/blogpage/').$image->pageimage;
+            $imagepath='images/blogpage/'.$image->pageimage;
             if(file_exists( $imagepath) && $image->pageimage !='not-found.jpg' ){
                 unlink($imagepath);
         
@@ -214,7 +214,7 @@ class PageController extends Controller
                  $rand = mt_rand(100000, 999999);
                  $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
                  $img = Image::make($request->pageimage)->resize(200, 200);
-                 $upload_path = public_path()."/images/blogpage/";
+                 $upload_path ="images/blogpage/";
                  $img->save($upload_path.$name);
          }
          else{
@@ -268,20 +268,12 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        $image=Page::where('admin_id', Auth::guard('admin')->user()->id)->find($id);
-        
-        $imagepath=public_path('/images/profileimage/').$image->pageimage;
-       if(file_exists( $imagepath) && $image->pageimage !='not-found.jpg' ){
-           unlink($imagepath);
-
-       }
-       $forcedele=  Page::where('id', $id)->forcedelete();
-       if($forcedele == true) {
+        $pagedelete= Page::destroy($id);
+       if($pagedelete) {
            
             return response()->json([
                 'success' => true,
-                'message'=>'Data Delete Success'
-            ],200);
+              ],200);
         } else {
             
             return response()->json([
@@ -361,4 +353,16 @@ class PageController extends Controller
         //dd($purchase);
        // 
     }
+
+       //for search
+ public function pageinsearch(Request $request){
+    $id =$request->s;
+     if ($id !==null) {
+        return Page::where('admin_id',Auth::guard('admin')->user()->id)->where('language', Auth::guard('admin')->user()->language)->where('pagetitle','LIKE','%%%'.urldecode($id).'%%%')->paginate();
+     }
+    
+else {
+    return $this->index();
+}
+ }
 }

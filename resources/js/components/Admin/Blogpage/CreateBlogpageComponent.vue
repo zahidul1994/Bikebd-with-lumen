@@ -1,7 +1,7 @@
 <template>
       <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create Blog Page</h3>
+                <h3 class="card-title">Create  Page</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -55,7 +55,6 @@
                   <div class="form-group">
                     <label for="parentpagename">Select Parent Page *</label>
                     <select :class="{'is-invalid' :form.errors.has('parentpagename')}" id="parentpagename" v-model="form.parentpagename" class="form-control" >
-                        <option disabled value="">Select One</option>
                       <option v-for="parentpagename in allparentpage" :value="parentpagename.id" >{{parentpagename.parentpage}}</option>
                      
                     </select>
@@ -116,13 +115,13 @@ export default {
   },
   name: "CreateBlogpage",
    created () {
-            document.title = "Create New Blog";
+            document.title = "Create Page";
         },
   data() {
     return {
       form: new Form({
         parentpage: "",
-        parentpagename: "",
+        parentpagename: "1",
         pagetitle: "",
         category:[],
         description: "",

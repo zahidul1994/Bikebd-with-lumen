@@ -201,4 +201,14 @@ class CategoryController extends Controller
         }
     
     }
+    public function categorysearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Category::where('admin_id',Auth::guard('admin')->user()->id)->where('categoryname','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

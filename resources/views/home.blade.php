@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
+ {{-- for server http request --}}
+ <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  
   <meta name="description"/>
    <meta name="keywords"> 
-    <link rel="shortcut icon" href=" {{@asset('FontStyle/titleimage.png')}}" type="image/x-icon">
+   <link rel="shortcut icon" href=" {{@asset('images/Fontimage/bike-logo.jpg')}}" type="image/x-icon">
   <!-- Font Awesome Icons -->
    <link href="{{ @asset('css/app.css') }}" rel="stylesheet">
    <link rel="stylesheet" href="{{@asset('FontStyle/css/all.min.css')}}" />

@@ -27,14 +27,7 @@
       <div class="form-group col-md-3">
       <label for="marketstatus" class="col-form-label">Product Type *</label><br>
                      
-                    <select :class="{'is-invalid' :form.errors.has('producttype')}" id="parentpagename" v-model="form.producttype" class="form-control" >
-                        <option disabled value="">Select One</option>
-                        <option value="old">Old</option>
-                        <option selected value="New">New</option>
-                        <option  value="upcoming">Upcoming</option>
-                        <option  value="premium">Premium</option>
-                                           
-                    </select>
+                    <v-select v-model="form.producttype" :options="allProducttype"  label=producttype  :reduce="producttype => producttype.producttype" required />
                      <has-error :form="form" field="producttype" ></has-error>
                
     </div>
@@ -43,10 +36,15 @@
                     <div class="checkbox">
 
                         <label class="radio-inline">
-                            <input type ="radio"  id="marketstatus" v-model="form.marketstatus"  value="Yes">  Yes</label> 
+                            <input type ="radio"  id="marketstatus" v-model="form.marketstatus "  value="Yes">  Yes</label> 
 
                         
                     <input type ="radio"  id="marketstatus" value="no" v-model="form.marketstatus">  <label class="radio-inline">No</label>
+                        <label class="radio-inline">
+                            <input type ="radio"  id="marketstatus" v-model="form.marketstatus"  value="upcomming">Upco</label> 
+
+                        
+                    <input type ="radio"  id="marketstatus" value="discontinue" v-model="form.marketstatus">  <label class="radio-inline">Disc</label>
                     </div>
     </div>
   
@@ -117,7 +115,7 @@
     </div> 
     <div class="form-group col-md-4">
      
-    <label for="brandcategory_id">Brand Category *</label>
+    <label for="brandcategory_id">Model Series  *</label>
       <select  :class="{'is-invalid' :form.errors.has('brandcategory_id')}" id="brand"  v-model="form.brandcategory_id" class="form-control" >
           <option disabled value="">Select One</option>
         <option v-for="brancate in allBrandCategory" :value="brancate.id" >{{brancate.brandcategory}}</option>
@@ -125,6 +123,12 @@
       </select>
         <has-error :form="form" field="brandcategory_id" ></has-error>
     </div>
+
+       <div class="form-group col-md-4">
+      <label for="distributor">Distributor*</label>
+       <v-select v-model="form.distributor_id" :options="allDistributor"  label=distributor  :reduce="distributor => distributor.id" required />
+     
+</div> 
     <!-- Engine  -->
        <div class="form-group col-md-4">
       <label for="engine">Engine Type *</label>
@@ -285,7 +289,7 @@
   
     </div>
     <div class="form-group col-md-4">
-      <label for="tubeless">Tubeless Tires  *</label>
+      <label for="tubeless">Tyre Type  *</label>
          <input type="text" v-model="form.tubeless"   class="form-control" id="tubeless" required>
            <has-error :form="form" field="tubeless" ></has-error>
     </div>
@@ -522,9 +526,9 @@ export default {
    components: {
     VueEditor
   },
-  name: "CreateBlogpost",
+  name: "UpdateProductt",
    created () {
-            document.title = "Update  Product";
+            document.title = "Update Product";
                     },
   data() {
     
@@ -546,6 +550,7 @@ export default {
         torquenm: "",
         torquerpm: "",
         brand_id: "",
+        distributor_id: "",
         brandcategory_id: "",
         engine: "",
         enginemaximumpower: "",
@@ -609,6 +614,8 @@ export default {
        allWeightlist:[],
        allBetery:[],
        allFtcapacity:[],
+       allProducttype:[],
+       allDistributor:[],
        allEnginelist:[],
         images:[],
       
@@ -659,6 +666,8 @@ export default {
        this.allWeightlist = response.data.weight;
        this.allBetery = response.data.bettery;
        this.allFtcapacity = response.data.ftcapacity;
+       this.allProducttype = response.data.producttype;
+       this.allDistributor = response.data.distributor;
        this.allBrandCategory = response.data.brandcategory;
       //console.log(this.allEnginelist);
     });

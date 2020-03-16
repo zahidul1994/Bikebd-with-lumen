@@ -197,4 +197,14 @@ class CylindersController extends Controller
         }
     
     }
+    public function cylinderesearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Cylinders::where('admin_id',Auth::guard('admin')->user()->id)->where('cylinder','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

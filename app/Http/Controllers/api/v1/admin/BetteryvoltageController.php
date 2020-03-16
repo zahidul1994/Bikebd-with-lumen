@@ -196,4 +196,14 @@ class BetteryvoltageController extends Controller
         }
     
     }
+    public function bvoltagesearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Betteryvoltage::where('admin_id',Auth::guard('admin')->user()->id)->where('bvoltage','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

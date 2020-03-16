@@ -7,6 +7,13 @@
           
             <!-- /.card-header -->
             <div class="card-body">
+                                                       <form role="form" class="form-inline">
+<div class="input-group-btn">
+  <input type="text" @keyup="RealSearch" v-model="keyword" class="form-control inline" placeholder="Search">
+<button type="submit" @click.prevent="RealSearch"  class="btn btn-info "><i class="fa fa-search"></i>
+</button>
+</div>
+ </form>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -60,7 +67,7 @@ export default {
     return {
       // Our data object that holds the Laravel paginator data
       allCylinderlist: {},
-      
+      keyword:'',
     }
     },
    created () {
@@ -83,6 +90,14 @@ export default {
         this.allCylinderlist = response.data;
       });
     },
+       //for search
+    RealSearch:_.debounce(function () {
+      //alert(5);
+      axios.get("/admin/cylinderesearch?s=" + encodeURI(this.keyword)).then(response => {
+        this.allCylinderlist = response.data;
+      });
+             
+            },1000),
     deleteCylinder(id) {
       if (confirm("Do you really want to delete it?")) {
                    

@@ -197,4 +197,16 @@ class FtyreController extends Controller
         }
     
     }
+
+    public function ftyresearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Ftyre::where('admin_id',Auth::guard('admin')->user()->id)->where('ftyre','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
+    
 }

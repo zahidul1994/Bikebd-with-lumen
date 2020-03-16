@@ -293,7 +293,7 @@
                                 <div class="card c-bdr">
                                        <slick ref="slick" :options="slickOptions"  v-if="AllLatestBlog.length">
                      <div class="col-md-12" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
-                                   <router-link  :to="`/blog/${bloginfo.slug}`" class="card c-bdr">
+                                   <router-link  :to="`/blog/${encodeURI(bloginfo.slug)}`" class="card c-bdr">
                                         <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-100" alt="...">
                                        <div class="card-body pb-0">
                                     <h5 class="bike-n text-dark text-left">{{bloginfo.title|shortlength(30,"..")}}</h5>
@@ -722,24 +722,8 @@ export default {
     },
       created () {
             document.title = "Home";
-         
-        },
-  mounted() {
-    
-
-        var token= localStorage.getItem("token");
-      var user= localStorage.getItem("user");
-     
-      if( token && user){
-       
-           this.authenticatedimage=JSON.parse(localStorage.getItem("user")).userimage;
-        this.authenticatedname= JSON.parse(localStorage.getItem("user")).username;
-      
-         
-      };
-       axios.post('/pagelist')
+                   axios.post('/pagelist')
         .then(response => {
-            
             (this.Pagelist = response.data.page);
             
         });
@@ -750,7 +734,7 @@ export default {
             (this.AllLatestBlog = response.data.blogpost);
             
         });
-               axios.get('/productlist')
+     axios.get('/productlist')
     .then(response => {
        this.allNewBike = response.data.newbike;
        this.allOldBike = response.data.oldbike;
@@ -770,7 +754,23 @@ export default {
     //    this.allFtcapacity = response.data.ftcapacity;
       //console.log(this.allEnginelist);
     }); 
-            
+          
+         
+        },
+  mounted() {
+    
+
+        var token= localStorage.getItem("token");
+      var user= localStorage.getItem("user");
+     
+      if( token && user){
+       
+           this.authenticatedimage=JSON.parse(localStorage.getItem("user")).userimage;
+        this.authenticatedname= JSON.parse(localStorage.getItem("user")).username;
+      
+         
+      };
+  
       
   },
   

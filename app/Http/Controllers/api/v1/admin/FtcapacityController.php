@@ -197,4 +197,14 @@ class FtcapacityController extends Controller
         }
     
     }
+    public function ftcapacitysearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Ftcapacity::where('admin_id',Auth::guard('admin')->user()->id)->where('ftcapacity','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

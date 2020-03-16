@@ -185,4 +185,14 @@ class CcController extends Controller
         }
     
     }
+    public function ccsearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Cc::where('admin_id',Auth::guard('admin')->user()->id)->where('cc','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

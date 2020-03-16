@@ -197,4 +197,14 @@ class ChassisController extends Controller
         }
     
     }
+    public function chassissearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Chassis::where('admin_id',Auth::guard('admin')->user()->id)->where('chassis','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

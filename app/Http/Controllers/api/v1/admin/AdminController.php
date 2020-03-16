@@ -382,12 +382,16 @@ if(!empty($request->password)){
         $deleteuser = User::with('admin')->onlyTrashed()->get();
         return view('super_admin.allusers.deleteuser')->with('allusers',$deleteuser);
     }
-    // public function restoreuser($id){
-    //     User::withTrashed()->find($id)->restore();
-    //    Notify::success("User Recover Successfully", "User");
-    //         return Redirect::route('addadmin.index');
-    // }
-
+    public function adminsearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Admin::with('gender','accounttype','status')->where('id', Auth::guard('admin')->user()->id)->where('name','LIKE','%%%'.urldecode($id).'%%%')->paginate();
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
    
 }
 

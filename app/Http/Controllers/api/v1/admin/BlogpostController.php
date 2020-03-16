@@ -4,16 +4,17 @@ namespace App\Http\Controllers\api\v1\admin;
 
 use App\Blog;
 use App\Gender;
+use App\Category;
+use App\Helper\CommonFx;
 use App\Blogcategorylist;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Support\Facades\Redirect;
-use App\Helper\CommonFx;
 
 class BlogpostController extends Controller
 {
@@ -84,7 +85,7 @@ class BlogpostController extends Controller
             $rand = mt_rand(100000, 999999);
             $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
             $img = Image::make($request->postimage)->resize(200, 200);
-            $upload_path = public_path()."/images/blogpost/";
+            $upload_path ="images/blogpost/";
             $img->save($upload_path.$name);
     }
     else{
@@ -94,9 +95,9 @@ class BlogpostController extends Controller
     $list = new Blog();
     $list->language = $request->language;
     $list->keyword = $request->keyword;
+     $list->slug =CommonFx::make_slug($request->slug);
     $list->title =$request->title;
-    $list->slug =CommonFx::make_slug($request->slug);
-    $list->description = $request->description;
+  $list->description = $request->description;
     $list->url = $request->url;
     $list->metadescription = $request->metadescription;
     $list->shortdescription = $request->shortdescription;
@@ -216,7 +217,7 @@ class BlogpostController extends Controller
      
          $image=Blog::find($id);
          if (($request->postimage != $image->postimage)) {
-            $imagepath=public_path('/images/blogpost/').$image->postimage;
+            $imagepath=('images/blogpost/').$image->postimage;
             if(file_exists( $imagepath) && $image->postimage !='not-found.jpg' ){
                 unlink($imagepath);
         
@@ -227,7 +228,7 @@ class BlogpostController extends Controller
                  $rand = mt_rand(100000, 999999);
                  $name = time() . "_" . Auth::id() . "_" . $rand . "." .$ex;
                  $img = Image::make($request->postimage)->resize(200, 200);
-                 $upload_path = public_path()."/images/blogpost/";
+                 $upload_path ="images/blogpost/";
                  $img->save($upload_path.$name);
          }
          else{
@@ -280,20 +281,11 @@ class BlogpostController extends Controller
      */
     public function destroy($id)
     {
-        $image=Blog::where('admin_id', Auth::guard('admin')->user()->id)->find($id);
-        
-        $imagepath=public_path('/images/profileimage/').$image->postimage;
-       if(file_exists( $imagepath) && $image->postimage !='not-found.jpg' ){
-           unlink($imagepath);
-
-       }
-       $forcedele=  Blog::where('id', $id)->forcedelete();
-       if($forcedele == true) {
-           
+        $id= Blog::destroy($id);
+       if($id) {
             return response()->json([
                 'success' => true,
-                'message'=>'Data Delete Success'
-            ],200);
+                ],200);
         } else {
             
             return response()->json([
@@ -353,6 +345,9 @@ class BlogpostController extends Controller
 
 
  }
+  
+
+ // account active inactive area end
  
    //for search
  public function bloginsearch(Request $request){
@@ -366,8 +361,72 @@ else {
 }
  }
 
- 
+ public function blogcategory($id)
+ {
+     $blogcategory = Blogcategorylist::where('blog_id',$id)->get();
+    
+     if($blogcategory){
+     return response()->json([
+         'success'=>true,
+         'blogcate' => $blogcategory],200);
+  }
+  else{
+      return response()->json([
+          'success'=>false,
+          'message'=>'Record Not  Found',
+         ],404);
+ }
+ }
+  public function createblogcategory(Request $request)
+ {
+     //return response($request->all());
+    for ($i = 0; $i < count($request->category); $i++) {
+        $list= new Blogcategorylist();
+        $list->blog_id =$request->id;
+        $list->categorylist = $request['category'][$i];
+        $list->save();
+    }
+    if($list->save()){
+       
+     $blogcat = Blogcategorylist::where('blog_id',$request->id)->get();
+            
+     return response()->json([
+     'success' => true,
+     'blogcate' => $blogcat
+    ],200);
+    
+        }
+ }
 
- // account active inactive area end
+ public function deleteblogcategory($id)
+ {
+    $blogcategory=Blogcategorylist::find($id);
+        
+    
+  if($blogcategory){
+    Blogcategorylist::destroy($id);
+        $blogcat = Blogcategorylist::where('blog_id',$blogcategory->blog_id)->get();
+        
+ return response()->json([
+ 'success' => true,
+ 'blogcate' => $blogcat
+],200);
+
+    }
+    } 
+    
+    public function updatebnenurl(Request $request)
+ {
+    $blog=Blog::find($request->id);
+        $blog->url=$request->url;
+        $blog->save();
+    
+  if($blog->save()){
+return response()->json([
+ 'success' => true,
+ ],200);
+
+    }
+    }
 
 }

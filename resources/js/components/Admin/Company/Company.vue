@@ -7,6 +7,13 @@
           
             <!-- /.card-header -->
             <div class="card-body">
+                                        <form role="form" class="form-inline">
+<div class="input-group-btn">
+  <input type="text" @keyup="RealSearch" v-model="keyword" class="form-control inline" placeholder="Search">
+<button type="submit" @click.prevent="RealSearch"  class="btn btn-info "><i class="fa fa-search"></i>
+</button>
+</div>
+ </form>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -62,7 +69,9 @@ export default {
   name: "ModelYearList",
   data(){
 return{
+  keyword:'',
   allCompanyList:{}
+  
 }
 
   },
@@ -74,16 +83,20 @@ return{
     this.getResults();
     
   },
-  computed: {
-   
-  },
+
   methods: {
  getResults(page = 1) {
       axios.get("/admin/companylist?page=" + page).then(response => {
         this.allCompanyList = response.data;
       });
     },
-
+ //for serach
+        RealSearch:_.debounce(function () {
+      //alert(5);
+      axios.get("/admin/companysearch?s=" + encodeURI(this.keyword)).then(response => {
+        this.allCompanyList = response.data;
+      });   
+            },1000),
     deleteCompany(id) {
       if (confirm("Do you really want to delete it?")) {
                    

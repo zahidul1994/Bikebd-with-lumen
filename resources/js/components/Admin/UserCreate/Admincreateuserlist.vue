@@ -31,7 +31,7 @@
                           <td><img :src="ourImage(admin.image)" alt="not found" width="40" height="50"></td> 
                           <td>{{admin.email}}</td> 
                           <td>{{admin.phone}}</td> 
-                          <td>{{admin.accounttype.accounttype}}</td> 
+                          <!-- <td>{{admin.accounttype.accounttype}}</td>  -->
                          
                           <td> <span style="font-size: 2em; color: blue;" v-if="admin.gender.id==1"><i class="fas fa-male"></i></span>
                           <span style="font-size: 2em; color:tomato;" v-else><i class="fas fa-female"></i></span>

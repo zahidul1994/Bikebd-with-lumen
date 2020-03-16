@@ -20,7 +20,7 @@
                 </div>
                   <div class="form-group">
                     <label for="title">Title *</label>
-                     <input  v-model="form.title " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" v-on:keydown="Title" id="Title" placeholder="Title Name">
+                     <input  v-model="form.title " type="text" class="form-control" :class="{ 'is-invalid': form.errors.has('title') }" v-on:keydown="Title" id="Title" placeholder="Title Name" required>
                         <has-error :form="form" field="title"></has-error>
                   </div>
                     <div class="form-group">
@@ -46,7 +46,7 @@
                   </div>
                   <div class="form-group">
                     <label for="category" >Category *</label>
-                     <v-select multiple v-model="form.category" :options="categoryVal"  id="category" :class="{'is-invalid' :form.errors.has('category')}"/>
+                     <v-select multiple v-model="form.category" :options="categoryVal" label=categoryname :reduce="categoryname=>categoryname.categoryname" id="category" :class="{'is-invalid' :form.errors.has('category')}"/>
                     <div class="col-sm-10">
                    
                       <has-error :form="form" field="category"></has-error>
@@ -138,12 +138,8 @@ var token = localStorage.getItem("token");
 
     axios.get('category')
     .then(response => {
-        response.data.category.forEach(element => {
-          this.categoryVal.push(element.categoryname)
-            //console.log(element.categoryname);
-        });
-                
-    });
+        this.categoryVal=response.data.category;
+             });
 
     },
   methods: {
@@ -151,7 +147,7 @@ var token = localStorage.getItem("token");
       this.form
         .post("admin/createblogpost")
         //console.log('ok');
-        .then(({ response }) => {
+        .then(({ response=true }) => {
           [toastr.success("Blogpost Create Successfull")],
             [this.$router.push("/admin/blogpost")];
         })

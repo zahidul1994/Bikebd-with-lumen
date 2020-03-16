@@ -177,6 +177,7 @@ $router->post('login','AdminController@login');
 $router->group(['middleware'=>'admin'],function() use($router){
     //Admin profile area start
     $router->get('adminprofile','AdminController@index');
+    $router->get('adminsearch','AdminController@adminsearch');   //for search
     $router->get('editadminprofile/{id}','AdminController@edit');
     $router->put('updateadminprofile/{id}','AdminController@update');
     $router->get('shoppaymentcheck','AdminController@shoppaymentcheck');
@@ -184,16 +185,11 @@ $router->group(['middleware'=>'admin'],function() use($router){
     $router->post('shoppaymentinactive/{id}', 'AdminController@shoppaymentinactive');//for active account status
      //Admin profile area end
     $router->get('dashboard','SuperadminController@dashboard');
-    //Location area start 
-    $router->get('divisionlist','LocationController@index');
-    $router->post('createdivision','LocationController@store');
-    $router->get('editdivision/{id}','LocationController@edit');
-    $router->patch('updatedivision/{id}','LocationController@update');
-    $router->delete('deletedivision/{id}','LocationController@destroy');
-    //Location Area end 
+    
     
     //Category area start 
     $router->get('categorylist','CategoryController@index');
+    $router->get('categorysearch','CategoryController@categorysearch');   //for search
     $router->post('createcategory','CategoryController@store');
     $router->get('editcategory/{id}','CategoryController@edit');
     $router->patch('updatecategory/{id}','CategoryController@update');
@@ -201,38 +197,9 @@ $router->group(['middleware'=>'admin'],function() use($router){
     //Category Area end 
     
   
-    //bikemodel area start 
-    $router->get('bikemodellist','BikemodelController@index');
-    $router->post('createbikemodel','BikemodelController@store');
-    $router->get('editbikemodel/{id}','BikemodelController@edit');    
-    $router->patch('updatebikemodel/{id}','BikemodelController@update');
-    $router->delete('deletebikemodel/{id}','BikemodelController@destroy');
-    //Bikemodel Area end 
 
 
-     //Subdivision area start 
-    $router->get('subdivisionlist','SublocationController@index');
-    $router->post('createsubdivision','SublocationController@store');
-    $router->get('editsubdivision/{id}','SublocationController@edit');
-    $router->patch('updatesubdivision/{id}','SublocationController@update');
-    $router->delete('deletesubdivision/{id}','SublocationController@destroy');
-    //Subdivision Area end
 
-    //version controler
-    $router->get('bikeversionlist','BikeversionController@index');
-    $router->post('createbikeversion','BikeversionController@store');
-    $router->get('editbikeversion/{id}','BikeversionController@edit');
-    $router->patch('updatebikeversion/{id}','BikeversionController@update');
-    $router->delete('deletebikeversion/{id}','BikeversionController@destroy');
-    //version controller end
-
-        //bikeBrand controler start
-        $router->get('bikebrandlist','BikebrandController@index');
-        $router->post('createbikebrand','BikebrandController@store');
-        $router->get('editbikebrand/{id}','BikebrandController@edit');
-        $router->patch('updatebikebrand/{id}','BikebrandController@update');
-        $router->delete('deletebikebrand/{id}','BikebrandController@destroy');
-        //Bikebrand controller end
 
     
      $router->post('adminsetstatus/{id}', 'AdminController@setapproval'); //for inactive account status
@@ -268,24 +235,28 @@ $router->group(['middleware'=>'admin'],function() use($router){
     $router->delete('deleteuserbikepostlist/{id}', 'BikeController@destroy');//for bike post  delete
     //user bike post
  
-
-  //blog area start 
-  $router->get('blogpost','BlogpostController@index');
-  $router->get('bloginsearch','BlogpostController@bloginsearch');   //for search
-  $router->post('createblogpost','BlogpostController@store');
-  $router->get('createblogpost','BlogpostController@store');
-  $router->get('blogpostdetails/{id}','BlogpostController@show');
-  $router->get('editblogpost/{id}','BlogpostController@edit');
- $router->put('updateblogpost/{id}','BlogpostController@update');
- $router->post('deletecategorylist/{id}','BlogpostController@deletecategorylist');
- $router->post('blogpostactive/{id}','BlogpostController@blogpostactive');
- $router->post('blogpostinactive/{id}','BlogpostController@blogpostinactive');
-  $router->delete('deleteblogpost/{id}','BlogpostController@destroy');
-  //blog Area end 
+//blog area start 
+$router->get('blogpost','BlogpostController@index');
+$router->get('bloginsearch','BlogpostController@bloginsearch');   //for search
+$router->post('createblogpost','BlogpostController@store');
+$router->post('blogcategory/{id}','BlogpostController@blogcategory'); //for show category in modal
+$router->post('createblogcategory','BlogpostController@createblogcategory'); //for Create createblogcategory in modal
+$router->post('updatebnenurl','BlogpostController@updatebnenurl'); //for Update Url 
+$router->get('createblogpost','BlogpostController@store');
+$router->get('blogpostdetails/{id}','BlogpostController@show');
+$router->get('editblogpost/{id}','BlogpostController@edit');
+$router->put('updateblogpost/{id}','BlogpostController@update');
+$router->post('deletecategorylist/{id}','BlogpostController@deletecategorylist');
+$router->post('blogpostactive/{id}','BlogpostController@blogpostactive');
+$router->post('blogpostinactive/{id}','BlogpostController@blogpostinactive');
+$router->delete('deleteblogcategory/{id}','BlogpostController@deleteblogcategory'); //for delete category
+$router->delete('deleteblogpost/{id}','BlogpostController@destroy');
+//blog Area end 
 
 
   //blog page start 
   $router->get('blogpage','PageController@index');
+  $router->get('pageinsearch','PageController@pageinsearch');   //for search
 $router->post('createblogpage','PageController@store');
   $router->get('createblogpage','PageController@store');
   $router->get('editblogpage/{id}','PageController@edit');
@@ -321,6 +292,7 @@ $router->post('createblogpage','PageController@store');
 
  //Parent Page area start 
  $router->get('parentpagelist','ParentpageController@index');
+ $router->get('Parentpagesearch','ParentpageController@Parentpagesearch');   //for search
  $router->post('createparentpage','ParentpageController@store');
  $router->get('editparentpage/{id}','ParentpageController@edit');    
  $router->patch('updateparentpage/{id}','ParentpageController@update');
@@ -329,6 +301,7 @@ $router->post('createblogpage','PageController@store');
  
  //Company area start 
  $router->get('companylist','CompanyController@index');
+ $router->get('companysearch','CompanyController@companysearch');   //for search
  $router->get('companybrandname','CompanyController@companybrandname'); //for get all brand name only
  $router->get('createcompany','CompanyController@store');
  $router->post('createcompany','CompanyController@store');
@@ -338,10 +311,24 @@ $router->post('createblogpage','PageController@store');
  $router->post('companydactive/{id}', 'CompanyController@companydactive'); //for inactive company
  $router->post('companyactive/{id}', 'CompanyController@companyactive');//for user create active account status
  //Company  Area end 
+ 
+ //Company area start 
+ $router->get('distributorlist','DistributorController@index');
+ $router->get('distributorsearch','DistributorController@distributorsearch');   //for search
+ $router->get('distributorbrandname','DistributorController@distributorbrandname'); //for get all brand name only
+ $router->get('createdistributor','DistributorController@store');
+ $router->post('createdistributor','DistributorController@store');
+ $router->get('editdistributor/{id}','DistributorController@edit');    
+ $router->patch('updatedistributor/{id}','DistributorController@update');
+ $router->delete('deletedistributor/{id}','DistributorController@destroy');
+ $router->post('distributordactive/{id}', 'DistributorController@distributordactive'); //for inactive company
+ $router->post('distributoractive/{id}', 'DistributorController@distributoractive');//for user create active account status
+ //Company  Area end 
 
  //Brand area start 
  $router->get('brandcategorylist','BrandcategoryController@index');
-$router->get('createbrandcategory','BrandcategoryController@store');
+ $router->get('brandcategorysearch','BrandcategoryController@brandcategorysearch');   //for search
+ $router->get('createbrandcategory','BrandcategoryController@store');
  $router->post('createbrandcategory','BrandcategoryController@store');
  $router->post('brandcategory/{id}','BrandcategoryController@getbrandcategory');
  $router->get('editbrandcategory/{id}','BrandcategoryController@edit');    
@@ -354,10 +341,18 @@ $router->get('createbrandcategory','BrandcategoryController@store');
  
  
  // product all start
- 
+ //Producttype area start 
+ $router->get('producttypelist','ProducttypeController@index');
+ $router->get('producttypesearch','ProducttypeController@producttypesearch');   //for search
+ $router->post('createproducttype','ProducttypeController@store');
+ $router->get('editproducttype/{id}','ProducttypeController@edit');
+ $router->patch('updateproducttype/{id}','ProducttypeController@update');
+ $router->delete('deleteproducttype/{id}','ProducttypeController@destroy');
+ //Producttype  Area end 
  
     //Engine area start 
     $router->get('enginelist','EngineController@index');
+    $router->get('enginesearch','EngineController@enginesearch');   //for search
     $router->post('createengine','EngineController@store');
     $router->get('editeengine/{id}','EngineController@edit');
     $router->patch('updateengine/{id}','EngineController@update');
@@ -366,6 +361,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
  
      //bore area start 
     $router->get('borelist','BoreController@index');
+    $router->get('boresearch','BoreController@boresearch');   //for search
     $router->post('createbore','BoreController@store');
     $router->get('editbore/{id}','BoreController@edit');
     $router->patch('updatebore/{id}','BoreController@update');
@@ -374,6 +370,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //stroke area start 
     $router->get('strokelist','StrokeController@index');
+    $router->get('strokesearch','StrokeController@strokesearch');   //for search
     $router->post('createstroke','StrokeController@store');
     $router->get('editstroke/{id}','StrokeController@edit');
     $router->patch('updatestroke/{id}','StrokeController@update');
@@ -382,6 +379,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //cylinder area start 
     $router->get('cylinderelist','CylindersController@index');
+    $router->get('cylinderesearch','CylindersController@cylinderesearch');   //for search
     $router->post('createcylinder','CylindersController@store');
     $router->get('editcylinder/{id}','CylindersController@edit');
     $router->patch('updatecylinder/{id}','CylindersController@update');
@@ -390,6 +388,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //gear area start 
     $router->get('gearlist','GearsController@index');
+    $router->get('gearsearch','GearsController@gearsearch');   //for search
     $router->post('creategear','GearsController@store');
     $router->get('editgear/{id}','GearsController@edit');
     $router->patch('updategear/{id}','GearsController@update');
@@ -398,6 +397,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //clutch area start 
     $router->get('clutchlist','ClutchController@index');
+    $router->get('clutchsearch','ClutchController@clutchsearch');   //for search
     $router->post('createclutch','ClutchController@store');
     $router->get('editclutch/{id}','ClutchController@edit');
     $router->patch('updateclutch/{id}','ClutchController@update');
@@ -406,6 +406,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //chassis area start 
     $router->get('chassislist','ChassisController@index');
+    $router->get('chassissearch','ChassisController@chassissearch');   //for search
     $router->post('createchassis','ChassisController@store');
     $router->get('editchassis/{id}','ChassisController@edit');
     $router->patch('updatechassis/{id}','ChassisController@update');
@@ -415,6 +416,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
  
   //CC area start 
   $router->get('cclist','CcController@index');
+  $router->get('ccsearch','CcController@ccsearch');   //for search
   $router->post('createcclist','CcController@store');
   $router->get('editcclist/{id}','CcController@edit');
   $router->patch('updatecclist/{id}','CcController@update');
@@ -423,6 +425,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
   
    //ftyre area start 
     $router->get('ftyrelist','FtyreController@index');
+    $router->get('ftyresearch','FtyreController@ftyresearch');   //for search
     $router->post('createftyre','FtyreController@store');
     $router->get('editftyre/{id}','FtyreController@edit');
     $router->patch('updateftyre/{id}','FtyreController@update');
@@ -431,6 +434,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //ftyre area start 
     $router->get('rtyrelist','RtyreController@index');
+    $router->get('rtyresearch','RtyreController@rtyresearch');   //for search
     $router->post('creatertyre','RtyreController@store');
     $router->get('editrtyre/{id}','RtyreController@edit');
     $router->patch('updatertyre/{id}','RtyreController@update');
@@ -439,6 +443,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //Weight area start 
     $router->get('weightlist','WeightController@index');
+    $router->get('weightsearch','WeightController@weightsearch');   //for search
     $router->post('createweight','WeightController@store');
     $router->get('editweight/{id}','WeightController@edit');
     $router->patch('updateweight/{id}','WeightController@update');
@@ -447,6 +452,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //Ftcapacity area start 
     $router->get('ftcapacitylist','FtcapacityController@index');
+    $router->get('ftcapacitysearch','FtcapacityController@ftcapacitysearch');   //for search
     $router->post('createftcapacity','FtcapacityController@store');
     $router->get('editftcapacity/{id}','FtcapacityController@edit');
     $router->patch('updateftcapacity/{id}','FtcapacityController@update');
@@ -455,6 +461,7 @@ $router->get('createbrandcategory','BrandcategoryController@store');
     
     //Bvoltage area start 
     $router->get('bvoltagelist','BetteryvoltageController@index');
+    $router->get('bvoltagesearch','BetteryvoltageController@bvoltagesearch');   //for search
     $router->post('createbvoltage','BetteryvoltageController@store');
     $router->get('editbvoltage/{id}','BetteryvoltageController@edit');
     $router->patch('updatebvoltage/{id}','BetteryvoltageController@update');

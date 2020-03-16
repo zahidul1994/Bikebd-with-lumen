@@ -197,4 +197,14 @@ class ClutchController extends Controller
         }
     
     }
+    public function clutchsearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Clutch::where('admin_id',Auth::guard('admin')->user()->id)->where('clutch','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

@@ -25,16 +25,8 @@
                  <v-select  v-model="form.cc" :options="allCC" label=cc :reduce="cc=>cc.id" required />     
     </div> 
       <div class="form-group col-md-3">
-      <label for="marketstatus" class="col-form-label">Product Type *</label><br>
-                     
-                    <select :class="{'is-invalid' :form.errors.has('producttype')}" id="parentpagename" v-model="form.producttype" class="form-control" >
-                        <option disabled value="">Select One</option>
-                        <option value="old">Old</option>
-                        <option selected value="New">New</option>
-                        <option  value="upcoming">Upcoming</option>
-                        <option  value="premium">Premium</option>
-                                           
-                    </select>
+      <label for="marketstatus" class="col-form-label">Product Type *</label><br>              
+                   <v-select  v-model="form.producttype" :options="allProducttypelist" label=producttype :reduce="producttype=>producttype.producttype" required />
                      <has-error :form="form" field="producttype" ></has-error>
                
     </div>
@@ -43,10 +35,15 @@
                     <div class="checkbox">
 
                         <label class="radio-inline">
-                            <input type ="radio"  id="marketstatus" v-model="form.marketstatus"  value="Yes">  Yes</label> 
+                            <input type ="radio"  id="marketstatus" v-model="form.marketstatus"  value="Yes"> Yes</label> 
 
                         
                     <input type ="radio"  id="marketstatus" value="No" v-model="form.marketstatus">  <label class="radio-inline">No</label>
+                     <label class="radio-inline">
+                            <input type ="radio"  id="marketstatus" v-model="form.marketstatus"  value="upcomming">Upco</label> 
+
+                        
+                    <input type ="radio"  id="marketstatus" value="discontinue" v-model="form.marketstatus">  <label class="radio-inline">Disc</label>
                     </div>
     </div>
   
@@ -117,7 +114,7 @@
     </div> 
     <div class="form-group col-md-4">
      
-    <label for="brandcategory_id">Brand Category *</label>
+    <label for="brandcategory_id">Model Series *</label>
       <select  :class="{'is-invalid' :form.errors.has('brandcategory_id')}" id="brand"  v-model="form.brandcategory_id" class="form-control" >
           <option disabled value="">Select One</option>
         <option v-for="brancate in allBrandCategory" :value="brancate.id" >{{brancate.brandcategory}}</option>
@@ -125,8 +122,13 @@
       </select>
         <has-error :form="form" field="brandcategory_id" ></has-error>
     </div>
+ 
     <!-- Engine  -->
        <div class="form-group col-md-4">
+      <label for="distributor">Distributor*</label>
+      <v-select v-model="form.distributor_id" :options="allDistributor"  label=distributor  :reduce="distributor => distributor.id" required />
+</div> 
+ <div class="form-group col-md-4">
       <label for="engine">Engine Type *</label>
       <v-select v-model="form.engine" :options="allEnginelist"  label=enginetype  :reduce="enginetype => enginetype.enginetype" required />
 </div> 
@@ -276,16 +278,16 @@
 <!-- Wheels & Tires   start -->
 
  <div class="form-group col-md-4">
-      <label for="ftyre">Front Tire Size  *</label>
+      <label for="ftyre">Front Tyre Size  *</label>
    <v-select  v-model="form.ftyre" :options="allFronttyre" label=ftyre :reduce="ftyre=>ftyre.ftyre" required />
     </div> 
     <div class="form-group col-md-4">
-      <label for="rtyre">Rear Tire Size   * </label>
+      <label for="rtyre">Rear Tyre Size   * </label>
       <v-select  v-model="form.rtyre" :options="allReartyre" label=rtyre :reduce="rtyre=>rtyre.rtyre" required />
   
     </div>
     <div class="form-group col-md-4">
-      <label for="tubeless">Tubeless Tires  *</label>
+      <label for="tubeless">Tyre Type *</label>
          <input type="text" v-model="form.tubeless"   class="form-control" id="tubeless" required>
            <has-error :form="form" field="tubeless" ></has-error>
     </div>
@@ -558,6 +560,7 @@ export default {
         torquenm: "",
         torquerpm: "",
         company_id: "",
+        distributor_id: "",
         brandcategory_id: "",
         engine: "",
         enginemaximumpower: "",
@@ -609,6 +612,7 @@ export default {
       allBrandname:null,
       Brand:[],
       allBrandCategory:[],
+       allProducttypelist:[],
        allEnginelist:[],
        allBore:[],
        allStoke:[],
@@ -620,6 +624,7 @@ export default {
        allWeightlist:[],
        allBetery:[],
        allFtcapacity:[],
+       allDistributor:[],
        allEnginelist:[],
         images:[],
       
@@ -646,6 +651,7 @@ axios.get('admin/companybrandname')
     });
     axios.post('admin/alldropdown')
     .then(response => {
+       this.allProducttypelist = response.data.producttype;
        this.allEnginelist = response.data.engine;
        this.allBore = response.data.bore;
        this.allStoke = response.data.stroke;
@@ -656,6 +662,7 @@ axios.get('admin/companybrandname')
        this.allReartyre = response.data.reartyre;
        this.allWeightlist = response.data.weight;
        this.allBetery = response.data.bettery;
+       this.allDistributor = response.data.distributor;
        this.allFtcapacity = response.data.ftcapacity;
       //console.log(this.allEnginelist);
     });

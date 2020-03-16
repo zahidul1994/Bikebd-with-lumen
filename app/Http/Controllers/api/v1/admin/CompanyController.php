@@ -354,6 +354,25 @@ class CompanyController extends Controller
     $brandname=Company::select('id','brand')->get();
     return response($brandname);
 }
-
+public function cylinderesearch(Request $request){
+    $id =$request->s;
+     if ($id !==null) {
+        return Cylinders::where('admin_id',Auth::guard('admin')->user()->id)->where('cylinder','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+     }
+    
+else {
+    return $this->index();
+}
+ }
+ public function companysearch(Request $request){
+    $id =$request->s;
+     if ($id !==null) {
+        return Company::where('admin_id',Auth::guard('admin')->user()->id)->where('fullname','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+     }
+    
+else {
+    return $this->index();
+}
+ }
 
 }

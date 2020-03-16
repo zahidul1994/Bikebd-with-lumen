@@ -197,4 +197,14 @@ class StrokeController extends Controller
         }
     
     }
+    public function strokesearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Stroke::where('admin_id',Auth::guard('admin')->user()->id)->where('stroke','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

@@ -196,4 +196,14 @@ class RtyreController extends Controller
         }
     
     }
+    public function rtyresearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Rtyre::where('admin_id',Auth::guard('admin')->user()->id)->where('rtyre','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

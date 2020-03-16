@@ -195,4 +195,14 @@ class WeightController extends Controller
         }
     
     }
+    public function weightsearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Weight::where('admin_id',Auth::guard('admin')->user()->id)->where('weight','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

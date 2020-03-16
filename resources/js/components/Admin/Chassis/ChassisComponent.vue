@@ -7,6 +7,13 @@
           
             <!-- /.card-header -->
             <div class="card-body">
+               <form role="form" class="form-inline">
+<div class="input-group-btn">
+  <input type="text" @keyup="RealSearch" v-model="keyword" class="form-control inline" placeholder="Search">
+<button type="submit" @click.prevent="RealSearch"  class="btn btn-info "><i class="fa fa-search"></i>
+</button>
+</div>
+ </form>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -60,7 +67,7 @@ export default {
     return {
       // Our data object that holds the Laravel paginator data
       allChassislist: {},
-      
+      keyword:'',
     }
     },
    created () {
@@ -83,6 +90,13 @@ export default {
         this.allChassislist = response.data;
       });
     },
+    //for serach
+        RealSearch:_.debounce(function () {
+      //alert(5);
+      axios.get("/admin/chassissearch?s=" + encodeURI(this.keyword)).then(response => {
+        this.allChassislist = response.data;
+      });   
+            },1000),
     deleteChsssis(id) {
       if (confirm("Do you really want to delete it?")) {
                    

@@ -112,7 +112,7 @@ export default {
   },
   name: "CreateBlogpost",
    created () {
-            document.title = "Update  Blog";
+            document.title = "Update  Page";
         },
   data() {
     return {
@@ -120,7 +120,7 @@ export default {
         parentpage_id: "",
         pagename: "",
         pagetitle: "",
-      description: "",
+        description: "",
         pageimage: "",
         language: "",
         slug: "",

@@ -43,56 +43,22 @@ import AdminDashboard from './components/Admin/Admindashboard.vue'
 //Profile  area start
 import Adminprofile from './components/Admin/Profile/Adminprofile.vue'
 import EditAdminprofile from './components/Admin/Profile/Editadminprofile.vue'
-import Shoppayment from './components/Admin/Profile/Shoppaymentview.vue'
 
 //Profile area end
-//division  area start
-import DivisionList from './components/Admin/Division/DivisionComponent.vue'
-import CreateDivisionList from './components/Admin/Division/CreateDivisionComponent.vue'
-import EditDivisionList from './components/Admin/Division/EditDivisionComponent.vue'
-//division area end
 
-//division  area start
+
+//CategoryList  area start
 import CategoryList from './components/Admin/Category/CategoryComponent.vue'
 import CreateCategoryList from './components/Admin/Category/CreateCategoryComponent.vue'
 import EditCategoryList from './components/Admin/Category/EditCategoryComponent.vue'
-//division area end
-
-//Model  area start
-import BikeModelList from './components/Admin/Bikemodel/BikeModelComponent.vue'
-import CreateBikeModelList from './components/Admin/Bikemodel/CreateBikeModelComponent.vue'
-import EditBikeModelList from './components/Admin/Bikemodel/EditBikeModelComponent.vue'
-//Model area end
+//CategoryList area end
 
 
 
-//subdivision  area start
-import SubDivisionList from './components/Admin/Subdivision/SubdivisionComponent.vue'
-import CreateSubDivisionList from './components/Admin/Subdivision/CreateSubdivisionComponent.vue'
-import EditSubDivisionList from './components/Admin/Subdivision/EditSubdivisionComponent.vue'
-//subdivision area end
 
-//Bikeversion area start
-import BikevesionList from './components/Admin/Bikeversion/BikeversionlistComponent.vue'
-import CreateBikeversionList from './components/Admin/Bikeversion/CreateBikeversionComponent.vue'
-import EditBikeversionList from './components/Admin/Bikeversion/EditBikeversionComponent.vue'
-//Bikeversion area end
 
-//Accessoriestype  area start
-import AccessoritypeList from './components/Admin/Accessoriestype/AccessoriComponent.vue'
-import CreateAccessoritypeList from './components/Admin/Accessoriestype/CreateAccessoriComponent.vue'
-import EditAccessoritypeList from './components/Admin/Accessoriestype/EditAccessoriComponent.vue'
-//Accessoriestype area end
-//Accessories area start
-import AccessoriesList from './components/Admin/Accessories/Accessorieslist.vue'
-import AccessoriesdetailsList from './components/Admin/Accessories/Accessoriesdetails.vue'
-//Accessories area end
 
-//Bikebrand area start
-import BikebrandList from './components/Admin/Bikebrand/BikebrandlistComponent.vue'
-import CreateBikebrandList from './components/Admin/Bikebrand/CreateBikebrandComponent.vue'
-import EditBikebrandList from './components/Admin/Bikebrand/EditBikebrandComponent.vue'
-//Bikebrand area end
+
 
 //Useraccount area start
 import UserAccountList from './components/Admin/UserAccount/UserAccountList.vue'
@@ -101,10 +67,7 @@ import UserAccountList from './components/Admin/UserAccount/UserAccountList.vue'
 import Useradminmanager from './components/Admin/Users/Manageradminview.vue'
 //Admin user manager
 
-//bike post activeinactive
-import bikepostactiveinacive from './components/Admin/Bike/UserBikepostlist'
-import bikepostdetails from './components/Admin/Bike/UserBikeposdetails'
-//bike post activeinactive
+
 
 //Blog area start
 import BlogPost from './components/Admin/Blog/BlogComponent.vue'
@@ -120,7 +83,7 @@ import EditBlogPage from './components/Admin/Blogpage/EditBlogpageComponent.vue'
 
 //Patentpage area start
 import Parentpagelist from './components/Admin/Parentpage/Parentpagelist.vue'
-import Createparentpage from './components/Admin/Parentpage/Createparentpage.vue'
+import Createparentpage from './components/Admin/Parentpage/CreateParentpage.vue'
 import EditParentpageList from './components/Admin/Parentpage/EditParentpage.vue'
 //Patentpage area end
 
@@ -128,6 +91,12 @@ import EditParentpageList from './components/Admin/Parentpage/EditParentpage.vue
 import Companylist from './components/Admin/Company/Company.vue'
 import CreateCompany from './components/Admin/Company/CreateCompany.vue'
 import EditCompany from './components/Admin/Company/EditCompany.vue'
+//Company area end
+
+//Company area start
+import Distributorlist from './components/Admin/Distributor/Distributor.vue'
+import CreateDistributor from './components/Admin/Distributor/CreateDistributor.vue'
+import EditDistributor from './components/Admin/Distributor/EditDistributor.vue'
 //Company area end
 
 //Brandcategory area start
@@ -142,6 +111,13 @@ import EngineList from './components/Admin/Engine/EngineComponent.vue'
 import CreateEngineList from './components/Admin/Engine/CreateEngineComponent.vue'
 import EditeEngienList from './components/Admin/Engine/EditeEngineComponent.vue'
 //Engine area end
+
+
+//Producttype  area start
+import ProducttypeList from './components/Admin/Producttype/ProducttypeComponent.vue'
+import CreateProducttypeList from './components/Admin/Producttype/CreateProducttypeComponent.vue'
+import EditProducttypeList from './components/Admin/Producttype/EditProducttypeComponent.vue'
+//Producttype area end
 
 //Bore  area start
 import BoreList from './components/Admin/Bore/BoreComponent.vue'
@@ -238,9 +214,6 @@ import Admincreateuserlist from './components/Admin/UserCreate/Admincreateuserli
 
 //User area start
 //en area start
-import BikePost from './components/Home/En/BikePost.vue'
-import NewBikePostDetails from './components/Home/En/NewBikePostDetails.vue'
-import UsedBikePostDetails from './components/Home/En/UsedBikePostDetails.vue'
 import Index from './components/Home/En/Index.vue'
 import Blogpostdetails from './components/Home/En/Blogpostdetails.vue'
 import Pagedetails from './components/Home/En/Blogpagedetails.vue'
@@ -252,9 +225,7 @@ import UserDashboard from './components/Home/En/Userdashboard.vue'
 
 
 //Bn area start
-// import BikePost from './components/Home/Bn/BikePost.vue'
-// import NewBikePostDetails from './components/Home/Bn/NewBikePostDetails.vue'
-// import UsedBikePostDetails from './components/Home/Bn/UsedBikePostDetails.vue'
+
 import BNIndex from './components/Home/Bn/Index.vue'
 import BNBlogpostdetails from './components/Home/Bn/Blogpostdetails.vue'
 import BNPagedetails from './components/Home/Bn/Blogpagedetails.vue'
@@ -267,35 +238,18 @@ import BNUserDashboard from './components/Home/Bn/Userdashboard.vue'
 
 //Profile  area start
 import Myprofile from './components/Home/En/Profile/Myprofile.vue'
-import Shop from './components/Home/En/ShopView.vue'
 import EditMyprofile from './components/Home/En/Profile/Editmyprofile.vue'
 import EditMyEmail from './components/Home/En/Profile/ChangeEmail.vue'
 import EditMyPassword from './components/Home/En/Profile/ChangePassword.vue'
 import PaidMyprofileView from './components/Home/En/Profile/PaidView.vue'
-import Shopapplyview from './components/Home/En/Profile/Shopapply.vue'
+
 //Profile area end
 
-//add post bike start
-import BikepostList from './components/Home/En/Bike/Bikepostlist.vue'
-import EditNewBike from './components/Home/En/Bike/EditBikeComponent.vue'
-import Bikepoststartview from './components/Home/En/Bike/Bikepoststartview.vue'
-import CreateNewBike from './components/Home/En/Bike/Bike.vue'
-import UsedBike from './components/Home/En/Bike/UsedBike.vue'
-import EditUsedBike from './components/Home/En/Bike/EditUsedBike.vue'
-import Newbikedetails from './components/Home/En/Bike/Newbikedetails.vue'
-import Usedbikedetails from './components/Home/En/Bike/Usedbikedetails.vue'
-//add post bike end
 
 
 
-//Bodytype area start
-import BodytypeList from './components/Admin/Bodytype/BodytypelistComponent.vue'
-import CreateBodytypeList from './components/Admin/Bodytype/CreateBodytypeComponent.vue'
-import EditBodytypeList from './components/Admin/Bodytype/EditBodytypeComponent.vue'
-//Bodytype area end
 
-//import AddAccount from './components/SuperAdmin/AdminAccount/CreateAccount.vue'
-//import EditAccount from './components/SuperAdmin/AdminAccount/EditAccount.vue'
+
 
 //User area end
 export const routes = [
@@ -355,20 +309,10 @@ export const routes = [
             //profile area start
             { path: 'adminprofile', component: Adminprofile },
             { path: 'editadminprofile/:id', component: EditAdminprofile },
-            { path: 'shoppaymentcheck', component: Shoppayment },
-            //profile  area end
+                   //profile  area end
 
-            //division  area start
-            { path: 'divisionlist', component: DivisionList },
-            { path: 'createdivision', component: CreateDivisionList },
-            { path: 'editdivision/:id', component: EditDivisionList },
-            //division  area end
+           
 
-            //subdivision  area start
-            { path: 'subdivisionlist', component: SubDivisionList },
-            { path: 'createsubdivision', component: CreateSubDivisionList },
-            { path: 'editsubdivision/:id', component: EditSubDivisionList },
-            //subdivision  area end
 
             //Category  area start
             { path: 'categorylist', component: CategoryList },
@@ -377,22 +321,10 @@ export const routes = [
             //category  area end
 
 
-            //version
-            { path: 'bikeversionlist', component: BikevesionList },
-            { path: 'createbikeversion', component: CreateBikeversionList },
-            { path: 'editbikeversion/:id', component: EditBikeversionList },
-            //version 
+           
 
-            //Brand start
-            { path: 'bikebrandlist', component: BikebrandList },
-            { path: 'createbikebrand', component: CreateBikebrandList },
-            { path: 'editbikebrand/:id', component: EditBikebrandList },
-            //Brand end
-            //Bodytype start
-            { path: 'bodytypelist', component: BodytypeList },
-            { path: 'createbodytype', component: CreateBodytypeList },
-            { path: 'editbodytype/:id', component: EditBodytypeList },
-            //Bodytype end
+         
+           
 
             //Useraccount start
             { path: 'alluseraccountlist', component: UserAccountList },
@@ -400,10 +332,7 @@ export const routes = [
             //admin user manager
             { path: 'adminmanager', component: Useradminmanager },
             //admin user manager
-            //userbikepost active inactive
-            { path: 'userbikepostlist', component: bikepostactiveinacive },
-            { path: 'bikepostdetails/:id', component: bikepostdetails },
-            //userbikepost active inactive
+           
 
 
             //Blog start
@@ -428,6 +357,12 @@ export const routes = [
             { path: 'createcompany', component: CreateCompany },
             { path: 'editcompany/:id', component: EditCompany },
             //Company page  area end
+            
+            //Distributor page  area start
+            { path: 'distributorlist', component: Distributorlist },
+            { path: 'createdistributor', component: CreateDistributor },
+            { path: 'editdistributor/:id', component: EditDistributor },
+            //Distributor page  area end
 
             //BrandCategory  area start
             { path: 'brandcategorylist', component: BrandCategorylist },
@@ -452,7 +387,13 @@ export const routes = [
             { path: 'createstroke', component: CreateStrokeList },
             { path: 'editstroke/:id', component: EditeStrokeList },
             //Stroke  area end
-
+  
+            //Producttype  area start
+            { path: 'producttypelist', component: ProducttypeList },
+            { path: 'createproducttype', component: CreateProducttypeList },
+            { path: 'editproducttype/:id', component: EditProducttypeList },
+            //Producttype  area end
+			
             //cylinder  area start
             { path: 'cylinderelist', component: CylinderList },
             { path: 'createcylinder', component: CreateCylinderList },
@@ -483,31 +424,31 @@ export const routes = [
             { path: 'createcclist', component: CreateCcList },
             { path: 'editcclist/:id', component: EditCcList },
             //CC  area end
-			
-			 //Ftyre  area start
+
+            //Ftyre  area start
             { path: 'ftyrelist', component: FtyreList },
             { path: 'createftyre', component: CreateFtyreList },
             { path: 'editftyre/:id', component: EditeFtyreList },
             //Ftyre  area end
-            
+
             //Rtyre  area start
             { path: 'rtyrelist', component: RtyreList },
             { path: 'creatertyre', component: CreateRtyreList },
             { path: 'editrtyre/:id', component: EditeRtyreList },
             //Rtyre  area end
-            
+
             //Waight  area start
             { path: 'weightlist', component: WeightList },
             { path: 'createweight', component: CreateWeightList },
             { path: 'editweight/:id', component: EditeWeightList },
             //Waight  area end
 
-              //Ftcapacity  area start
+            //Ftcapacity  area start
             { path: 'ftcapacitylist', component: FtcapacityList },
             { path: 'createftcapacity', component: CreateFtcapacityList },
             { path: 'editftcapacity/:id', component: EditeFtcapacityList },
             //Ftcapacity  area end 
-            
+
             //Voltage  area start
             { path: 'bvoltagelist', component: BvoltageList },
             { path: 'createbvoltage', component: CreateBvoltageList },
@@ -549,27 +490,14 @@ export const routes = [
             { path: 'page/:id', component: Pagedetails },
             { path: 'product/:id', component: Productdetails },
             { path: 'myprofile', component: Myprofile },
-            { path: 'shop/:id', component: Shop },
             { path: 'editmyprofile/:id', component: EditMyprofile },
             { path: 'changemyemail/:id', component: EditMyEmail },
             { path: 'changemypassword/:id', component: EditMyPassword },
             { path: 'paidmyaccount', component: PaidMyprofileView },
-            { path: 'applyform', component: Shopapplyview },
+           
 
             //profile area end
-            //bikepost area start
-            { path: 'bikepost', name: 'BikePost', component: BikePost },
-            { path: 'postnewbikedetails/:id', component: NewBikePostDetails },
-            { path: 'postusedbikedetails/:id', component: UsedBikePostDetails },
-            { path: 'bikepostlist', name: 'BikePostList', component: BikepostList },
-            { path: 'newdetails/:id', name: 'BikePostList1', component: Newbikedetails }, //for bike details
-            { path: 'usedbikedetails/:id', name: 'UsedBikePostList', component: Usedbikedetails }, //for bike details
-            { path: 'editbike/:id', component: EditNewBike },
-            { path: 'biketypepost', component: Bikepoststartview },
-            { path: 'newbikepost', component: CreateNewBike },
-            { path: 'usedbike', component: UsedBike },
-            { path: 'editusedbike/:id', component: EditUsedBike },
-            //Bikepost  area end
+          
             //blog page  area start
 
             //blog page  area end
@@ -587,14 +515,7 @@ export const routes = [
         children: [
             { path: 'blog/:id', component: BNBlogpostdetails },
             { path: 'page/:id', component: BNPagedetails },
-            // { path: 'myprofile', component: Myprofile },
-            // { path: 'shop/:id', component: Shop },
-            // { path: 'editmyprofile/:id', component: EditMyprofile },
-            // { path: 'changemyemail/:id', component: EditMyEmail },
-            // { path: 'changemypassword/:id', component: EditMyPassword },
-            // { path: 'paidmyaccount', component: PaidMyprofileView },
-            // { path: 'applyform', component: Shopapplyview },
-
+          
 
         ],
 

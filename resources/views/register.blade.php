@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{-- <meta name="csrf-token" content="{{csrf_token()}}"> --}}
     <title>@yield('title')</title>
+     {{-- for server http request --}}
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  
     <link rel="shortcut icon" href=" {{@asset('storage/favicon.png')}}" type="image/x-icon">
   <!-- Font Awesome Icons -->
    {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}

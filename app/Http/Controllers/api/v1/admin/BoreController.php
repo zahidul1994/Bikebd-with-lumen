@@ -197,4 +197,15 @@ class BoreController extends Controller
         }
     
     }
+
+    public function boresearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Bore::where('admin_id',Auth::guard('admin')->user()->id)->where('bore','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
 }

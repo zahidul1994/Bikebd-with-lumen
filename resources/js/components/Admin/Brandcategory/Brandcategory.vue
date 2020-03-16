@@ -7,6 +7,13 @@
           
             <!-- /.card-header -->
             <div class="card-body">
+                                <form role="form" class="form-inline">
+<div class="input-group-btn">
+  <input type="text" @keyup="RealSearch" v-model="keyword" class="form-control inline" placeholder="Search">
+<button type="submit" @click.prevent="RealSearch"  class="btn btn-info "><i class="fa fa-search"></i>
+</button>
+</div>
+ </form>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -70,16 +77,21 @@ return{
     this.getResults();
     
   },
-  computed: {
-   
-  },
+ 
   methods: {
  getResults(page = 1) {
       axios.get("/admin/brandcategorylist?page=" + page).then(response => {
         this.allBrandCategory = response.data;
       });
     },
-
+      //for search
+    RealSearch:_.debounce(function () {
+      //alert(5);
+      axios.get("/admin/brandcategorysearch?s=" + encodeURI(this.keyword)).then(response => {
+        this.allBrandCategory = response.data;
+      });
+             
+            },1000),
     deleteBrandCategory(id) {
       if (confirm("Do you really want to delete it?")) {
                    

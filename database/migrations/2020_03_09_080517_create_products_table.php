@@ -20,14 +20,16 @@ class CreateProductsTable extends Migration
             $table->bigInteger('admin_id')->unsigned()->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->bigInteger('brand_id')->unsigned()->nullable();
-            $table->foreign('brand_id')->references('id')->on('companies')->onDelete('cascade'); 
+            $table->foreign('brand_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->bigInteger('distributor_id')->unsigned()->nullable();
+            $table->foreign('distributor_id')->references('id')->on('distributors')->onDelete('cascade'); 
             $table->bigInteger('brandcategory_id')->unsigned()->nullable();
             $table->foreign('brandcategory_id')->references('id')->on('brandcategories')->onDelete('cascade');  
             $table->integer('clickview')->default(0);
             $table->string('title',280);
             $table->string('slug')->unique();
             $table->string('cc');
-            $table->string('producttype')->default('new');
+            $table->string('producttype');
             $table->string('marketstatus')->default(1);
             $table->string('keyword');
             $table->float('regularprice',8,2);

@@ -185,5 +185,15 @@ class ParentpageController extends Controller
         }
     
     }
+    public function Parentpagesearch(Request $request){
+        $id =$request->s;
+         if ($id !==null) {
+            return Parentpage::where('admin_id',Auth::guard('admin')->user()->id)->where('parentpage','LIKE','%%%'.urldecode($id).'%%%')->paginate(3);
+         }
+        
+    else {
+        return $this->index();
+    }
+     }
     
 }
