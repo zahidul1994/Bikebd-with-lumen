@@ -681,12 +681,14 @@ var token = localStorage.getItem("token");
     },
   methods: {
     addProduct() {
+       this.$eventBus.$emit("loadingStatus", true); 
       this.form
         .post("admin/createproduct")
         //console.log('ok');
-        .then(({ response }) => {
+        .then(({ response=true }) => {
           [toastr.success("Product Create Successfull")],
             [this.$router.push("/admin/productlist")];
+             this.$eventBus.$emit("loadingStatus", false); 
         })
         .catch(function(response) {
             toastr.warning("Sorry Try Agin");

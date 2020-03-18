@@ -427,7 +427,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-       <span class="preloader"> <img :src="'/images/64x64.gif'"></span> 
+       <span class="preloader" v-if="loding"> <img :src="'/images/256x256.gif'"></span> 
      <router-view></router-view>
       </div>
       <!-- /.container-fluid -->
@@ -465,6 +465,7 @@
       name:'AdminDashboard',
         data(){
         return {
+          loding :false,
         authenticatedname:null,
         authenticatedimage:null,
        
@@ -472,7 +473,10 @@
     },
    
    created(){
-     document.title="Admin"
+     document.title="Dashboard"
+     this.$eventBus.$on("loadingStatus", payload => {
+      this.loding = payload;
+    });
 
    },
    
@@ -512,9 +516,9 @@
 </script>
 <style>
 .preloader {
-   position: absolute;
-    /* background-image: url('('storage/images/loading-gears-animation-10.gif')'); */
-   top: 20%;
-   left: 50%;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  z-index: 1000;
 }
 </style>

@@ -675,12 +675,12 @@ export default {
         },
   methods: {
     UpdateProduct() {
+       this.$eventBus.$emit("loadingStatus", true); 
         this.form.put('/admin/updateproduct/'+`${this.$route.params.id}`)
-         //this.form.put('/admin/updateblogpost/'+`${this.$route.params.id}`)
-        //console.log('ok');
-        .then(({ response }) => {
+                .then(({ response=true }) => {
           [toastr.success("Product Update Successfull")],
             [this.$router.push("/admin/productlist")];
+            this.$eventBus.$emit("loadingStatus", false);
         })
         .catch(function(response) {
          toastr.warning("Sorry Try Agin");

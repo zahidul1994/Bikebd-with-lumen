@@ -21,7 +21,7 @@ class CreateDistributorsTable extends Migration
             $table->foreign('superadmin_id')->references('id')->on('superadmins')->onDelete('cascade');   
             $table->string('distributor')->unique();
             $table->string('address')->nullable();
-            $table->string('phone',)->nullable();
+            $table->string('phone')->nullable();
             $table->string('fullname',280)->nullable();
             $table->string('profileimage');
             $table->string('coverimage')->nullable();

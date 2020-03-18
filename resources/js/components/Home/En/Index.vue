@@ -1,18 +1,18 @@
 <template>
 
-   <div>
-     <section id="top-area">
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+   <span>
+<!--top arae-->
+    <section id="top-area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark top-nav">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                   
                     <img :src="'/images/Fontimage/logo.png'" alt="">
                 </a>
 
                 <div class="">
 
-                    <form class="form-inline my-2 my-lg-0 m-auto">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <form class="form-inline form-inline-mobile my-2 my-lg-0 m-auto">
+                        <input class="form-control form-control-mobile" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="far fa-search"></i></button>
                     </form>
                 </div>
@@ -145,7 +145,7 @@
                                 <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
                             </p>
 
-                            <div id="slider-range"></div>
+                            <div id="slider-range"> <slick ref="slick" :options="sliderRang"> </slick> </div>
 
                         </div>
                         <div class="col-md-5">
@@ -184,9 +184,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 align-self-center">
-                 <div class="card" style="">
+    <div class="col-md-4 col-lg-3 align-self-center">
+                <div class="card" style="">
                     <div class="card-slider">
+                                     <div class="card-slider">
                          <slick ref="slick" :options="slickMini"  v-if="allRecentProduct.length">
                     <div class="card-slider">
                       
@@ -240,9 +241,14 @@
                                   
                     </div>
                      </slick> 
+                 </div>
+                      
+                    
+                    </div>
+
+                </div>
             </div>
-            </div>
-        </div>
+
    </div>
     </div>
 </section>
@@ -250,23 +256,22 @@
 <section id="main-contant" class="mt-4">
     <div class="container">
         <div class="contant p-5 bg-white">
-            <!--               recent area-->
+
+            <!--recent area-->
             <div class="recent-view">
                 <h3 class="mb-4">
                     Recently Viewed and Recommended
                 </h3>
             
                 <div class="row product-slider">
-                   
-                                <div class="card c-bdr">
-                                      <slick ref="slick" :options="slickOptions"  v-if="allRecentProduct.length">
-                                            <div class="col-md-12" v-for="product in allRecentProduct" :key="(product.id)">
+                   <div class="col-md-12">
+                     <slick ref="slick" :options="slickOptions"  v-if="allRecentProduct.length">
+                                            <div class="col-md-12 col-sm-1" v-for="product in allRecentProduct" :key="(product.id)">
                                    <router-link  :to="`/product/${product.slug}`" class="card c-bdr">
                                         <img :src="'/images/productimages/'+ product.featureimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">{{product.title|shortlength(30,"..")}}</h5>
-                                         <span class="bike-p">Product Price: {{product.regularprice}}</span>
-                                              <!-- <span v-html="bloginfo.description"> </span> -->
+                                            <h5 class="bike-n text-dark">{{product.title|shortlength(10,"..")}}</h5>
+                                            <p class="bike-p">Price: {{product.regularprice}}</p>
                                         </div>
                                          <div class="c-bottom text-center">
                                         <span class="">View Details</span>
@@ -274,7 +279,7 @@
                                     </router-link>
                                      </div>
                                     </slick> 
-                                </div>
+                               </div>
                            </div>
             </div>
 
@@ -290,9 +295,9 @@
             
                 <div class="row product-slider">
                    
-                                <div class="card c-bdr">
+                                <div class="col-md-12">
                                        <slick ref="slick" :options="slickOptions"  v-if="AllLatestBlog.length">
-                     <div class="col-md-12" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
+                     <div class="col-md-12 col-sm-1" v-for="bloginfo in AllLatestBlog" :key="(bloginfo.id)">
                                    <router-link  :to="`/blog/${encodeURI(bloginfo.slug)}`" class="card c-bdr">
                                         <img :src="'/images/blogpost/'+ bloginfo.postimage" class="card-img-top w-100" alt="...">
                                        <div class="card-body pb-0">
@@ -319,14 +324,14 @@
                             <!-- {{allupcommingProduct}} -->
                         </h3>
                         <div class="row product-slider">
-                        <div class="card c-bdr">
+                        <div class="col-md-12">
                                       <slick ref="slick" :options="slickOptions"  v-if="allupcommingProduct.length">
-                                            <div class="col-md-12" v-for="product in allupcommingProduct" :key="(product.id)">
+                                            <div class="col-md-12 col-sm-1" v-for="product in allupcommingProduct" :key="(product.id)">
                                    <router-link  :to="`/product/${product.slug}`" class="card c-bdr">
                                         <img :src="'/images/productimages/'+ product.featureimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">{{product.title|shortlength(30,"..")}}</h5>
-                                         <span class="bike-p">Product Price: {{product.regularprice}}</span>
+                                            <h5 class="bike-n text-dark">{{product.title|shortlength(10,"..")}}</h5>
+                                         <span class="bike-p">Price: {{product.regularprice}}</span>
                                               <!-- <span v-html="bloginfo.description"> </span> -->
                                         </div>
                                          <div class="c-bottom text-center">
@@ -336,10 +341,7 @@
                                      </div>
                                     </slick> 
                                 </div>
-
-
-
-                        </div>
+                                </div>
                     </div>
 
 
@@ -349,31 +351,24 @@
                             Latest and Popular Bikes
                         </h3>
                         <div class="row product-slider">
-                              <div class="card c-bdr">
+                              <div class="col-md-12">
                                       <slick ref="slick" :options="slickOptions"  v-if="allPopular.length">
-                                            <div class="col-md-12" v-for="popular in allPopular" :key="(popular.id)">
+                                            <div class="col-md-12 col-sm-1" v-for="popular in allPopular" :key="(popular.id)">
                                    <router-link  :to="`/product/${popular.slug}`" class="card c-bdr">
                                         <img :src="'/images/productimages/'+ popular.featureimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
                                             <h5 class="bike-n text-dark">{{popular.title|shortlength(30,"..")}}</h5>
-                                         <span class="bike-p">Product Price: {{popular.regularprice}}</span>
+                                         <span class="bike-p">Price: {{popular.regularprice}}</span>
                                               <!-- <span v-html="bloginfo.description"> </span> -->
                                         </div>
                                          <div class="c-bottom text-center">
                                         <span class="">View Details</span>
-                                </div>
+                                    </div>
                                     </router-link>
                                      </div>
                                     </slick> 
                                 </div>
-                           
-                            
-                          
-                          
-
-
-
-                        </div>
+                           </div>
                     </div>
                 </div>
 
@@ -385,21 +380,21 @@
             </div>
 
 
-            <!--                brand area-->
+               <!--                brand area-->
             <div class="recent-view mt-5">
                 <h3 class="mb-4">
                     Featured Bike Brands
 
                 </h3>
                 <div class="row product-slider">
-                     <div class="card c-bdr">
+                     <div class="col-md-12">
                                       <slick ref="slick" :options="slickOptions"  v-if="AllFeature.length">
-                                            <div class="col-md-12" v-for="feature in AllFeature" :key="(feature.id)">
+                                            <div class="col-md-12 col-sm-1" v-for="feature in AllFeature" :key="(feature.id)">
                                    <router-link  :to="`/product/${feature.slug}`" class="card c-bdr">
                                         <img :src="'/images/productimages/'+ feature.featureimage" class="card-img-top w-100" alt="...">
                                         <div class="card-body pb-0">
-                                            <h5 class="bike-n text-dark">{{feature.title|shortlength(30,"..")}}</h5>
-                                         <span class="bike-p">Product Price: {{feature.regularprice}}</span>
+                                            <h5 class="bike-n text-dark">{{feature.title|shortlength(10,"..")}}</h5>
+                                         <span class="bike-p">Price: {{feature.regularprice}}</span>
                                               <!-- <span v-html="bloginfo.description"> </span> -->
                                         </div>
                                          <div class="c-bottom text-center">
@@ -412,22 +407,23 @@
                             </div>
             </div>
 
-  <!--   best price area-->
+
+<!--   best price area-->
             <div class="recent-view mt-5">
                 <h3 class="mb-4 product-header">
                     Best Bike by Price
                 </h3>
                  <slick ref="slick" :options="slickOptions"  v-if="AllBestPrice.length">
                 <div class="row product-slider"  v-for="feature in AllBestPrice" :key="(feature.id)">
-                   <div class="col-md-12">
-                        <div class="card pt-3 pb-3 bg-secondary p-2">
+                   <div class="col-md-12 com-sm-1">
+                        <div class="card pt-3 pb-3 bg-warning p-2">
                             <div class="row">
                                 <div class="col-md-5 align-self-center pr-0">
-                                    <img :src="'/images/productimages/'+ feature.featureimage" alt="" class="w-100">
+                                    <img :src="'/images/productimages/'+ feature.featureimage" alt="" class="w-100 formob">
                                 </div>
                                 <div class="col-md-7 text-center align-self-center">
                                     <p class="mb-0 text-white">
-                                        {{feature.title|shortlength(30,"..")}}
+                                        {{feature.title|shortlength(10,"..")}}
                                     </p>
                                     <p class="font-weight-bold text-white">
                                         TK: {{feature.regularprice}}
@@ -435,7 +431,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                       </div>
                      </div>
                      </slick>
             </div>
@@ -446,19 +442,18 @@
   <div class="recent-view mt-5">
                 <h3 class="mb-4 product-header">
                     Trending Collections
-
                 </h3>
                  <slick ref="slick" :options="slickOptions"  v-if="AllBestPrice.length">
-                <div class="row product-slider"  v-for="feature in AllBestPrice" :key="(feature.id)">
+                  <div class="row product-slider"  v-for="feature in AllBestPrice" :key="(feature.id)">
                    <div class="col-md-12">
                         <div class="card pt-3 pb-3 bg-primary p-2">
                             <div class="row">
                                 <div class="col-md-5 align-self-center pr-0">
-                                    <img :src="'/images/productimages/'+ feature.featureimage" alt="" class="w-100">
+                                    <img :src="'/images/productimages/'+ feature.featureimage" alt="" class="w-100 formob">
                                 </div>
                                 <div class="col-md-7 text-center align-self-center">
                                     <p class="mb-0 text-white">
-                                        {{feature.title|shortlength(30,"..")}}
+                                        {{feature.title|shortlength(10,"..")}}
                                     </p>
                                     <p class="font-weight-bold text-white">
                                         TK: {{feature.regularprice}}
@@ -466,13 +461,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                      </div>
-                     </slick>
-            </div>
-
-
-            <!-- Comparisons area-->
+                     </div>
+                 </slick>
+         </div>
+<!-- Comparisons area-->
 
  <div class="recent-view mt-5">
                 <h3 class="mb-4 product-header">
@@ -606,7 +599,7 @@
 </section>
 
 
-</div>
+</span>
     
 
               
@@ -619,8 +612,11 @@ export default {
   name: "Index",
       data(){
         return {
-            
-                       slickOptions: {
+              sliderRang:{
+        
+        
+    },
+             slickOptions: {
                  slidesToShow: 4,
         slidesToScroll: 1,
         dots: false,

@@ -1,219 +1,334 @@
 /*// Extra small devices (portrait phones, less than 576px)*/
+
 @media (max-width: 575px) {
-
-
+    .formob {
+        width: 93% !important;
+    }
     .navbar {
         /*        padding: 0 0 20px 0;*/
     }
-
     .form-control-mobile {
         width: 80%;
     }
-
     .form-inline-mobile {
         padding-bottom: 8px;
     }
-
     #top-area .navbar {
         padding-bottom: 20px;
     }
-
     .tr-btn.mb-0 {
-       margin-top: 10px;
+        margin-top: 10px;
     }
-
-
     .product-header {
         font-size: 21px;
     }
-
     .col-md-4.col-lg-3.align-self-center {
         display: none
     }
-
     .navbar-nav .nav-link {
         padding-left: 15px;
         border-right: 0;
     }
-
     .tr-btn {
         float: left !important;
         padding-top: 0 !important;
     }
-
     .col-md-4.mt-3.mb-3 {
         border-right: 0px !important;
     }
-    .fl-spcs{
+    .fl-spcs {
         text-align: left !important;
         padding-left: 8px !important;
     }
-    
-    .p-3.spk-btn{
+    .p-3.spk-btn {
         padding-left: 0 !important
     }
-    
-    .showroom button{
+    .showroom button {
         font-size: 12px;
     }
-    .showroom{
+    .showroom {
         padding: 16px 10px;
     }
-    .col-md-8.align-self-center{
+    .col-md-8.align-self-center {
         text-align: center
     }
-    .add-ps{
+    .add-ps {
         margin: auto
     }
-    .col-md-6.align-self-center.text-right{
+    .col-md-6.align-self-center.text-right {
         text-align: left !important
     }
-    .p-3.mb-0.Read{
+    .p-3.mb-0.Read {
         padding-left: 0 !important
     }
-    
-    .details-head p{
+    .details-head p {
         font-size: 14px;
     }
-    .Competitor-slider{
+    .Competitor-slider {
         margin-top: 20px;
     }
-    
-    .form-control.mr-sm-2.ask-form{
+    .form-control.mr-sm-2.ask-form {
         margin-right: 10px;
         width: 63%;
     }
-    .form-control.mr-sm-2.ask-form{
+    .form-control.mr-sm-2.ask-form {
         width: 100%;
     }
-    .offer-btn{
+    .offer-btn {
         text-align: center !important;
         padding-bottom: 15px;
     }
-    
-   
-
-
-
-
-}
-
-/*// Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) and (max-width: 767px) {
-      .offer-btn{
-        text-align: left!important;
-        padding-bottom: 15px;
+    .mb25 {
+        margin-bottom: 25px !important;
     }
-    .col-md-8.align-self-center{
+    .showroom-search {
         text-align: center
     }
+    .showroom-search select {
+        margin-bottom: 15px;
+    }
+    .showroom-page .brand-contant .details-head p {
+        font-size: 22px;
+    }
+    .other-brand .card {
+        margin-bottom: 20px;
+    }
+    .fsc {
+        font-size: 16px !important;
+        margin-bottom: 15px !important;
+    }
+    .col-md-4.align-self-center.pt-3.text-right {
+        text-align: center !important;
+    }
+    .txc-mbl {
+        text-align: center;
+    }
+    .srvc img {
+        width: 40% !important;
+    }
+    .srvc {
+        text-align: center
+    }
+    #bike-type h1 {
+        font-size: 26px;
+        font-weight: 700
+    }
+    .brand-content .card {
+        margin-bottom: 20px;
+    }
+    #bike-type .card {
+        margin-bottom: 20px;
+    }
+}
 
 
+/*// Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .brand-content .card {
+        margin-bottom: 20px;
+    }
+    #bike-type .card {
+        margin-bottom: 20px;
+    }
+    .navbar-nav .nav-link {
+        padding-left: 15px;
+        border-right: 0;
+    }
+    .srvc img {
+        width: 40% !important;
+    }
+    .srvc {
+        text-align: center
+    }
+    .showroom-select select {
+        width: 33% !important
+    }
+    .showroom-select button {
+        width: 25% !important;
+    }
+    .other-brand .card {
+        margin-bottom: 20px;
+    }
+    .fsc {
+        font-size: 18px !important;
+        margin-bottom: 15px !important;
+    }
+    .txc-mbl {
+        text-align: center;
+    }
+    .col-md-4.align-self-center.pt-3.text-right {
+        text-align: center !important;
+    }
+    .mb25 {
+        margin-bottom: 25px !important;
+    }
+    .offer-btn {
+        text-align: left !important;
+        padding-bottom: 15px;
+    }
+    .col-md-8.align-self-center {
+        text-align: center
+    }
     .col-md-3.align-self-center {
         display: none
     }
-
     #top-area .navbar {
         padding-bottom: 20px;
     }
-
     .tr-btn.mb-0 {
         margin: auto
     }
-
     .form-inline-mobile {
         padding-bottom: 15px;
     }
-
     .navbar-brand {
         margin: auto;
         padding-bottom: 10px;
     }
-
     .product-header {
         font-size: 25px;
     }
-
     .col-md-4.col-lg-3.align-self-center {
         display: none
     }
-
-
 }
 
-/*// Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) and (max-width: 991px) {
 
+/*// Medium devices (tablets, 768px and up)*/
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .md-res .card .card-body {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        padding-bottom: 0 !important;
+        padding-top: 15px !important;
+    }
+    .card-text.pb-3.font-weight-bold.text-uppercase {
+        font-size: 14px;
+    }
+    .btn.btn-success.text-dark.font-weight-bold {
+        font-size: 12px;
+    }
+    .card-text.font-weight-bold.text-uppercase {
+        font-size: 14px !important;
+    }
+    .By-Budget p {
+        font-size: 14px !important;
+    }
+    .by-cc p {
+        font-size: 13px !important;
+    }
     #top-area .navbar {
         padding-bottom: 20px;
     }
-
     .navbar-brand {
         padding-bottom: 33px;
     }
-
     .mb-0.top-sd-cont {
         font-size: 14px;
     }
-
     .filter-header {
         font-size: 20px;
     }
-
     .by-b-c {
         font-size: 14px;
     }
-    
-     .add img{
-       width: 85% !important;
+    .add img {
+        width: 85% !important;
     }
-    .add-ps img{
-       width: 58% !important;
+    .add-ps img {
+        width: 58% !important;
     }
-    
-    .offer-btn button{
+    .offer-btn button {
         font-size: 12px;
     }
-    .offer-btn{
+    .offer-btn {
         padding-bottom: 15px;
     }
-    .specs h4{
+    .specs h4 {
         font-size: 17px;
     }
-    .specs .spec-titel{
+    .specs .spec-titel {
         font-size: 12px;
     }
-    .specs .spec-detail{
+    .specs .spec-detail {
         font-size: 12px;
+    }
+    .cty h4 {
+        font-size: 16px;
+    }
+    .showroom-page .brand-contant .details-head p {
+        font-size: 18px;
+    }
+    .mb-0.txc-mbl {
+        font-size: 10px;
+    }
+    #nav-home-tab {
+        font-size: 11px;
+    }
+    #nav-profile-tab {
+        font-size: 11px;
+    }
+    .showroom-select select {
+        width: 33% !important
+    }
+    .showroom-select button {
+        width: 25% !important;
+    }
+    .mrgn {
+        font-size: 12px;
+    }
+    td {
+        font-size: 12px;
+    }
+    .brand-name {
+        font-size: 6px !important;
     }
 }
 
+
 /*// Large devices (desktops, 992px and up)*/
+
 @media (min-width: 992px) and (max-width: 1199px) {
     .form-control.form-control-mobile {
         width: 70%;
     }
-
     .pr-5.py-1 {
         margin-right: 16px;
     }
-
     .mb-0.top-sd-cont {
         font-size: 14px;
     }
-
     #menu ul li a {
         font-size: 12px;
     }
-    .add-ps img{
+    .add-ps img {
         width: 80% !important;
     }
-    .offer-btn{
+    .offer-btn {
         padding-bottom: 15px;
+    }
+    .brand-name {
+        font-size: 16px !important;
+    }
+    .showroom-select select {
+        width: 33% !important
+    }
+    .showroom-select button {
+        width: 25% !important;
+    }
+    #menu .nav-link {
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: 700;
+        color: #7a7a7a;
     }
 }
 
+
 /*// Extra large devices (large desktops, 1200px and up)*/
+
 @media (min-width: 1200px) {
     ...
 }

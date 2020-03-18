@@ -36,7 +36,7 @@ Vue.use(vueHeadful);
 new Vue({
     // your configuration
 });
-
+Vue.prototype.$eventBus = new Vue(); // Global event bus
 import vSelect from 'vue-select'
 Vue.component('v-select', vSelect);
 import 'vue-select/dist/vue-select.css';

@@ -163,9 +163,12 @@ export default {
   },
  
  methods: {
+   
        getResults(page = 1) {
+          this.$eventBus.$emit("loadingStatus", true); 
       axios.get("/admin/productlist?page=" + page).then(response => {
         this.allProductlist = response.data;
+         this.$eventBus.$emit("loadingStatus", false); 
       });
     },
     deleteProduct(id) {
